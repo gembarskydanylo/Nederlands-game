@@ -3,284 +3,474 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f7f6f3">
-<title>Nederlands leren</title>
+<meta name="theme-color" content="#f7f8fc">
+<title>Polyglot Leren — A1</title>
 <style>
-:root{--bg:#f7f6f3;--fg:#1c1c1e;--mut:#8a8a8e;--card:#fff;--line:#e4e2dc;--acc:#2f4bd8;--ok:#2e8b57;--bad:#c8453b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111113;--fg:#f2f2f4;--mut:#8e8e93;--card:#1c1c1f;--line:#2c2c30;--acc:#7b8dff;--ok:#4fbf82;--bad:#ef6b61}}
-:root[data-theme="dark"]{--bg:#111113;--fg:#f2f2f4;--mut:#8e8e93;--card:#1c1c1f;--line:#2c2c30;--acc:#7b8dff;--ok:#4fbf82;--bad:#ef6b61}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--bg);color:var(--fg);font:16px/1.4 -apple-system,"Inter","Segoe UI",Roboto,sans-serif;display:flex;justify-content:center;min-height:100vh}
-main{width:100%;max-width:540px;padding:20px 16px 32px;display:flex;flex-direction:column;gap:16px}
-header{display:flex;justify-content:space-between;align-items:center}
-header h1{font-size:20px;font-weight:600;margin:0;letter-spacing:-.01em}
-.top-right{display:flex;align-items:center;gap:10px}
-#score{color:var(--mut);font-size:15px;font-weight:500}
-.lang-select{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:8px;padding:4px 8px;font:inherit;font-size:13px;cursor:pointer}
-nav{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none;-webkit-overflow-scrolling:touch}
-nav::-webkit-scrollbar{display:none}
-nav button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 12px;font:inherit;font-size:14px;color:var(--mut);cursor:pointer;white-space:nowrap;flex-shrink:0}
-nav button.on{color:var(--fg);border-bottom-color:var(--acc);font-weight:600}
-.meta{display:flex;justify-content:space-between;color:var(--mut);font-size:13px}
-.bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:-8px}
-.bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .3s}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 16px;display:flex;flex-direction:column;gap:18px}
-.q{text-align:center}
-.q small{color:var(--mut);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
-.q h2{font-size:36px;font-weight:600;margin:6px 0 2px;letter-spacing:-.02em}
-.q p{margin:0;color:var(--mut);font-size:14px}
-.listen{background:none;border:1px solid var(--line);color:var(--fg);border-radius:20px;padding:6px 14px;font:inherit;font-size:13px;cursor:pointer;margin-top:8px}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:12px 8px;font:inherit;font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:52px}
-.opt:active{transform:scale(.97)}
-.opt.ok{border-color:var(--ok);color:var(--ok)}
-.opt.bad{border-color:var(--bad);color:var(--bad)}
-.opt:disabled{cursor:default}
-.sw{width:14px;height:14px;border-radius:50%;border:1px solid var(--mut);flex-shrink:0}
-.fb{text-align:center;min-height:60px}
-.fb b{font-size:17px;font-weight:600}
-.fb p{margin:2px 0 0;color:var(--mut);font-size:13px}
-.row{display:flex;gap:10px;flex-wrap:wrap}
-.btn{flex:1;min-width:140px;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-weight:500;cursor:pointer;text-align:center}
-.btn.main{background:var(--acc);border-color:var(--acc);color:#fff}
-.end{text-align:center;display:flex;flex-direction:column;gap:12px}
-.end h2{font-size:40px;margin:0 0 2px}
-.end p{color:var(--mut);margin:0 0 12px;font-size:15px}
-footer{text-align:center;color:var(--mut);font-size:12px}
+:root {
+  --bg: #f7f8fc;
+  --fg: #20243a;
+  --mut: #686f82;
+  --card: #ffffff;
+  --line: #e5e8f0;
+  --acc: #4657d9;
+  --ok: #218653;
+  --bad: #c43d4b;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12131c;
+    --fg: #f0f2f8;
+    --mut: #8e95a5;
+    --card: #1c1e2d;
+    --line: #2a2d40;
+    --acc: #6372f2;
+    --ok: #2ebd75;
+    --bad: #e55362;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.4 -apple-system, "Inter", "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+main {
+  width: 100%;
+  max-width: 540px;
+  padding: 16px 16px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+header h1 { font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+.top-right { display: flex; align-items: center; gap: 6px; }
+.select-group { display: flex; align-items: center; gap: 3px; font-size: 11px; color: var(--mut); }
+#score { color: var(--acc); font-size: 15px; font-weight: 700; margin-left: 4px; }
+.lang-select {
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  border-radius: 8px;
+  padding: 4px 6px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+nav {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+nav::-webkit-scrollbar { display: none; }
+nav button {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--mut);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+nav button.on { color: var(--fg); border-bottom-color: var(--acc); font-weight: 600; }
+.meta { display: flex; justify-content: space-between; color: var(--mut); font-size: 12px; }
+.bar { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: -6px; }
+.bar i { display: block; height: 100%; width: 0; background: var(--acc); transition: width .3s; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.q { text-align: center; }
+.q small { color: var(--mut); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }
+.q h2 { font-size: 32px; font-weight: 700; margin: 4px 0 2px; letter-spacing: -.02em; }
+.q p { margin: 0; color: var(--mut); font-size: 14px; }
+.listen {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--fg);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+.listen:active { background: var(--line); }
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.opt {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  border-radius: 12px;
+  padding: 10px 8px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  min-height: 50px;
+}
+.opt:active { transform: scale(.98); }
+.opt.ok { border-color: var(--ok); color: var(--ok); background: rgba(33, 134, 83, 0.08); font-weight: 700; }
+.opt.bad { border-color: var(--bad); color: var(--bad); background: rgba(196, 61, 75, 0.08); }
+.opt:disabled { cursor: default; }
+.sw { width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--mut); flex-shrink: 0; }
+.fb { text-align: center; min-height: 56px; }
+.fb b { font-size: 16px; font-weight: 600; color: var(--fg); }
+.fb p { margin: 2px 0 0; color: var(--mut); font-size: 13px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--fg);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+.btn.main { background: var(--acc); border-color: var(--acc); color: #fff; }
+.end { text-align: center; display: flex; flex-direction: column; gap: 10px; }
+.end h2 { font-size: 36px; margin: 0 0 2px; }
+.end p { color: var(--mut); margin: 0 0 10px; font-size: 14px; }
+footer { text-align: center; color: var(--mut); font-size: 11px; }
 </style>
 </head>
 <body>
 <main>
  <header>
-   <h1>Nederlands leren</h1>
+   <h1 id="appTitle">Leren</h1>
    <div class="top-right">
-     <select id="langPicker" class="lang-select" onchange="changeLang(this.value)">
-       <option value="uk">🇺🇦 UA</option>
-       <option value="en">🇬🇧 EN</option>
-       <option value="fr">🇫🇷 FR</option>
-     </select>
-     <span id="score"></span>
+     <div class="select-group">
+       <span>🎯</span>
+       <select id="targetLangPicker" class="lang-select" onchange="changeTargetLang(this.value)">
+         <option value="nl">🇳🇱 NL</option>
+         <option value="en">🇬🇧 EN</option>
+         <option value="fr">🇫🇷 FR</option>
+       </select>
+     </div>
+     <div class="select-group">
+       <span>🗣️</span>
+       <select id="uiLangPicker" class="lang-select" onchange="changeUiLang(this.value)">
+         <option value="uk">🇺🇦 UA</option>
+         <option value="en">🇬🇧 EN</option>
+         <option value="fr">🇫🇷 FR</option>
+       </select>
+     </div>
+     <span id="score">⚡ 0</span>
    </div>
  </header>
  <nav id="tabs"></nav>
  <div class="meta"><span id="prog"></span><span id="rnd"></span></div>
  <div class="bar"><i id="barfill"></i></div>
  <div class="card" id="card"></div>
- <footer id="footText">Нідерландська мова для всіх</footer>
+ <footer id="footText">Нідерландська для життя в Бельгії</footer>
 </main>
 <script>
-var $=function(id){return document.getElementById(id)};
-var PER_ROUND=10;
-var userLang=localStorage.getItem("nl_lang")||"uk";
+var $ = function(id) { return document.getElementById(id); };
+var PER_ROUND = 10;
 
-var UI={
- uk:{
-  qProgress:"Питання",round:"Раунд",listen:"🔊 Слухати",next:"Далі",again:"Ще раз",
-  nextTopic:"Наступна тема",accuracy:"точність",foot:"Нідерландська мова для всіх",
-  tabs:{questions:"Запитання",dehet:"De / Het",verbs:"Дієслова",colors:"Кольори",numbers:"Числа",seasons:"Пори та час"},
-  subs:{questions:"Що означає питальне слово?",dehet:"Оберіть артикль",verbs:"Перекладіть дієслово",colors:"Який це колір?",numbers:"Переклад числа",seasons:"Перекладіть слово"},
-  hints:{questions:"Запитання",verbs:"Дієслово",colors:"Колір",numbers:"Число",seasons:"Час / Пора року"}
+var targetLang = localStorage.getItem("poly_target") || "nl";
+var uiLang = localStorage.getItem("poly_ui") || "uk";
+
+var UI = {
+ uk: {
+  qProgress: "Питання", round: "Раунд", listen: "🔊 Слухати", next: "Далі", again: "Ще раз",
+  nextTopic: "Наступна тема", accuracy: "точність", foot: "Нідерландська для життя в Бельгії",
+  tabs: { pronouns: "Займенники", questions: "Запитання", dehet: "Артиклі", verbs: "Дієслова", colors: "Кольори", numbers: "Числа", seasons: "Час та дні" },
+  subs: { pronouns: "Оберіть переклад займенника", questions: "Що означає питальне слово?", dehet: "Оберіть правильний артикль", verbs: "Перекладіть дієслово", colors: "Який це колір?", numbers: "Переклад числа", seasons: "Перекладіть слово" },
+  hints: { pronouns: "Займенник", questions: "Запитання", dehet: "Артикль", verbs: "Дієслово", colors: "Колір", numbers: "Число", seasons: "Час / День" }
  },
- en:{
-  qProgress:"Question",round:"Round",listen:"🔊 Listen",next:"Next",again:"Try again",
-  nextTopic:"Next topic",accuracy:"accuracy",foot:"Learn Dutch easily",
-  tabs:{questions:"Questions",dehet:"De / Het",verbs:"Verbs",colors:"Colors",numbers:"Numbers",seasons:"Seasons & Time"},
-  subs:{questions:"What does this question word mean?",dehet:"Choose the article",verbs:"Translate the verb",colors:"Which color is this?",numbers:"Number translation",seasons:"Translate the word"},
-  hints:{questions:"Question",verbs:"Verb",colors:"Color",numbers:"Number",seasons:"Time / Season"}
+ en: {
+  qProgress: "Question", round: "Round", listen: "🔊 Listen", next: "Next", again: "Try again",
+  nextTopic: "Next topic", accuracy: "accuracy", foot: "Learn Dutch & Languages for Belgium",
+  tabs: { pronouns: "Pronouns", questions: "Questions", dehet: "Articles", verbs: "Verbs", colors: "Colors", numbers: "Numbers", seasons: "Time & Days" },
+  subs: { pronouns: "Translate the pronoun", questions: "What does this question word mean?", dehet: "Choose the correct article", verbs: "Translate the verb", colors: "Which color is this?", numbers: "Number translation", seasons: "Translate the word" },
+  hints: { pronouns: "Pronoun", questions: "Question", dehet: "Article", verbs: "Verb", colors: "Color", numbers: "Number", seasons: "Time / Day" }
  },
- fr:{
-  qProgress:"Question",round:"Tour",listen:"🔊 Écouter",next:"Suivant",again:"Recommencer",
-  nextTopic:"Sujet suivant",accuracy:"précision",foot:"Apprendre le néerlandais",
-  tabs:{questions:"Questions",dehet:"De / Het",verbs:"Verbes",colors:"Couleurs",numbers:"Nombres",seasons:"Saisons & Temps"},
-  subs:{questions:"Que signifie ce mot interrogatif?",dehet:"Choisissez l'article",verbs:"Traduisez le verbe",colors:"Quelle est cette couleur?",numbers:"Traduction du nombre",seasons:"Traduisez le mot"},
-  hints:{questions:"Question",verbs:"Verbe",colors:"Couleur",numbers:"Nombre",seasons:"Temps / Saison"}
+ fr: {
+  qProgress: "Question", round: "Tour", listen: "🔊 Écouter", next: "Suivant", again: "Recommencer",
+  nextTopic: "Sujet suivant", accuracy: "précision", foot: "Apprendre le néerlandais en Belgique",
+  tabs: { pronouns: "Pronoms", questions: "Questions", dehet: "Articles", verbs: "Verbes", colors: "Couleurs", numbers: "Nombres", seasons: "Temps & Jours" },
+  subs: { pronouns: "Traduisez le pronom", questions: "Que signifie ce mot interrogatif?", dehet: "Choisissez le bon article", verbs: "Traduisez le verbe", colors: "Quelle est cette couleur?", numbers: "Traduction du nombre", seasons: "Traduisez le mot" },
+  hints: { pronouns: "Pronom", questions: "Question", dehet: "Article", verbs: "Verbe", colors: "Couleur", numbers: "Nombre", seasons: "Temps / Jour" }
  }
 };
 
-var DATA={
- questions:{labelKey:"questions",items:[
-  {nl:"wat",uk:"що",en:"what",fr:"quoi",ex:"Wat is je naam?",exuk:"Яке твоє ім'я?",exen:"What is your name?",exfr:"Quel est ton nom?"},
-  {nl:"wie",uk:"хто",en:"who",fr:"qui",ex:"Wie is dat?",exuk:"Хто це?",exen:"Who is that?",exfr:"Qui est-ce?"},
-  {nl:"waar",uk:"де",en:"where",fr:"où",ex:"Waar woon je?",exuk:"Де ти живеш?",exen:"Where do you live?",exfr:"Où habites-tu?"},
-  {nl:"waarvandaan",uk:"звідки",en:"where from",fr:"d'où",ex:"Waar kom je vandaan?",exuk:"Звідки ти?",exen:"Where are you from?",exfr:"D'où viens-tu?"},
-  {nl:"wanneer",uk:"коли",en:"when",fr:"quand",ex:"Wanneer begint de les?",exuk:"Коли починається урок?",exen:"When does the lesson start?",exfr:"Quand commence le cours?"},
-  {nl:"waarom",uk:"чому",en:"why",fr:"pourquoi",ex:"Waarom leer je Nederlands?",exuk:"Чому ти вчиш нідерландську?",exen:"Why do you learn Dutch?",exfr:"Pourquoi apprends-tu le néerlandais?"},
-  {nl:"hoe",uk:"як",en:"how",fr:"comment",ex:"Hoe heet je?",exuk:"Як тебе звати?",exen:"What is your name?",exfr:"Comment t'appelles-tu?"},
-  {nl:"hoeveel",uk:"скільки",en:"how much / many",fr:"combien",ex:"Hoeveel kinderen heb je?",exuk:"Скільки в тебе дітей?",exen:"How many children do you have?",exfr:"Combien d'enfants as-tu?"},
-  {nl:"hoe laat",uk:"котра година",en:"what time",fr:"quelle heure",ex:"Hoe laat is het?",exuk:"Котра зараз година?",exen:"What time is it?",exfr:"Quelle heure est-il?"},
-  {nl:"welke / welk",uk:"який / яка",en:"which",fr:"quel / quelle",ex:"Welke kleur is dit?",exuk:"Який це колір?",exen:"Which color is this?",exfr:"Quelle couleur est-ce?",say:"welke, welk"}
+var DATA = {
+ pronouns: { labelKey: "pronouns", items: [
+  { id: "pr1", nl: "ik", en: "I", fr: "je", uk: "я", ex_nl: "Ik ben thuis.", ex_en: "I am home.", ex_fr: "Je suis à la maison.", ex_uk: "Я вдома." },
+  { id: "pr2", nl: "jij / je", en: "you (singular)", fr: "tu", uk: "ти", ex_nl: "Jij bent aardig.", ex_en: "You are kind.", ex_fr: "Tu es gentil.", ex_uk: "Ти добрий." },
+  { id: "pr3", nl: "hij", en: "he", fr: "il", uk: "він", ex_nl: "Hij werkt hard.", ex_en: "He works hard.", ex_fr: "Il travaille dur.", ex_uk: "Він багато працює." },
+  { id: "pr4", nl: "zij / ze", en: "she", fr: "elle", uk: "вона", ex_nl: "Zij leest een boek.", ex_en: "She reads a book.", ex_fr: "Elle lit un livre.", ex_uk: "Вона читає книжку." },
+  { id: "pr5", nl: "het", en: "it", fr: "il / elle (neutre)", uk: "воно (іменники het)", ex_nl: "Het is koud.", ex_en: "It is cold.", ex_fr: "Il fait froid.", ex_uk: "Холодно." },
+  { id: "pr6", nl: "wij / we", en: "we", fr: "nous", uk: "ми", ex_nl: "Wij zijn samen.", ex_en: "We are together.", ex_fr: "Nous sommes ensemble.", ex_uk: "Ми разом." },
+  { id: "pr7", nl: "jullie", en: "you (plural)", fr: "vous", uk: "ви (група людей)", ex_nl: "Jullie leren snel.", ex_en: "You learn fast.", ex_fr: "Vous apprenez vite.", ex_uk: "Ви вчитеся швидко." },
+  { id: "pr8", nl: "u", en: "you (formal)", fr: "vous (politesse)", uk: "Ви (ввічливо)", ex_nl: "Hoe gaat het met u?", ex_en: "How are you?", ex_fr: "Comment allez-vous?", ex_uk: "Як у Вас справи?" },
+  { id: "pr9", nl: "zij / ze (meervoud)", en: "they", fr: "ils / elles", uk: "вони", ex_nl: "Zij wonen hier.", ex_en: "They live here.", ex_fr: "Ils habitent ici.", ex_uk: "Вони живуть тут." }
  ]},
- dehet:{labelKey:"dehet",items:[
-  {nl:"huis",uk:"будинок",en:"house",fr:"maison",art:"het"},{nl:"man",uk:"чоловік",en:"man",fr:"homme",art:"de"},{nl:"vrouw",uk:"жінка",en:"woman",fr:"femme",art:"de"},
-  {nl:"kind",uk:"дитина",en:"child",fr:"enfant",art:"het"},{nl:"tafel",uk:"стіл",en:"table",fr:"table",art:"de"},{nl:"stoel",uk:"стілець",en:"chair",fr:"chaise",art:"de"},
-  {nl:"boek",uk:"книга",en:"book",fr:"livre",art:"het"},{nl:"auto",uk:"автомобіль",en:"car",fr:"voiture",art:"de"},{nl:"water",uk:"вода",en:"water",fr:"eau",art:"het"},
-  {nl:"kat",uk:"кіт",en:"cat",fr:"chat",art:"de"},{nl:"hond",uk:"собака",en:"dog",fr:"chien",art:"de"},{nl:"meisje",uk:"дівчинка",en:"girl",fr:"fille",art:"het"},
-  {nl:"brood",uk:"хліб",en:"bread",fr:"pain",art:"het"},{nl:"fiets",uk:"велосипед",en:"bicycle",fr:"vélo",art:"de"},{nl:"school",uk:"школа",en:"school",fr:"école",art:"de"},{nl:"raam",uk:"вікно",en:"window",fr:"fenêtre",art:"het"}
+ questions: { labelKey: "questions", items: [
+  { id: "q1", nl: "wat", en: "what", fr: "que / quoi", uk: "що", ex_nl: "Wat is je naam?", ex_en: "What is your name?", ex_fr: "Quel est ton nom?", ex_uk: "Яке твоє ім'я?" },
+  { id: "q2", nl: "wie", en: "who", fr: "qui", uk: "хто", ex_nl: "Wie is dat?", ex_en: "Who is that?", ex_fr: "Qui est-ce?", ex_uk: "Хто це?" },
+  { id: "q3", nl: "waar", en: "where", fr: "où", uk: "де", ex_nl: "Waar woon je?", ex_en: "Where do you live?", ex_fr: "Où habites-tu?", ex_uk: "Де ти живеш?" },
+  { id: "q4", nl: "wanneer", en: "when", fr: "quand", uk: "коли", ex_nl: "Wanneer begint de les?", ex_en: "When does the lesson start?", ex_fr: "Quand commence le cours?", ex_uk: "Коли починається урок?" },
+  { id: "q5", nl: "waarom", en: "why", fr: "pourquoi", uk: "чому", ex_nl: "Waarom leer je dit?", ex_en: "Why do you learn this?", ex_fr: "Pourquoi apprends-tu ceci?", ex_uk: "Чому ти це вчиш?" },
+  { id: "q6", nl: "hoe", en: "how", fr: "comment", uk: "як", ex_nl: "Hoe heet je?", ex_en: "What is your name?", ex_fr: "Comment t'appelles-tu?", ex_uk: "Як тебе звати?" },
+  { id: "q7", nl: "hoeveel", en: "how much", fr: "combien", uk: "скільки", ex_nl: "Hoeveel kost dit?", ex_en: "How much does this cost?", ex_fr: "Combien ça coûte?", ex_uk: "Скільки це коштує?" }
  ]},
- verbs:{labelKey:"verbs",items:[
-  {nl:"zijn",uk:"бути",en:"to be",fr:"être",ex:"Ik ben thuis.",exuk:"Я вдома.",exen:"I am home.",exfr:"Je suis à la maison."},
-  {nl:"hebben",uk:"мати",en:"to have",fr:"avoir",ex:"Ik heb twee kinderen.",exuk:"У мене двоє дітей.",exen:"I have two children.",exfr:"J'ai deux enfants."},
-  {nl:"doen",uk:"робити",en:"to do",fr:"faire",ex:"Wat doe je?",exuk:"Що ти робиш?",exen:"What are you doing?",exfr:"Que fais-tu?"},
-  {nl:"gaan",uk:"іти / їхати",en:"to go",fr:"aller",ex:"Ik ga naar school.",exuk:"Я йду до школи.",exen:"I go to school.",exfr:"Je vais à l'école."},
-  {nl:"komen",uk:"приходити",en:"to come",fr:"venir",ex:"Ik kom uit Oekraïne.",exuk:"Я з України.",exen:"I come from Ukraine.",exfr:"Je viens d'Ukraine."},
-  {nl:"zien",uk:"бачити",en:"to see",fr:"voir",ex:"Ik zie een kat.",exuk:"Я бачу кота.",exen:"I see a cat.",exfr:"Je vois un chat."},
-  {nl:"willen",uk:"хотіти",en:"to want",fr:"vouloir",ex:"Ik wil water.",exuk:"Я хочу води.",exen:"I want water.",exfr:"Je veux de l'eau."},
-  {nl:"wonen",uk:"жити",en:"to live",fr:"habiter",ex:"Ik woon in België.",exuk:"Я живу в Бельгії.",exen:"I live in Belgium.",exfr:"J'habite en Belgique."},
-  {nl:"werken",uk:"працювати",en:"to work",fr:"travailler",ex:"Hij werkt veel.",exuk:"Він багато працює.",exen:"He works a lot.",exfr:"Il travaille beaucoup."},
-  {nl:"spreken",uk:"говорити",en:"to speak",fr:"parler",ex:"Spreek je Nederlands?",exuk:"Ти говориш нідерландською?",exen:"Do you speak Dutch?",exfr:"Parles-tu néerlandais?"},
-  {nl:"kijken",uk:"дивитися",en:"to watch",fr:"regarder",ex:"Ik kijk TV.",exuk:"Я дивлюся телевізор.",exen:"I watch TV.",exfr:"Je regarde la télé."},
-  {nl:"luisteren",uk:"слухати",en:"to listen",fr:"écouter",ex:"Ik luister naar muziek.",exuk:"Я слухаю музику.",exen:"I listen to music.",exfr:"J'écoute de la musique."},
-  {nl:"schrijven",uk:"писати",en:"to write",fr:"écrire",ex:"Hij schrijft een brief.",exuk:"Він пише листа.",exen:"He writes a letter.",exfr:"Il écrit une lettre."},
-  {nl:"lezen",uk:"читати",en:"to read",fr:"lire",ex:"Zij leest een boek.",exuk:"Вона читає книжку.",exen:"She reads a book.",exfr:"Elle lit un livre."},
-  {nl:"kopen",uk:"купувати",en:"to buy",fr:"acheter",ex:"Ik koop brood.",exuk:"Я купую хліб.",exen:"I buy bread.",exfr:"J'achète du pain."},
-  {nl:"eten",uk:"їсти",en:"to eat",fr:"manger",ex:"Wij eten appel.",exuk:"Ми їмо яблуко.",exen:"We eat an apple.",exfr:"Nous mangeons une pomme."},
-  {nl:"drinken",uk:"пити",en:"to drink",fr:"boire",ex:"Ik drink koffie.",exuk:"Я п'ю каву.",exen:"I drink coffee.",exfr:"Je bois du café."}
+ dehet: { labelKey: "dehet", items: [
+  { id: "dh1", nl: "huis", en: "house", fr: "maison", uk: "будинок", art_nl: "het", art_en: "the", art_fr: "la" },
+  { id: "dh2", nl: "man", en: "man", fr: "homme", uk: "чоловік", art_nl: "de", art_en: "the", art_fr: "l'" },
+  { id: "dh3", nl: "vrouw", en: "woman", fr: "femme", uk: "жінка", art_nl: "de", art_en: "the", art_fr: "la" },
+  { id: "dh4", nl: "kind", en: "child", fr: "enfant", uk: "дитина", art_nl: "het", art_en: "the", art_fr: "l'" },
+  { id: "dh5", nl: "boek", en: "book", fr: "livre", uk: "книга", art_nl: "het", art_en: "the", art_fr: "le" },
+  { id: "dh6", nl: "auto", en: "car", fr: "voiture", uk: "автомобіль", art_nl: "de", art_en: "the", art_fr: "la" },
+  { id: "dh7", nl: "tafel", en: "table", fr: "table", uk: "стіл", art_nl: "de", art_en: "the", art_fr: "la" },
+  { id: "dh8", nl: "deur", en: "door", fr: "porte", uk: "двері", art_nl: "de", art_en: "the", art_fr: "la" },
+  { id: "dh9", nl: "stad", en: "city", fr: "ville", uk: "місто", art_nl: "de", art_en: "the", art_fr: "la" },
+  { id: "dh10", nl: "land", en: "country", fr: "pays", uk: "країна", art_nl: "het", art_en: "the", art_fr: "le" }
  ]},
- colors:{labelKey:"colors",items:[
-  {nl:"rood",uk:"червоний",en:"red",fr:"rouge",c:"#ef4444"},{nl:"blauw",uk:"синій",en:"blue",fr:"bleu",c:"#3b82f6"},{nl:"groen",uk:"зелений",en:"green",fr:"vert",c:"#22c55e"},
-  {nl:"geel",uk:"жовтий",en:"yellow",fr:"jaune",c:"#eab308"},{nl:"zwart",uk:"чорний",en:"black",fr:"noir",c:"#09090b"},{nl:"wit",uk:"білий",en:"white",fr:"blanc",c:"#ffffff"},
-  {nl:"oranje",uk:"помаранчевий",en:"orange",fr:"orange",c:"#f97316"},{nl:"roze",uk:"рожевий",en:"pink",fr:"rose",c:"#ec4899"},{nl:"paars",uk:"фіолетовий",en:"purple",fr:"violet",c:"#a855f7"},
-  {nl:"grijs",uk:"сірий",en:"grey",fr:"gris",c:"#6b7280"},{nl:"bruin",uk:"коричневий",en:"brown",fr:"marron",c:"#78350f"}
+ verbs: { labelKey: "verbs", items: [
+  { id: "v1", nl: "zijn", en: "to be", fr: "être", uk: "бути", ex_nl: "Ik ben thuis.", ex_en: "I am home.", ex_fr: "Je suis à la maison.", ex_uk: "Я вдома." },
+  { id: "v2", nl: "hebben", en: "to have", fr: "avoir", uk: "мати", ex_nl: "Ik heb honger.", ex_en: "I am hungry.", ex_fr: "J'ai faim.", ex_uk: "Я голодний." },
+  { id: "v3", nl: "doen", en: "to do", fr: "faire", uk: "робити", ex_nl: "Wat doe je?", ex_en: "What are you doing?", ex_fr: "Que fais-tu?", ex_uk: "Що ти робиш?" },
+  { id: "v4", nl: "gaan", en: "to go", fr: "aller", uk: "іти / їхати", ex_nl: "Ik ga naar huis.", ex_en: "I go home.", ex_fr: "Je vais à la maison.", ex_uk: "Я йду додому." },
+  { id: "v5", nl: "komen", en: "to come", fr: "venir", uk: "приходити", ex_nl: "Ik kom uit Oekraïne.", ex_en: "I come from Ukraine.", ex_fr: "Je viens d'Ukraine.", ex_uk: "Я з України." },
+  { id: "v6", nl: "zien", en: "to see", fr: "voir", uk: "бачити", ex_nl: "Ik zie het.", ex_en: "I see it.", ex_fr: "Je le vois.", ex_uk: "Я це бачу." },
+  { id: "v7", nl: "spreken", en: "to speak", fr: "parler", uk: "говорити", ex_nl: "Ik spreek Nederlands.", ex_en: "I speak Dutch.", ex_fr: "Je parle néerlandais.", ex_uk: "Я говорю нідерландською." },
+  { id: "v8", nl: "kopen", en: "to buy", fr: "acheter", uk: "купувати", ex_nl: "Ik koop brood.", ex_en: "I buy bread.", ex_fr: "J'achète du pain.", ex_uk: "Я купую хліб." },
+  { id: "v9", nl: "eten", en: "to eat", fr: "manger", uk: "їсти", ex_nl: "Wij eten een appel.", ex_en: "We eat an apple.", ex_fr: "Nous mangeons une pomme.", ex_uk: "Ми їмо яблуко." },
+  { id: "v10", nl: "drinken", en: "to drink", fr: "boire", uk: "пити", ex_nl: "Ik drink water.", ex_en: "I drink water.", ex_fr: "Je bois de l'eau.", ex_uk: "Я п'ю воду." }
  ]},
- numbers:{labelKey:"numbers",items:[
-  {nl:"een",uk:"1 · один",en:"1 · one",fr:"1 · un"},{nl:"twee",uk:"2 · два",en:"2 · two",fr:"2 · deux"},{nl:"drie",uk:"3 · три",en:"3 · three",fr:"3 · trois"},{nl:"vier",uk:"4 · чотири",en:"4 · four",fr:"4 · quatre"},
-  {nl:"vijf",uk:"5 · п’ять",en:"5 · five",fr:"5 · cinq"},{nl:"zes",uk:"6 · шість",en:"6 · six",fr:"6 · six"},{nl:"zeven",uk:"7 · сім",en:"7 · seven",fr:"7 · sept"},{nl:"acht",uk:"8 · вісім",en:"8 · eight",fr:"8 · huit"},
-  {nl:"negen",uk:"9 · дев’ять",en:"9 · nine",fr:"9 · neuf"},{nl:"tien",uk:"10 · десять",en:"10 · ten",fr:"10 · dix"},{nl:"elf",uk:"11 · одинадцять",en:"11 · eleven",fr:"11 · onze"},
-  {nl:"twaalf",uk:"12 · дванадцять",en:"12 · twelve",fr:"12 · douze"},{nl:"vijftien",uk:"15 · п'ятнадцять",en:"15 · fifteen",fr:"15 · quinze"},{nl:"twintig",uk:"20 · двадцять",en:"20 · twenty",fr:"20 · vingt"},
-  {nl:"dertig",uk:"30 · тридцять",en:"30 · thirty",fr:"30 · trente"},{nl:"vijftig",uk:"50 · п'ятдесят",en:"50 · fifty",fr:"50 · cinquante"},{nl:"honderd",uk:"100 · сто",en:"100 · hundred",fr:"100 · cent"},
-  {nl:"duizend",uk:"1000 · тисяча",en:"1000 · thousand",fr:"1000 · mille"}
+ colors: { labelKey: "colors", items: [
+  { id: "c1", nl: "rood", en: "red", fr: "rouge", uk: "червоний", c: "#ef4444" },
+  { id: "c2", nl: "blauw", en: "blue", fr: "bleu", uk: "синій", c: "#3b82f6" },
+  { id: "c3", nl: "groen", en: "green", fr: "vert", uk: "зелений", c: "#22c55e" },
+  { id: "c4", nl: "geel", en: "yellow", fr: "jaune", uk: "жовтий", c: "#eab308" },
+  { id: "c5", nl: "zwart", en: "black", fr: "noir", uk: "чорний", c: "#09090b" },
+  { id: "c6", nl: "wit", en: "white", fr: "blanc", uk: "білий", c: "#ffffff" },
+  { id: "c7", nl: "oranje", en: "orange", fr: "orange", uk: "помаранчевий", c: "#f97316" },
+  { id: "c8", nl: "roze", en: "pink", fr: "rose", uk: "рожевий", c: "#ec4899" },
+  { id: "c9", nl: "paars", en: "purple", fr: "violet", uk: "фіолетовий", c: "#a855f7" },
+  { id: "c10", nl: "grijs", en: "grey", fr: "gris", uk: "сірий", c: "#6b7280" }
  ]},
- seasons:{labelKey:"seasons",items:[
-  {nl:"de lente",uk:"весна",en:"spring",fr:"printemps",ex:"Het is lente.",exuk:"Зараз весна.",exen:"It is spring.",exfr:"C'est le printemps."},
-  {nl:"de zomer",uk:"літо",en:"summer",fr:"été",ex:"In de zomer is het warm.",exuk:"Улітку тепло.",exen:"In summer it is warm.",exfr:"En été il fait chaud."},
-  {nl:"de herfst",uk:"осінь",en:"autumn",fr:"automne",ex:"In de herfst regent het.",exuk:"Восени іде дощ.",exen:"In autumn it rains.",exfr:"En automne il pleut."},
-  {nl:"de winter",uk:"зима",en:"winter",fr:"hiver",ex:"In de winter is het koud.",exuk:"Узимку холодно.",exen:"In winter it is cold.",exfr:"En winter il fait froid."},
-  {nl:"vandaag",uk:"сьогодні",en:"today",fr:"aujourd'hui",ex:"Vandaag is het maandag.",exuk:"Сьогодні понеділок.",exen:"Today is Monday.",exfr:"Aujourd'hui c'est lundi."},
-  {nl:"morgen",uk:"завтра",en:"tomorrow",fr:"demain",ex:"Tot morgen!",exuk:"До завтра!",exen:"See you tomorrow!",exfr:"À demain!"},
-  {nl:"gisteren",uk:"вчора",en:"yesterday",fr:"hier",ex:"Gisteren was het zondag.",exuk:"Учора була неділя.",exen:"Yesterday was Sunday.",exfr:"Hier c'était dimanche."}
+ numbers: { labelKey: "numbers", items: [
+  { id: "n1", nl: "een", en: "one", fr: "un", uk: "1 · один" },
+  { id: "n2", nl: "twee", en: "two", fr: "deux", uk: "2 · два" },
+  { id: "n3", nl: "drie", en: "three", fr: "trois", uk: "3 · три" },
+  { id: "n4", nl: "vier", en: "four", fr: "quatre", uk: "4 · чотири" },
+  { id: "n5", nl: "vijf", en: "five", fr: "cinq", uk: "5 · п'ять" },
+  { id: "n6", nl: "tien", en: "ten", fr: "dix", uk: "10 · десять" },
+  { id: "n7", nl: "twintig", en: "twenty", fr: "vingt", uk: "20 · двадцять" },
+  { id: "n8", nl: "honderd", en: "hundred", fr: "cent", uk: "100 · сто" }
+ ]},
+ seasons: { labelKey: "seasons", items: [
+  { id: "s1", nl: "de lente", en: "spring", fr: "le printemps", uk: "весна", ex_nl: "Het is lente.", ex_en: "It is spring.", ex_fr: "C'est le printemps.", ex_uk: "Зараз весна." },
+  { id: "s2", nl: "de zomer", en: "summer", fr: "l'été", uk: "літо", ex_nl: "In de zomer is het warm.", ex_en: "In summer it is warm.", ex_fr: "En été il fait chaud.", ex_uk: "Влітку тепло." },
+  { id: "s3", nl: "de herfst", en: "autumn", fr: "l'automne", uk: "осінь", ex_nl: "In de herfst regent het.", ex_en: "In autumn it rains.", ex_fr: "En automne il pleut.", ex_uk: "Восени іде дощ." },
+  { id: "s4", nl: "de winter", en: "winter", fr: "l'hiver", uk: "зима", ex_nl: "In de winter is het koud.", ex_en: "In winter it is cold.", ex_fr: "En hiver il fait froid.", ex_uk: "Взимку холодно." },
+  { id: "s5", nl: "vandaag", en: "today", fr: "aujourd'hui", uk: "сьогодні", ex_nl: "Vandaag is het mooi.", ex_en: "Today it is nice.", ex_fr: "Aujourd'hui il fait beau.", ex_uk: "Сьогодні гарна погода." },
+  { id: "s6", nl: "morgen", en: "tomorrow", fr: "demain", uk: "завтра", ex_nl: "Tot morgen!", ex_en: "See you tomorrow!", ex_fr: "À demain!", ex_uk: "До завтра!" },
+  { id: "s7", nl: "gisteren", en: "yesterday", fr: "hier", uk: "вчора", ex_nl: "Gisteren was het leuk.", ex_en: "Yesterday was fun.", ex_fr: "Hier c'était amusant.", ex_uk: "Учора було весело." }
  ]}
 };
 
-var tab="questions",deck=[],q=0,right=0,round=1,locked=false,item=null,score=0,voice=null;
-try{score=parseInt(localStorage.getItem("nl_score")||"0",10)||0}catch(e){}
+var tab = "pronouns", deck = [], q = 0, right = 0, round = 1, locked = false, item = null, score = 0;
+try { score = parseInt(localStorage.getItem("nl_score") || "0", 10) || 0; } catch(e) {}
 
-function getTr(obj,prefix){
- if(!obj) return "";
- var key = prefix ? prefix + userLang : userLang;
- return obj[key] || obj[prefix ? prefix + "uk" : "uk"] || "";
-}
-
-function changeLang(l){
- userLang=l;
- localStorage.setItem("nl_lang",l);
- $("footText").textContent=UI[userLang].foot;
+function changeTargetLang(l) {
+ targetLang = l;
+ localStorage.setItem("poly_target", l);
+ if(targetLang === uiLang) {
+  uiLang = (targetLang === "uk") ? "en" : "uk";
+  $("uiLangPicker").value = uiLang;
+  localStorage.setItem("poly_ui", uiLang);
+ }
+ updateHeaderTitle();
  buildTabs();
  newRound();
 }
 
-function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
-function pickVoice(){var v=(window.speechSynthesis&&speechSynthesis.getVoices())||[];voice=v.find(function(x){return /^nl/i.test(x.lang)})||null}
-if(window.speechSynthesis){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
-function say(t){try{if(!window.speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="nl-NL";if(voice)u.voice=voice;u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
-function full(it){return it.art?it.art+" "+it.nl:it.nl}
-function spoken(it){return it.ex?(it.say||it.nl)+". "+it.ex:full(it)}
+function changeUiLang(l) {
+ uiLang = l;
+ localStorage.setItem("poly_ui", l);
+ $("footText").textContent = UI[uiLang].foot;
+ updateHeaderTitle();
+ buildTabs();
+ newRound();
+}
 
-function buildTabs(){
- $("tabs").innerHTML="";
- var u=UI[userLang];
- Object.keys(DATA).forEach(function(k){
-  var b=document.createElement("button");
-  b.textContent=u.tabs[k]||DATA[k].labelKey;
-  b.className=k===tab?"on":"";
-  b.onclick=function(){tab=k;buildTabs();newRound()};
+function updateHeaderTitle() {
+ const names = { nl: "Nederlands", en: "English", fr: "Français" };
+ $("appTitle").textContent = names[targetLang] + " Leren";
+}
+
+function shuffle(a) { a = a.slice(); for(var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+function say(t, langCode) {
+ try {
+  if(!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(t);
+  var langMap = { nl: "nl-NL", en: "en-US", fr: "fr-FR" };
+  u.lang = langMap[langCode] || "en-US";
+  u.rate = .85;
+  speechSynthesis.speak(u);
+ } catch(e) {}
+}
+
+function buildTabs() {
+ $("tabs").innerHTML = "";
+ var u = UI[uiLang];
+ Object.keys(DATA).forEach(function(k) {
+  var b = document.createElement("button");
+  b.textContent = u.tabs[k] || DATA[k].labelKey;
+  b.className = k === tab ? "on" : "";
+  b.onclick = function() { tab = k; buildTabs(); newRound(); };
   $("tabs").appendChild(b);
  });
 }
 
-function newRound(){q=0;right=0;deck=[];next()}
-function draw(){if(!deck.length)deck=shuffle(DATA[tab].items);return deck.pop()}
+function newRound() { q = 0; right = 0; deck = []; next(); }
+function draw() { if(!deck.length) deck = shuffle(DATA[tab].items); return deck.pop(); }
 
-function next(){
- if(q>=PER_ROUND)return end();
- locked=false;item=draw();q++;
- var d=DATA[tab];
- var u=UI[userLang];
+function next() {
+ if(q >= PER_ROUND) return end();
+ locked = false; item = draw(); q++;
+ var d = DATA[tab];
+ var u = UI[uiLang];
  
- $("prog").textContent=u.qProgress+" "+q+" / "+PER_ROUND;
- $("rnd").textContent=u.round+" "+round;
- $("barfill").style.width=((q-1)/PER_ROUND*100)+"%";
- $("score").textContent="⚡ "+score;
+ $("prog").textContent = u.qProgress + " " + q + " / " + PER_ROUND;
+ $("rnd").textContent = u.round + " " + round;
+ $("barfill").style.width = ((q - 1) / PER_ROUND * 100) + "%";
+ $("score").textContent = "⚡ " + score;
+ 
+ var promptText = item[targetLang] || item.nl;
+ var hintText = item[uiLang] || item.uk;
  
  var opts;
- if(tab==="dehet"){
-  opts=["de","het"].map(function(a){return{label:a,ok:a===item.art}});
+ if(tab === "dehet") {
+  if(targetLang === "nl") opts = ["de", "het"].map(a => ({ label: a, ok: a === item.art_nl }));
+  else if(targetLang === "fr") opts = ["le", "la", "l'"].map(a => ({ label: a, ok: a === item.art_fr }));
+  else opts = ["a/an", "the"].map(a => ({ label: a, ok: a === item.art_en }));
  } else {
-  var others=shuffle(d.items.filter(function(x){return getTr(x,"")!==getTr(item,"")})).slice(0,3);
-  opts=shuffle(others.concat([item])).map(function(x){return{label:getTr(x,""),ok:x===item,c:x.c}});
+  var others = shuffle(d.items.filter(x => x.id !== item.id)).slice(0, 3);
+  opts = shuffle(others.concat([item])).map(x => ({ label: x[uiLang] || x.uk, ok: x.id === item.id, c: x.c }));
  }
  
- var subText=u.subs[tab];
- var hintText=tab==="dehet"?getTr(item,""):u.hints[tab];
+ var subText = u.subs[tab];
+ var cardHint = tab === "dehet" ? hintText : u.hints[tab];
  
- $("card").innerHTML='<div class="q"><small>'+subText+'</small><h2 lang="nl">'+item.nl+'</h2><p>'+hintText+'</p><button class="listen" id="hear">'+u.listen+'</button></div>'+
-  '<div class="opts" id="opts"></div><div class="fb" id="fb"></div><div class="row"><button class="btn main" id="nx" disabled>'+u.next+'</button></div>';
+ $("card").innerHTML = '<div class="q"><small>' + subText + '</small><h2>' + promptText + '</h2><p>' + cardHint + '</p><button class="listen" id="hear">' + u.listen + '</button></div>' +
+  '<div class="opts" id="opts"></div><div class="fb" id="fb"></div><div class="row"><button class="btn main" id="nx" disabled>' + u.next + '</button></div>';
  
- $("hear").onclick=function(){say(tab==="dehet"?item.nl:item.nl==="welke / welk"?"welke, welk":item.nl)};
+ $("hear").onclick = function() { say(promptText, targetLang); };
  
- var box=$("opts");
- opts.forEach(function(o){
-  var b=document.createElement("button");b.className="opt";
-  b.innerHTML=(o.c?'<span class="sw" style="background:'+o.c+'"></span>':"")+"<span></span>";
-  b.lastChild.textContent=o.label;b.dataset.ok=o.ok?"1":"";
-  b.onclick=function(){answer(o.ok,b)};box.appendChild(b);
+ var box = $("opts");
+ opts.forEach(function(o) {
+  var b = document.createElement("button"); b.className = "opt";
+  b.innerHTML = (o.c ? '<span class="sw" style="background:' + o.c + '"></span>' : "") + "<span></span>";
+  b.lastChild.textContent = o.label; b.dataset.ok = o.ok ? "1" : "";
+  b.onclick = function() { answer(o.ok, b); }; box.appendChild(b);
  });
 }
 
-function answer(ok,btn){
- if(locked)return;locked=true;
- var u=UI[userLang];
- document.querySelectorAll(".opt").forEach(function(b){b.disabled=true;if(b.dataset.ok)b.classList.add("ok")});
- if(ok){right++;score+=10;try{localStorage.setItem("nl_score",score)}catch(e){}}else{btn.classList.add("bad")}
- $("score").textContent="⚡ "+score;
- 
- var line=item.ex||full(item);
- var tr=getTr(item,"ex")||getTr(item,"");
- $("fb").innerHTML='<b lang="nl"></b><p></p>';
- $("fb").firstChild.textContent=line;
- $("fb").lastChild.textContent=tr;
- $("nx").disabled=false;
- $("nx").onclick=next;
- say(spoken(item));
+function saveError(itemObj) {
+ try {
+  let errs = JSON.parse(localStorage.getItem("nl_errors") || "[]");
+  if(!errs.some(e => e.id === itemObj.id)) {
+   errs.push(itemObj);
+   localStorage.setItem("nl_errors", JSON.stringify(errs));
+  }
+ } catch(e) {}
 }
 
-function end(){
- $("barfill").style.width="100%";
- var pct=Math.round(right/PER_ROUND*100);
- var u=UI[userLang];
- var keys=Object.keys(DATA);
- var nextIndex=(keys.indexOf(tab)+1)%keys.length;
- var nextTabKey=keys[nextIndex];
- var nextTabLabel=u.tabs[nextTabKey];
+function answer(ok, btn) {
+ if(locked) return; locked = true;
+ var u = UI[uiLang];
+ document.querySelectorAll(".opt").forEach(function(b) { b.disabled = true; if(b.dataset.ok) b.classList.add("ok"); });
+ if(ok) {
+  right++; score += 10;
+  try { localStorage.setItem("nl_score", score); } catch(e) {}
+ } else {
+  btn.classList.add("bad");
+  saveError(item);
+ }
+ $("score").textContent = "⚡ " + score;
+ 
+ var line = item["ex_" + targetLang] || item[targetLang] || item.nl;
+ var tr = item["ex_" + uiLang] || item[uiLang] || item.uk;
+ 
+ $("fb").innerHTML = '<b></b><p></p>';
+ $("fb").firstChild.textContent = line;
+ $("fb").lastChild.textContent = tr;
+ $("nx").disabled = false;
+ $("nx").onclick = next;
+ say(line, targetLang);
+}
 
- $("card").innerHTML='<div class="end"><h2>'+right+' / '+PER_ROUND+'</h2><p>'+pct+'% '+u.accuracy+'</p>'+
-  '<div class="row">'+
-  '<button class="btn" id="again">'+u.again+'</button>'+
-  '<button class="btn main" id="nextTopic">'+u.nextTopic+' ('+nextTabLabel+') ➔</button>'+
+function end() {
+ $("barfill").style.width = "100%";
+ var pct = Math.round(right / PER_ROUND * 100);
+ var u = UI[uiLang];
+ var keys = Object.keys(DATA);
+ var nextIndex = (keys.indexOf(tab) + 1) % keys.length;
+ var nextTabKey = keys[nextIndex];
+ var nextTabLabel = u.tabs[nextTabKey];
+
+ $("card").innerHTML = '<div class="end"><h2>' + right + ' / ' + PER_ROUND + '</h2><p>' + pct + '% ' + u.accuracy + '</p>' +
+  '<div class="row">' +
+  '<button class="btn" id="again">' + u.again + '</button>' +
+  '<button class="btn main" id="nextTopic">' + u.nextTopic + ' (' + nextTabLabel + ') ➔</button>' +
   '</div></div>';
  
  round++;
- $("again").onclick=newRound;
- $("nextTopic").onclick=function(){
-  tab=nextTabKey;
+ $("again").onclick = newRound;
+ $("nextTopic").onclick = function() {
+  tab = nextTabKey;
   buildTabs();
   newRound();
  };
 }
 
 window.onload = function() {
- $("langPicker").value=userLang;
- $("footText").textContent=UI[userLang].foot;
+ $("targetLangPicker").value = targetLang;
+ $("uiLangPicker").value = uiLang;
+ $("footText").textContent = UI[uiLang].foot;
+ updateHeaderTitle();
  buildTabs();
  newRound();
 };
