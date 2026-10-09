@@ -12,34 +12,34 @@
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:var(--bg);color:var(--fg);font:16px/1.4 -apple-system,"Inter","Segoe UI",Roboto,sans-serif;display:flex;justify-content:center;min-height:100vh}
-main{width:100%;max-width:460px;padding:20px 20px 32px;display:flex;flex-direction:column;gap:18px}
+main{width:100%;max-width:460px;padding:16px 16px 24px;display:flex;flex-direction:column;gap:14px}
 header{display:flex;justify-content:space-between;align-items:baseline}
 header h1{font-size:18px;font-weight:600;margin:0;letter-spacing:-.01em}
 #score{color:var(--mut);font-size:14px}
 nav{display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
-nav button{background:none;border:0;border-bottom:2px solid transparent;padding:8px 10px;font:inherit;font-size:14px;color:var(--mut);cursor:pointer;white-space:nowrap}
+nav button{background:none;border:0;border-bottom:2px solid transparent;padding:8px 8px;font:inherit;font-size:14px;color:var(--mut);cursor:pointer;white-space:nowrap}
 nav button.on{color:var(--fg);border-bottom-color:var(--acc);font-weight:600}
 .meta{display:flex;justify-content:space-between;color:var(--mut);font-size:13px}
-.bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:-10px}
+.bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:-8px}
 .bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .3s}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 18px;display:flex;flex-direction:column;gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;gap:16px}
 .q{text-align:center}
-.q small{color:var(--mut);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-.q h2{font-size:40px;font-weight:600;margin:8px 0 2px;letter-spacing:-.02em}
-.q p{margin:0;color:var(--mut)}
-.listen{background:none;border:1px solid var(--line);color:var(--fg);border-radius:20px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer;margin-top:10px}
-.opts{display:grid;grid-template-columns:1fr;gap:10px}
-.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:16px 12px;font:inherit;font-size:17px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}
-.opt:active{transform:scale(.98)}
+.q small{color:var(--mut);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.q h2{font-size:36px;font-weight:600;margin:6px 0 2px;letter-spacing:-.02em}
+.q p{margin:0;color:var(--mut);font-size:14px}
+.listen{background:none;border:1px solid var(--line);color:var(--fg);border-radius:20px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer;margin-top:8px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:12px 6px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:52px}
+.opt:active{transform:scale(.97)}
 .opt.ok{border-color:var(--ok);color:var(--ok)}
 .opt.bad{border-color:var(--bad);color:var(--bad)}
 .opt:disabled{cursor:default}
-.sw{width:16px;height:16px;border-radius:50%;border:1px solid var(--mut);flex-shrink:0}
-.fb{text-align:center;min-height:70px}
-.fb b{font-size:19px;font-weight:600}
-.fb p{margin:4px 0 0;color:var(--mut)}
+.sw{width:14px;height:14px;border-radius:50%;border:1px solid var(--mut);flex-shrink:0}
+.fb{text-align:center;min-height:60px}
+.fb b{font-size:17px;font-weight:600}
+.fb p{margin:2px 0 0;color:var(--mut);font-size:13px}
 .row{display:flex;gap:10px}
-.btn{flex:1;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-weight:500;cursor:pointer}
+.btn{flex:1;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-weight:500;cursor:pointer}
 .btn.main{background:var(--acc);border-color:var(--acc);color:#fff}
 .end{text-align:center}
 .end h2{font-size:36px;margin:0 0 4px}
