@@ -1,304 +1,164 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nederlands Leren - Гра</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .tab-btn.active {
-            background-color: #1e293b;
-            color: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        .animate-bounce-short {
-            animation: bounce 0.5s ease-in-out 1;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f6f3">
+<title>Nederlands leren</title>
+<style>
+:root{--bg:#f7f6f3;--fg:#1c1c1e;--mut:#8a8a8e;--card:#fff;--line:#e4e2dc;--acc:#2f4bd8;--ok:#2e8b57;--bad:#c8453b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111113;--fg:#f2f2f4;--mut:#8e8e93;--card:#1c1c1f;--line:#2c2c30;--acc:#7b8dff;--ok:#4fbf82;--bad:#ef6b61}}
+:root[data-theme="dark"]{--bg:#111113;--fg:#f2f2f4;--mut:#8e8e93;--card:#1c1c1f;--line:#2c2c30;--acc:#7b8dff;--ok:#4fbf82;--bad:#ef6b61}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.4 -apple-system,"Inter","Segoe UI",Roboto,sans-serif;display:flex;justify-content:center;min-height:100vh}
+main{width:100%;max-width:460px;padding:20px 20px 32px;display:flex;flex-direction:column;gap:18px}
+header{display:flex;justify-content:space-between;align-items:baseline}
+header h1{font-size:18px;font-weight:600;margin:0;letter-spacing:-.01em}
+#score{color:var(--mut);font-size:14px}
+nav{display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
+nav button{background:none;border:0;border-bottom:2px solid transparent;padding:8px 10px;font:inherit;font-size:14px;color:var(--mut);cursor:pointer;white-space:nowrap}
+nav button.on{color:var(--fg);border-bottom-color:var(--acc);font-weight:600}
+.meta{display:flex;justify-content:space-between;color:var(--mut);font-size:13px}
+.bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:-10px}
+.bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .3s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 18px;display:flex;flex-direction:column;gap:20px}
+.q{text-align:center}
+.q small{color:var(--mut);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.q h2{font-size:40px;font-weight:600;margin:8px 0 2px;letter-spacing:-.02em}
+.q p{margin:0;color:var(--mut)}
+.listen{background:none;border:1px solid var(--line);color:var(--fg);border-radius:20px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer;margin-top:10px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:16px 8px;font:inherit;font-size:17px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.opt:active{transform:scale(.97)}
+.opt.ok{border-color:var(--ok);color:var(--ok)}
+.opt.bad{border-color:var(--bad);color:var(--bad)}
+.opt:disabled{cursor:default}
+.sw{width:14px;height:14px;border-radius:50%;border:1px solid var(--mut)}
+.fb{text-align:center;min-height:70px}
+.fb b{font-size:19px;font-weight:600}
+.fb p{margin:4px 0 0;color:var(--mut)}
+.row{display:flex;gap:10px}
+.btn{flex:1;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-weight:500;cursor:pointer}
+.btn.main{background:var(--acc);border-color:var(--acc);color:#fff}
+.end{text-align:center}
+.end h2{font-size:36px;margin:0 0 4px}
+.end p{color:var(--mut);margin:0 0 18px}
+footer{text-align:center;color:var(--mut);font-size:12px}
+</style>
 </head>
-<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col justify-between">
+<body>
+<main>
+ <header><h1>Nederlands leren</h1><span id="score"></span></header>
+ <nav id="tabs"></nav>
+ <div class="meta"><span id="prog"></span><span id="rnd"></span></div>
+ <div class="bar"><i id="barfill"></i></div>
+ <div class="card" id="card"></div>
+ <footer>Нідерландська мова для українців</footer>
+</main>
+<script>
+var PER_ROUND=10;
+var DATA={
+ questions:{label:"Запитання",sub:"Що означає питальне слово?",hint:"Запитання",items:[
+  {nl:"wat",uk:"що",ex:"Wat is je naam?",exuk:"Яке твоє ім'я?"},
+  {nl:"wie",uk:"хто",ex:"Wie is dat?",exuk:"Хто це?"},
+  {nl:"waar",uk:"де",ex:"Waar woon je?",exuk:"Де ти живеш?"},
+  {nl:"waarvandaan",uk:"звідки",ex:"Waar kom je vandaan?",exuk:"Звідки ти?"},
+  {nl:"wanneer",uk:"коли",ex:"Wanneer begint de les?",exuk:"Коли починається урок?"},
+  {nl:"waarom",uk:"чому",ex:"Waarom leer je Nederlands?",exuk:"Чому ти вчиш нідерландську?"},
+  {nl:"hoe",uk:"як",ex:"Hoe heet je?",exuk:"Як тебе звати?"},
+  {nl:"hoeveel",uk:"скільки",ex:"Hoeveel kinderen heb je?",exuk:"Скільки в тебе дітей?"},
+  {nl:"hoe laat",uk:"котра година",ex:"Hoe laat is het?",exuk:"Котра зараз година?"},
+  {nl:"welke / welk",uk:"який / яка",ex:"Welke kleur is dit?",exuk:"Який це колір?",say:"welke, welk"}
+ ]},
+ dehet:{label:"De / Het",sub:"Оберіть артикль",hint:null,items:[
+  {nl:"huis",uk:"будинок",art:"het"},{nl:"man",uk:"чоловік",art:"de"},{nl:"vrouw",uk:"жінка",art:"de"},
+  {nl:"kind",uk:"дитина",art:"het"},{nl:"tafel",uk:"стіл",art:"de"},{nl:"stoel",uk:"стілець",art:"de"},
+  {nl:"boek",uk:"книга",art:"het"},{nl:"auto",uk:"автомобіль",art:"de"},{nl:"water",uk:"вода",art:"het"},
+  {nl:"kat",uk:"кіт",art:"de"},{nl:"hond",uk:"собака",art:"de"},{nl:"meisje",uk:"дівчинка",art:"het"},
+  {nl:"brood",uk:"хліб",art:"het"},{nl:"fiets",uk:"велосипед",art:"de"},{nl:"school",uk:"школа",art:"de"},{nl:"raam",uk:"вікно",art:"het"}
+ ]},
+ verbs:{label:"Дієслова",sub:"Перекладіть дієслово",hint:"Дієслово",items:[
+  {nl:"zijn",uk:"бути",ex:"Ik ben thuis.",exuk:"Я вдома."},
+  {nl:"hebben",uk:"мати",ex:"Ik heb twee kinderen.",exuk:"У мене двоє дітей."},
+  {nl:"doen",uk:"робити",ex:"Wat doe je?",exuk:"Що ти робиш?"},
+  {nl:"gaan",uk:"іти / їхати",ex:"Ik ga naar school.",exuk:"Я йду до школи."},
+  {nl:"komen",uk:"приходити",ex:"Ik kom uit Oekraïne.",exuk:"Я з України."},
+  {nl:"zien",uk:"бачити",ex:"Ik zie een kat.",exuk:"Я бачу кота."},
+  {nl:"willen",uk:"хотіти",ex:"Ik wil water.",exuk:"Я хочу води."},
+  {nl:"wonen",uk:"жити",ex:"Ik woon in België.",exuk:"Я живу в Бельгії."},
+  {nl:"werken",uk:"працювати",ex:"Hij werkt veel.",exuk:"Він багато працює."}
+ ]},
+ colors:{label:"Кольори",sub:"Який це колір?",hint:"Колір",items:[
+  {nl:"rood",uk:"червоний",c:"#ef4444"},{nl:"blauw",uk:"синій",c:"#3b82f6"},{nl:"groen",uk:"зелений",c:"#22c55e"},
+  {nl:"geel",uk:"жовтий",c:"#eab308"},{nl:"zwart",uk:"чорний",c:"#09090b"},{nl:"wit",uk:"білий",c:"#ffffff"}
+ ]},
+ numbers:{label:"Числа",sub:"Переклад числа",hint:"Число",items:[
+  {nl:"een",uk:"1 · один"},{nl:"twee",uk:"2 · два"},{nl:"drie",uk:"3 · три"},{nl:"vier",uk:"4 · чотири"},
+  {nl:"vijf",uk:"5 · п’ять"},{nl:"zes",uk:"6 · шість"},{nl:"zeven",uk:"7 · сім"},{nl:"acht",uk:"8 · вісім"},
+  {nl:"negen",uk:"9 · дев’ять"},{nl:"tien",uk:"10 · десять"}
+ ]}
+};
+var $=function(id){return document.getElementById(id)};
+var tab="questions",deck=[],q=0,right=0,round=1,locked=false,item=null,score=0,voice=null;
+try{score=parseInt(localStorage.getItem("nl_score")||"0",10)||0}catch(e){}
 
-    <!-- Header -->
-    <header class="bg-white shadow-sm border-b border-slate-200">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="text-2xl">🇳🇱</span>
-                <h1 class="font-bold text-lg text-slate-800">Nederlands Leren</h1>
-            </div>
-            <div class="flex items-center space-x-2 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-                <i class="fas fa-bolt text-amber-500"></i>
-                <span id="score-counter" class="font-bold text-amber-700">0</span>
-            </div>
-        </div>
-    </header>
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function pickVoice(){var v=(window.speechSynthesis&&speechSynthesis.getVoices())||[];voice=v.find(function(x){return /^nl/i.test(x.lang)})||null}
+if(window.speechSynthesis){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+function say(t){try{if(!window.speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="nl-NL";if(voice)u.voice=voice;u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function full(it){return it.art?it.art+" "+it.nl:it.nl}
+function spoken(it){return it.ex?(it.say||it.nl)+". "+it.ex:full(it)}
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 py-6 w-full flex-grow">
-        
-        <!-- Navigation Tabs -->
-        <nav class="flex flex-wrap gap-2 mb-6 justify-center bg-slate-200/60 p-1.5 rounded-xl border border-slate-300/50">
-            <button onclick="switchTab('dehet')" id="tab-dehet" class="tab-btn active px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 text-slate-600 hover:text-slate-900">De / Het</button>
-            <button onclick="switchTab('verbs')" id="tab-verbs" class="tab-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 text-slate-600 hover:text-slate-900">Дієслова</button>
-            <button onclick="switchTab('colors')" id="tab-colors" class="tab-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 text-slate-600 hover:text-slate-900">Кольори</button>
-            <button onclick="switchTab('numbers')" id="tab-numbers" class="tab-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 text-slate-600 hover:text-slate-900">Числа</button>
-            <button onclick="switchTab('questions')" id="tab-questions" class="tab-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 text-slate-600 hover:text-slate-900">Запитання</button>
-        </nav>
+function buildTabs(){
+ $("tabs").innerHTML="";
+ Object.keys(DATA).forEach(function(k){
+  var b=document.createElement("button");b.textContent=DATA[k].label;b.className=k===tab?"on":"";
+  b.onclick=function(){tab=k;buildTabs();newRound()};$("tabs").appendChild(b);
+ });
+}
+function newRound(){q=0;right=0;deck=[];next()}
+function draw(){if(!deck.length)deck=shuffle(DATA[tab].items);return deck.pop()}
 
-        <!-- Progress Bar & Round Info -->
-        <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200 mb-6">
-            <div class="flex justify-between text-xs font-semibold text-slate-500 mb-2">
-                <span id="question-progress">Питання 1 з 10</span>
-                <span id="round-counter">Раунд: 1</span>
-            </div>
-            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
-                <div id="progress-bar" class="bg-indigo-600 h-full w-0 transition-all duration-300"></div>
-            </div>
-        </div>
-
-        <!-- Game Screen Area -->
-        <div id="game-card" class="bg-white rounded-2xl p-6 md:p-8 shadow-md border border-slate-200 text-center relative overflow-hidden min-h-[300px] flex flex-col justify-between">
-            
-            <div class="my-auto">
-                <div id="prompt-subtitle" class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">Виберіть правильну відповідь</div>
-                <div id="prompt-main" class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-2">---</div>
-                <div id="prompt-hint" class="text-slate-500 text-sm italic font-medium">---</div>
-            </div>
-
-            <!-- Interactive Buttons Grid -->
-            <div id="options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
-                <!-- Buttons will be dynamically inserted here -->
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Modal Results Screen -->
-    <div id="results-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-2xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl transform transition-all">
-            <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                🏆
-            </div>
-            <h2 class="text-2xl font-extrabold text-slate-800 mb-1">Круг завершено!</h2>
-            <p class="text-slate-500 text-sm mb-6">Ваш підсумковий результат за цей круг:</p>
-            
-            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 mb-6">
-                <div id="modal-score" class="text-3xl font-black text-indigo-600 mb-1">0 / 10</div>
-                <div id="modal-percentage" class="text-xs font-semibold text-slate-500">0% точність</div>
-            </div>
-
-            <div class="space-y-2">
-                <button onclick="restartRound()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-indigo-200 transition-all">
-                    Пройти ще раз
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="py-4 text-center text-xs text-slate-400">
-        Нідерландська мова для українців • 2026
-    </footer>
-
-    <!-- Game Logic Scripts -->
-    <script>
-        // Data Structures
-        const dehetData = [
-            { word: 'huis', article: 'het', ukr: 'будинок' },
-            { word: 'man', article: 'de', ukr: 'чоловік' },
-            { word: 'vrouw', article: 'de', ukr: 'жінка' },
-            { word: 'kind', article: 'het', ukr: 'дитина' },
-            { word: 'tafel', article: 'de', ukr: 'стіл' },
-            { word: 'stoel', article: 'de', ukr: 'стілець' },
-            { word: 'boek', article: 'het', ukr: 'книга' },
-            { word: 'auto', article: 'de', ukr: 'автомобіль' },
-            { word: 'water', article: 'het', ukr: 'вода' },
-            { word: 'kat', article: 'de', ukr: 'кіт' },
-            { word: 'hond', article: 'de', ukr: 'собака' },
-            { word: 'meisje', article: 'het', ukr: 'дівчинка' }
-        ];
-
-        const verbsData = [
-            { nl: 'zijn', ukr: 'бути', opts: ['бути', 'мати', 'робити', 'ходити'] },
-            { nl: 'hebben', ukr: 'мати', opts: ['мати', 'бути', 'знати', 'казати'] },
-            { nl: 'doen', ukr: 'робити', opts: ['робити', 'бачити', 'іти', 'брати'] },
-            { nl: 'gaan', ukr: 'іти / їхати', opts: ['іти / їхати', 'приходити', 'стояти', 'сидіти'] },
-            { nl: 'komen', ukr: 'приходити', opts: ['приходити', 'бігти', 'думати', 'хотіти'] },
-            { nl: 'zien', ukr: 'бачити', opts: ['бачити', 'чути', 'говорити', 'писати'] }
-        ];
-
-        const colorsData = [
-            { nl: 'rood', ukr: 'червоний', color: '#ef4444' },
-            { nl: 'blauw', ukr: 'синій', color: '#3b82f6' },
-            { nl: 'groen', ukr: 'зелений', color: '#22c55e' },
-            { nl: 'geel', ukr: 'жовтий', color: '#eab308' },
-            { nl: 'zwart', ukr: 'чорний', color: '#09090b' },
-            { nl: 'wit', ukr: 'білий', color: '#ffffff' }
-        ];
-
-        const numbersData = [
-            { nl: 'een', ukr: '1 (один)' },
-            { nl: 'twee', ukr: '2 (два)' },
-            { nl: 'drie', ukr: '3 (три)' },
-            { nl: 'vier', ukr: '4 (чотири)' },
-            { nl: 'vijf', ukr: '5 (п’ять)' },
-            { nl: 'tien', ukr: '10 (десять)' }
-        ];
-
-        const questionsData = [
-            { nl: 'Wat', ukr: 'Що?', opts: ['Що?', 'Хто?', 'Де?', 'Чому?'] },
-            { nl: 'Wie', ukr: 'Хто?', opts: ['Хто?', 'Що?', 'Коли?', 'Як?'] },
-            { nl: 'Waar', ukr: 'Де?', opts: ['Де?', 'Куди?', 'Звідки?', 'Чому?'] },
-            { nl: 'Wanneer', ukr: 'Коли?', opts: ['Коли?', 'Як?', 'Скільки?', 'Хто?'] },
-            { nl: 'Waarom', ukr: 'Чому?', opts: ['Чому?', 'Що?', 'Де?', 'Коли?'] },
-            { nl: 'Hoe', ukr: 'Як?', opts: ['Як?', 'Скільки?', 'Який?', 'Чому?'] },
-            { nl: 'Welke', ukr: 'Який / Яка / Які?', opts: ['Який?', 'Хто?', 'Де?', 'Коли?'] },
-            { nl: 'Hoeveel', ukr: 'Скільки?', opts: ['Скільки?', 'Як?', 'Чому?', 'Що?'] }
-        ];
-
-        // State variables
-        let currentTab = 'dehet';
-        let totalScore = parseInt(localStorage.getItem('nl_score') || '0');
-        let currentRound = 1;
-        let currentQuestion = 1;
-        let roundCorrect = 0;
-        let isLocked = false;
-        let currentItem = null;
-
-        document.getElementById('score-counter').innerText = totalScore;
-
-        function switchTab(tab) {
-            currentTab = tab;
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`tab-${tab}`).classList.add('active');
-            restartRound();
-        }
-
-        function restartRound() {
-            currentQuestion = 1;
-            roundCorrect = 0;
-            isLocked = false;
-            document.getElementById('results-modal').classList.add('hidden');
-            loadNextQuestion();
-        }
-
-        function loadNextQuestion() {
-            isLocked = false;
-            document.getElementById('question-progress').innerText = `Питання ${currentQuestion} з 10`;
-            document.getElementById('round-counter').innerText = `Раунд: ${currentRound}`;
-            document.getElementById('progress-bar').style.width = `${(currentQuestion / 10) * 100}%`;
-
-            const container = document.getElementById('options-container');
-            container.innerHTML = '';
-
-            if (currentTab === 'dehet') {
-                currentItem = dehetData[Math.floor(Math.random() * dehetData.length)];
-                document.getElementById('prompt-subtitle').innerText = 'Оберіть артикль (De чи Het)';
-                document.getElementById('prompt-main').innerText = currentItem.word;
-                document.getElementById('prompt-hint').innerText = currentItem.ukr;
-
-                ['de', 'het'].forEach(art => {
-                    const btn = document.createElement('button');
-                    btn.className = 'bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-4 rounded-xl border border-slate-300 text-xl transition-all uppercase';
-                    btn.innerText = art;
-                    btn.onclick = () => handleAnswer(art === currentItem.article, btn);
-                    container.appendChild(btn);
-                });
-            } else if (currentTab === 'questions') {
-                currentItem = questionsData[Math.floor(Math.random() * questionsData.length)];
-                document.getElementById('prompt-subtitle').innerText = 'Оберіть правильний переклад питального слова';
-                document.getElementById('prompt-main').innerText = currentItem.nl;
-                document.getElementById('prompt-hint').innerText = 'Запитання';
-
-                currentItem.opts.forEach(opt => {
-                    const btn = document.createElement('button');
-                    btn.className = 'bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-4 rounded-xl border border-slate-300 text-base transition-all';
-                    btn.innerText = opt;
-                    btn.onclick = () => handleAnswer(opt === currentItem.ukr, btn);
-                    container.appendChild(btn);
-                });
-            } else if (currentTab === 'verbs') {
-                currentItem = verbsData[Math.floor(Math.random() * verbsData.length)];
-                document.getElementById('prompt-subtitle').innerText = 'Перекладіть дієслово';
-                document.getElementById('prompt-main').innerText = currentItem.nl;
-                document.getElementById('prompt-hint').innerText = 'Дієслово';
-
-                currentItem.opts.forEach(opt => {
-                    const btn = document.createElement('button');
-                    btn.className = 'bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-4 rounded-xl border border-slate-300 text-base transition-all';
-                    btn.innerText = opt;
-                    btn.onclick = () => handleAnswer(opt === currentItem.ukr, btn);
-                    container.appendChild(btn);
-                });
-            } else if (currentTab === 'colors') {
-                currentItem = colorsData[Math.floor(Math.random() * colorsData.length)];
-                document.getElementById('prompt-subtitle').innerText = 'Який це колір?';
-                document.getElementById('prompt-main').innerText = currentItem.nl;
-                document.getElementById('prompt-hint').innerText = 'Колір';
-
-                colorsData.forEach(col => {
-                    const btn = document.createElement('button');
-                    btn.className = 'bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-4 rounded-xl border border-slate-300 text-base transition-all flex items-center justify-center space-x-2';
-                    btn.innerHTML = `<span class="w-4 h-4 rounded-full border border-slate-400" style="background:${col.color}"></span><span>${col.ukr}</span>`;
-                    btn.onclick = () => handleAnswer(col.nl === currentItem.nl, btn);
-                    container.appendChild(btn);
-                });
-            } else if (currentTab === 'numbers') {
-                currentItem = numbersData[Math.floor(Math.random() * numbersData.length)];
-                document.getElementById('prompt-subtitle').innerText = 'Переклад числа';
-                document.getElementById('prompt-main').innerText = currentItem.nl;
-                document.getElementById('prompt-hint').innerText = 'Число';
-
-                numbersData.forEach(num => {
-                    const btn = document.createElement('button');
-                    btn.className = 'bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-4 rounded-xl border border-slate-300 text-base transition-all';
-                    btn.innerText = num.ukr;
-                    btn.onclick = () => handleAnswer(num.nl === currentItem.nl, btn);
-                    container.appendChild(btn);
-                });
-            }
-        }
-
-        function handleAnswer(isCorrect, buttonEl) {
-            if (isLocked) return;
-            isLocked = true;
-
-            if (isCorrect) {
-                buttonEl.classList.remove('bg-slate-100', 'hover:bg-slate-200');
-                buttonEl.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
-                totalScore += 10;
-                roundCorrect++;
-            } else {
-                buttonEl.classList.remove('bg-slate-100', 'hover:bg-slate-200');
-                buttonEl.classList.add('bg-rose-500', 'text-white', 'border-rose-600');
-            }
-
-            localStorage.setItem('nl_score', totalScore);
-            document.getElementById('score-counter').innerText = totalScore;
-
-            setTimeout(() => {
-                if (currentQuestion >= 10) {
-                    showResults();
-                } else {
-                    currentQuestion++;
-                    loadNextQuestion();
-                }
-            }, 700);
-        }
-
-        function showResults() {
-            document.getElementById('modal-score').innerText = `${roundCorrect} / 10`;
-            document.getElementById('modal-percentage').innerText = `${Math.round((roundCorrect / 10) * 100)}% точність`;
-            document.getElementById('results-modal').classList.remove('hidden');
-            currentRound++;
-        }
-
-        // Initialize on load
-        window.onload = () => {
-            loadNextQuestion();
-        };
-    </script>
+function next(){
+ if(q>=PER_ROUND)return end();
+ locked=false;item=draw();q++;
+ var d=DATA[tab];
+ $("prog").textContent="Питання "+q+" з "+PER_ROUND;$("rnd").textContent="Раунд "+round;
+ $("barfill").style.width=((q-1)/PER_ROUND*100)+"%";$("score").textContent="⚡ "+score;
+ var opts;
+ if(tab==="dehet"){opts=["de","het"].map(function(a){return{label:a,ok:a===item.art}})}
+ else{
+  var others=shuffle(d.items.filter(function(x){return x.uk!==item.uk})).slice(0,3);
+  opts=shuffle(others.concat([item])).map(function(x){return{label:x.uk,ok:x===item,c:x.c}});
+ }
+ $("card").innerHTML='<div class="q"><small>'+d.sub+'</small><h2 lang="nl">'+item.nl+'</h2><p>'+(tab==="dehet"?item.uk:d.hint)+'</p><button class="listen" id="hear">🔊 Слухати</button></div>'+
+  '<div class="opts" id="opts"></div><div class="fb" id="fb"></div><div class="row"><button class="btn main" id="nx" disabled>Далі</button></div>';
+ $("hear").onclick=function(){say(tab==="dehet"?item.nl:item.nl==="welke / welk"?"welke, welk":item.nl)};
+ var box=$("opts");
+ opts.forEach(function(o){
+  var b=document.createElement("button");b.className="opt";
+  b.innerHTML=(o.c?'<span class="sw" style="background:'+o.c+'"></span>':"")+"<span></span>";
+  b.lastChild.textContent=o.label;b.dataset.ok=o.ok?"1":"";
+  b.onclick=function(){answer(o.ok,b)};box.appendChild(b);
+ });
+}
+function answer(ok,btn){
+ if(locked)return;locked=true;
+ document.querySelectorAll(".opt").forEach(function(b){b.disabled=true;if(b.dataset.ok)b.classList.add("ok")});
+ if(ok){right++;score+=10;try{localStorage.setItem("nl_score",score)}catch(e){}}else{btn.classList.add("bad")}
+ $("score").textContent="⚡ "+score;
+ var line=item.ex||full(item),tr=item.exuk||item.uk;
+ $("fb").innerHTML='<b lang="nl"></b><p></p>';$("fb").firstChild.textContent=line;$("fb").lastChild.textContent=tr;
+ $("nx").disabled=false;$("nx").onclick=next;say(spoken(item));
+}
+function end(){
+ $("barfill").style.width="100%";
+ var pct=Math.round(right/PER_ROUND*100);
+ $("card").innerHTML='<div class="end"><h2>'+right+' / '+PER_ROUND+'</h2><p>'+pct+'% точність</p><div class="row"><button class="btn main" id="again">Ще раз</button></div></div>';
+ round++;$("again").onclick=newRound;
+}
+buildTabs();newRound();
+</script>
 </body>
 </html>
