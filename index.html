@@ -73,7 +73,6 @@ footer{text-align:center;color:var(--mut);font-size:12px}
 var $=function(id){return document.getElementById(id)};
 var PER_ROUND=10;
 var userLang=localStorage.getItem("nl_lang")||"uk";
-$("langPicker").value=userLang;
 
 var UI={
  uk:{
@@ -156,7 +155,7 @@ var DATA={
   {nl:"de lente",uk:"весна",en:"spring",fr:"printemps",ex:"Het is lente.",exuk:"Зараз весна.",exen:"It is spring.",exfr:"C'est le printemps."},
   {nl:"de zomer",uk:"літо",en:"summer",fr:"été",ex:"In de zomer is het warm.",exuk:"Улітку тепло.",exen:"In summer it is warm.",exfr:"En été il fait chaud."},
   {nl:"de herfst",uk:"осінь",en:"autumn",fr:"automne",ex:"In de herfst regent het.",exuk:"Восени іде дощ.",exen:"In autumn it rains.",exfr:"En automne il pleut."},
-  {nl:"de winter",uk:"зима",en:"winter",fr:"hiver",ex:"In de winter is het koud.",exuk:"Узимку холодно.",exen:"In winter it is cold.",exfr:"En hiver il fait froid."},
+  {nl:"de winter",uk:"зима",en:"winter",fr:"hiver",ex:"In de winter is het koud.",exuk:"Узимку холодно.",exen:"In winter it is cold.",exfr:"En winter il fait froid."},
   {nl:"vandaag",uk:"сьогодні",en:"today",fr:"aujourd'hui",ex:"Vandaag is het maandag.",exuk:"Сьогодні понеділок.",exen:"Today is Monday.",exfr:"Aujourd'hui c'est lundi."},
   {nl:"morgen",uk:"завтра",en:"tomorrow",fr:"demain",ex:"Tot morgen!",exuk:"До завтра!",exen:"See you tomorrow!",exfr:"À demain!"},
   {nl:"gisteren",uk:"вчора",en:"yesterday",fr:"hier",ex:"Gisteren was het zondag.",exuk:"Учора була неділя.",exen:"Yesterday was Sunday.",exfr:"Hier c'était dimanche."}
@@ -166,9 +165,10 @@ var DATA={
 var tab="questions",deck=[],q=0,right=0,round=1,locked=false,item=null,score=0,voice=null;
 try{score=parseInt(localStorage.getItem("nl_score")||"0",10)||0}catch(e){}
 
-function getTr(obj,key){
+function getTr(obj,prefix){
  if(!obj) return "";
- return obj[key+"_"+userLang] || obj[userLang] || obj.uk || "";
+ var key = prefix ? prefix + userLang : userLang;
+ return obj[key] || obj[prefix ? prefix + "uk" : "uk"] || "";
 }
 
 function changeLang(l){
@@ -278,9 +278,12 @@ function end(){
  };
 }
 
-$("footText").textContent=UI[userLang].foot;
-buildTabs();
-newRound();
+window.onload = function() {
+ $("langPicker").value=userLang;
+ $("footText").textContent=UI[userLang].foot;
+ buildTabs();
+ newRound();
+};
 </script>
 </body>
 </html>
