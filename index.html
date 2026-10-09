@@ -28,13 +28,13 @@ nav button.on{color:var(--fg);border-bottom-color:var(--acc);font-weight:600}
 .q h2{font-size:40px;font-weight:600;margin:8px 0 2px;letter-spacing:-.02em}
 .q p{margin:0;color:var(--mut)}
 .listen{background:none;border:1px solid var(--line);color:var(--fg);border-radius:20px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer;margin-top:10px}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:16px 8px;font:inherit;font-size:17px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
-.opt:active{transform:scale(.97)}
+.opts{display:grid;grid-template-columns:1fr;gap:10px}
+.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:16px 12px;font:inherit;font-size:17px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}
+.opt:active{transform:scale(.98)}
 .opt.ok{border-color:var(--ok);color:var(--ok)}
 .opt.bad{border-color:var(--bad);color:var(--bad)}
 .opt:disabled{cursor:default}
-.sw{width:14px;height:14px;border-radius:50%;border:1px solid var(--mut)}
+.sw{width:16px;height:16px;border-radius:50%;border:1px solid var(--mut);flex-shrink:0}
 .fb{text-align:center;min-height:70px}
 .fb b{font-size:19px;font-weight:600}
 .fb p{margin:4px 0 0;color:var(--mut)}
@@ -87,16 +87,38 @@ var DATA={
   {nl:"zien",uk:"бачити",ex:"Ik zie een kat.",exuk:"Я бачу кота."},
   {nl:"willen",uk:"хотіти",ex:"Ik wil water.",exuk:"Я хочу води."},
   {nl:"wonen",uk:"жити",ex:"Ik woon in België.",exuk:"Я живу в Бельгії."},
-  {nl:"werken",uk:"працювати",ex:"Hij werkt veel.",exuk:"Він багато працює."}
+  {nl:"werken",uk:"працювати",ex:"Hij werkt veel.",exuk:"Він багато працює."},
+  {nl:"spreken",uk:"говорити",ex:"Spreek je Nederlands?",exuk:"Ти говориш нідерландською?"},
+  {nl:"kijken",uk:"дивитися",ex:"Ik kijk TV.",exuk:"Я дивлюся телевізор."},
+  {nl:"luisteren",uk:"слухати",ex:"Ik luister naar muziek.",exuk:"Я слухаю музику."},
+  {nl:"schrijven",uk:"писати",ex:"Hij schrijft een brief.",exuk:"Він пише листа."},
+  {nl:"lezen",uk:"читати",ex:"Zij leest een boek.",exuk:"Вона читає книжку."},
+  {nl:"kopen",uk:"купувати",ex:"Ik koop brood.",exuk:"Я купую хліб."},
+  {nl:"eten",uk:"їсти",ex:"Wij eten appel.",exuk:"Ми їмо яблуко."},
+  {nl:"drinken",uk:"пити",ex:"Ik drink koffie.",exuk:"Я п'ю каву."}
  ]},
  colors:{label:"Кольори",sub:"Який це колір?",hint:"Колір",items:[
   {nl:"rood",uk:"червоний",c:"#ef4444"},{nl:"blauw",uk:"синій",c:"#3b82f6"},{nl:"groen",uk:"зелений",c:"#22c55e"},
-  {nl:"geel",uk:"жовтий",c:"#eab308"},{nl:"zwart",uk:"чорний",c:"#09090b"},{nl:"wit",uk:"білий",c:"#ffffff"}
+  {nl:"geel",uk:"жовтий",c:"#eab308"},{nl:"zwart",uk:"чорний",c:"#09090b"},{nl:"wit",uk:"білий",c:"#ffffff"},
+  {nl:"oranje",uk:"помаранчевий",c:"#f97316"},{nl:"roze",uk:"рожевий",c:"#ec4899"},{nl:"paars",uk:"фіолетовий",c:"#a855f7"},
+  {nl:"grijs",uk:"сірий",c:"#6b7280"},{nl:"bruin",uk:"коричневий",c:"#78350f"}
  ]},
  numbers:{label:"Числа",sub:"Переклад числа",hint:"Число",items:[
   {nl:"een",uk:"1 · один"},{nl:"twee",uk:"2 · два"},{nl:"drie",uk:"3 · три"},{nl:"vier",uk:"4 · чотири"},
   {nl:"vijf",uk:"5 · п’ять"},{nl:"zes",uk:"6 · шість"},{nl:"zeven",uk:"7 · сім"},{nl:"acht",uk:"8 · вісім"},
-  {nl:"negen",uk:"9 · дев’ять"},{nl:"tien",uk:"10 · десять"}
+  {nl:"negen",uk:"9 · дев’ять"},{nl:"tien",uk:"10 · десять"},{nl:"elf",uk:"11 · одинадцять"},
+  {nl:"twaalf",uk:"12 · дванадцять"},{nl:"vijftien",uk:"15 · п'ятнадцять"},{nl:"twintig",uk:"20 · двадцять"},
+  {nl:"dertig",uk:"30 · тридцять"},{nl:"vijftig",uk:"50 · п'ятдесят"},{nl:"honderd",uk:"100 · сто"},
+  {nl:"duizend",uk:"1000 · тисяча"}
+ ]},
+ seasons:{label:"Пори року та час",sub:"Перекладіть слово",hint:"Час / Пора року",items:[
+  {nl:"de lente",uk:"весна",ex:"Het is lente.",exuk:"Зараз весна."},
+  {nl:"de zomer",uk:"літо",ex:"In de zomer is het warm.",exuk:"Улітку тепло."},
+  {nl:"de herfst",uk:"осінь",ex:"In de herfst regent het.",exuk:"Восени іде дощ."},
+  {nl:"de winter",uk:"зима",ex:"In de winter is het koud.",exuk:"Узимку холодно."},
+  {nl:"vandaag",uk:"сьогодні",ex:"Vandaag is het maandag.",exuk:"Сьогодні понеділок."},
+  {nl:"morgen",uk:"завтра",ex:"Tot morgen!",exuk:"До завтра!"},
+  {nl:"gisteren",uk:"вчора",ex:"Gisteren was het zondag.",exuk:"Учора була неділя."}
  ]}
 };
 var $=function(id){return document.getElementById(id)};
