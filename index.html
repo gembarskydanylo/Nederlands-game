@@ -70,6 +70,7 @@ footer{text-align:center;color:var(--mut);font-size:12px}
  <footer id="footText">Нідерландська мова для всіх</footer>
 </main>
 <script>
+var $=function(id){return document.getElementById(id)};
 var PER_ROUND=10;
 var userLang=localStorage.getItem("nl_lang")||"uk";
 $("langPicker").value=userLang;
@@ -99,7 +100,7 @@ var UI={
 };
 
 var DATA={
- questions:{labelKey:"questions",subKey:"questions",hintKey:"questions",items:[
+ questions:{labelKey:"questions",items:[
   {nl:"wat",uk:"що",en:"what",fr:"quoi",ex:"Wat is je naam?",exuk:"Яке твоє ім'я?",exen:"What is your name?",exfr:"Quel est ton nom?"},
   {nl:"wie",uk:"хто",en:"who",fr:"qui",ex:"Wie is dat?",exuk:"Хто це?",exen:"Who is that?",exfr:"Qui est-ce?"},
   {nl:"waar",uk:"де",en:"where",fr:"où",ex:"Waar woon je?",exuk:"Де ти живеш?",exen:"Where do you live?",exfr:"Où habites-tu?"},
@@ -111,14 +112,14 @@ var DATA={
   {nl:"hoe laat",uk:"котра година",en:"what time",fr:"quelle heure",ex:"Hoe laat is het?",exuk:"Котра зараз година?",exen:"What time is it?",exfr:"Quelle heure est-il?"},
   {nl:"welke / welk",uk:"який / яка",en:"which",fr:"quel / quelle",ex:"Welke kleur is dit?",exuk:"Який це колір?",exen:"Which color is this?",exfr:"Quelle couleur est-ce?",say:"welke, welk"}
  ]},
- dehet:{labelKey:"dehet",subKey:"dehet",hintKey:null,items:[
+ dehet:{labelKey:"dehet",items:[
   {nl:"huis",uk:"будинок",en:"house",fr:"maison",art:"het"},{nl:"man",uk:"чоловік",en:"man",fr:"homme",art:"de"},{nl:"vrouw",uk:"жінка",en:"woman",fr:"femme",art:"de"},
   {nl:"kind",uk:"дитина",en:"child",fr:"enfant",art:"het"},{nl:"tafel",uk:"стіл",en:"table",fr:"table",art:"de"},{nl:"stoel",uk:"стілець",en:"chair",fr:"chaise",art:"de"},
   {nl:"boek",uk:"книга",en:"book",fr:"livre",art:"het"},{nl:"auto",uk:"автомобіль",en:"car",fr:"voiture",art:"de"},{nl:"water",uk:"вода",en:"water",fr:"eau",art:"het"},
   {nl:"kat",uk:"кіт",en:"cat",fr:"chat",art:"de"},{nl:"hond",uk:"собака",en:"dog",fr:"chien",art:"de"},{nl:"meisje",uk:"дівчинка",en:"girl",fr:"fille",art:"het"},
   {nl:"brood",uk:"хліб",en:"bread",fr:"pain",art:"het"},{nl:"fiets",uk:"велосипед",en:"bicycle",fr:"vélo",art:"de"},{nl:"school",uk:"школа",en:"school",fr:"école",art:"de"},{nl:"raam",uk:"вікно",en:"window",fr:"fenêtre",art:"het"}
  ]},
- verbs:{labelKey:"verbs",subKey:"verbs",hintKey:"verbs",items:[
+ verbs:{labelKey:"verbs",items:[
   {nl:"zijn",uk:"бути",en:"to be",fr:"être",ex:"Ik ben thuis.",exuk:"Я вдома.",exen:"I am home.",exfr:"Je suis à la maison."},
   {nl:"hebben",uk:"мати",en:"to have",fr:"avoir",ex:"Ik heb twee kinderen.",exuk:"У мене двоє дітей.",exen:"I have two children.",exfr:"J'ai deux enfants."},
   {nl:"doen",uk:"робити",en:"to do",fr:"faire",ex:"Wat doe je?",exuk:"Що ти робиш?",exen:"What are you doing?",exfr:"Que fais-tu?"},
@@ -137,13 +138,13 @@ var DATA={
   {nl:"eten",uk:"їсти",en:"to eat",fr:"manger",ex:"Wij eten appel.",exuk:"Ми їмо яблуко.",exen:"We eat an apple.",exfr:"Nous mangeons une pomme."},
   {nl:"drinken",uk:"пити",en:"to drink",fr:"boire",ex:"Ik drink koffie.",exuk:"Я п'ю каву.",exen:"I drink coffee.",exfr:"Je bois du café."}
  ]},
- colors:{labelKey:"colors",subKey:"colors",hintKey:"colors",items:[
+ colors:{labelKey:"colors",items:[
   {nl:"rood",uk:"червоний",en:"red",fr:"rouge",c:"#ef4444"},{nl:"blauw",uk:"синій",en:"blue",fr:"bleu",c:"#3b82f6"},{nl:"groen",uk:"зелений",en:"green",fr:"vert",c:"#22c55e"},
   {nl:"geel",uk:"жовтий",en:"yellow",fr:"jaune",c:"#eab308"},{nl:"zwart",uk:"чорний",en:"black",fr:"noir",c:"#09090b"},{nl:"wit",uk:"білий",en:"white",fr:"blanc",c:"#ffffff"},
   {nl:"oranje",uk:"помаранчевий",en:"orange",fr:"orange",c:"#f97316"},{nl:"roze",uk:"рожевий",en:"pink",fr:"rose",c:"#ec4899"},{nl:"paars",uk:"фіолетовий",en:"purple",fr:"violet",c:"#a855f7"},
   {nl:"grijs",uk:"сірий",en:"grey",fr:"gris",c:"#6b7280"},{nl:"bruin",uk:"коричневий",en:"brown",fr:"marron",c:"#78350f"}
  ]},
- numbers:{labelKey:"numbers",subKey:"numbers",hintKey:"numbers",items:[
+ numbers:{labelKey:"numbers",items:[
   {nl:"een",uk:"1 · один",en:"1 · one",fr:"1 · un"},{nl:"twee",uk:"2 · два",en:"2 · two",fr:"2 · deux"},{nl:"drie",uk:"3 · три",en:"3 · three",fr:"3 · trois"},{nl:"vier",uk:"4 · чотири",en:"4 · four",fr:"4 · quatre"},
   {nl:"vijf",uk:"5 · п’ять",en:"5 · five",fr:"5 · cinq"},{nl:"zes",uk:"6 · шість",en:"6 · six",fr:"6 · six"},{nl:"zeven",uk:"7 · сім",en:"7 · seven",fr:"7 · sept"},{nl:"acht",uk:"8 · вісім",en:"8 · eight",fr:"8 · huit"},
   {nl:"negen",uk:"9 · дев’ять",en:"9 · nine",fr:"9 · neuf"},{nl:"tien",uk:"10 · десять",en:"10 · ten",fr:"10 · dix"},{nl:"elf",uk:"11 · одинадцять",en:"11 · eleven",fr:"11 · onze"},
@@ -151,7 +152,7 @@ var DATA={
   {nl:"dertig",uk:"30 · тридцять",en:"30 · thirty",fr:"30 · trente"},{nl:"vijftig",uk:"50 · п'ятдесят",en:"50 · fifty",fr:"50 · cinquante"},{nl:"honderd",uk:"100 · сто",en:"100 · hundred",fr:"100 · cent"},
   {nl:"duizend",uk:"1000 · тисяча",en:"1000 · thousand",fr:"1000 · mille"}
  ]},
- seasons:{labelKey:"seasons",subKey:"seasons",hintKey:"seasons",items:[
+ seasons:{labelKey:"seasons",items:[
   {nl:"de lente",uk:"весна",en:"spring",fr:"printemps",ex:"Het is lente.",exuk:"Зараз весна.",exen:"It is spring.",exfr:"C'est le printemps."},
   {nl:"de zomer",uk:"літо",en:"summer",fr:"été",ex:"In de zomer is het warm.",exuk:"Улітку тепло.",exen:"In summer it is warm.",exfr:"En été il fait chaud."},
   {nl:"de herfst",uk:"осінь",en:"autumn",fr:"automne",ex:"In de herfst regent het.",exuk:"Восени іде дощ.",exen:"In autumn it rains.",exfr:"En automne il pleut."},
@@ -162,11 +163,13 @@ var DATA={
  ]}
 };
 
-var $=function(id){return document.getElementById(id)};
 var tab="questions",deck=[],q=0,right=0,round=1,locked=false,item=null,score=0,voice=null;
 try{score=parseInt(localStorage.getItem("nl_score")||"0",10)||0}catch(e){}
 
-function getTr(obj,field){return obj[field+"_"+userLang]||obj[field]||obj[field+"_uk"]||"";}
+function getTr(obj,key){
+ if(!obj) return "";
+ return obj[key+"_"+userLang] || obj[userLang] || obj.uk || "";
+}
 
 function changeLang(l){
  userLang=l;
@@ -213,12 +216,12 @@ function next(){
  if(tab==="dehet"){
   opts=["de","het"].map(function(a){return{label:a,ok:a===item.art}});
  } else {
-  var others=shuffle(d.items.filter(function(x){return getTr(x,userLang)!==getTr(item,userLang)})).slice(0,3);
-  opts=shuffle(others.concat([item])).map(function(x){return{label:getTr(x,userLang),ok:x===item,c:x.c}});
+  var others=shuffle(d.items.filter(function(x){return getTr(x,"")!==getTr(item,"")})).slice(0,3);
+  opts=shuffle(others.concat([item])).map(function(x){return{label:getTr(x,""),ok:x===item,c:x.c}});
  }
  
  var subText=u.subs[tab];
- var hintText=tab==="dehet"?getTr(item,userLang):u.hints[tab];
+ var hintText=tab==="dehet"?getTr(item,""):u.hints[tab];
  
  $("card").innerHTML='<div class="q"><small>'+subText+'</small><h2 lang="nl">'+item.nl+'</h2><p>'+hintText+'</p><button class="listen" id="hear">'+u.listen+'</button></div>'+
   '<div class="opts" id="opts"></div><div class="fb" id="fb"></div><div class="row"><button class="btn main" id="nx" disabled>'+u.next+'</button></div>';
@@ -242,7 +245,7 @@ function answer(ok,btn){
  $("score").textContent="⚡ "+score;
  
  var line=item.ex||full(item);
- var tr=getTr(item,"ex"+userLang)||getTr(item,userLang);
+ var tr=getTr(item,"ex")||getTr(item,"");
  $("fb").innerHTML='<b lang="nl"></b><p></p>';
  $("fb").firstChild.textContent=line;
  $("fb").lastChild.textContent=tr;
