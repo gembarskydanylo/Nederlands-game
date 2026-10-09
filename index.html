@@ -3,477 +3,481 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f7f8fc">
-<title>Polyglot Leren — A1</title>
+<meta name="theme-color" content="#F7F8FC">
+<title>Polyglot Leren — Nederlands voor beginners</title>
 <style>
-:root {
-  --bg: #f7f8fc;
-  --fg: #20243a;
-  --mut: #686f82;
-  --card: #ffffff;
-  --line: #e5e8f0;
-  --acc: #4657d9;
-  --ok: #218653;
-  --bad: #c43d4b;
-  box-sizing: border-box;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
+:root{
+  color-scheme:light;
+  --bg:#F7F8FC;--fg:#20243A;--mut:#686F82;--card:#FFFFFF;--line:#E5E8F0;
+  --acc:#4657D9;--acc-hover:#3545c4;--ok:#218653;--ok-bg:#EAF7EF;
+  --bad:#C43D4B;--bad-bg:#FFF0F1;--soft:#EEF1FF;--shadow:0 8px 30px rgba(32,36,58,.06);
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #12131c;
-    --fg: #f0f2f8;
-    --mut: #8e95a5;
-    --card: #1c1e2d;
-    --line: #2a2d40;
-    --acc: #6372f2;
-    --ok: #2ebd75;
-    --bad: #e55362;
-  }
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#11131A;--fg:#F2F3FA;--mut:#A4A9BA;--card:#1C1F2A;--line:#303443;
+  --acc:#8794FF;--acc-hover:#9EA8FF;--ok:#62D493;--ok-bg:#183728;
+  --bad:#FF858D;--bad-bg:#3B2027;--soft:#282D4B;--shadow:0 8px 30px rgba(0,0,0,.18);
 }
-* { box-sizing: border-box; }
-html, body { margin: 0; }
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font: 16px/1.4 -apple-system, "Inter", "Segoe UI", Roboto, sans-serif;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
+*{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+button,select{font:inherit}
+button:focus-visible,select:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+button{touch-action:manipulation}
+main{width:100%;max-width:760px;margin:0 auto;padding:20px 16px 36px;display:flex;flex-direction:column;gap:18px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand h1{font-size:23px;line-height:1.2;margin:0;letter-spacing:-.04em}
+.brand p{margin:0;color:var(--mut);font-size:13px}
+.top-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.select-group{display:flex;align-items:center;gap:5px;color:var(--mut);font-size:12px}
+.lang-select,.theme-btn{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:10px;min-height:40px;padding:7px 9px}
+.theme-btn{cursor:pointer;min-width:42px}
+.score-pill{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 10px;font-size:13px;font-weight:700;white-space:nowrap}
+.hero{border-radius:20px;padding:20px;background:linear-gradient(135deg,var(--soft),var(--card));border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.hero h2{margin:0 0 4px;font-size:22px;letter-spacing:-.03em}
+.hero p{margin:0;color:var(--mut);font-size:14px}
+.hero .hero-stat{font-size:13px;color:var(--mut);text-align:right}
+.hero .hero-stat strong{display:block;font-size:22px;color:var(--fg)}
+nav{display:flex;gap:5px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:thin;padding-bottom:1px}
+nav button{background:transparent;border:0;border-bottom:3px solid transparent;padding:11px 12px;color:var(--mut);cursor:pointer;white-space:nowrap;flex-shrink:0;font-size:14px}
+nav button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--acc);font-weight:700}
+.meta{display:flex;justify-content:space-between;gap:10px;color:var(--mut);font-size:13px}
+.bar{height:5px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:-12px}
+.bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .25s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:18px;min-width:0}
+.q{text-align:center}
+.q small{color:var(--mut);font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+.q h2{font-size:clamp(30px,7vw,42px);font-weight:750;margin:8px 0 3px;letter-spacing:-.04em;overflow-wrap:anywhere}
+.q p{margin:0;color:var(--mut);font-size:14px}
+.listen{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:24px;padding:9px 15px;font-size:14px;cursor:pointer;margin-top:12px;min-height:42px}
+.listen:hover,.btn:hover,.opt:hover:not(:disabled){border-color:var(--acc)}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:13px;padding:13px 10px;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;min-height:56px;overflow-wrap:anywhere}
+.opt:active{transform:scale(.985)}
+.opt.correct{border-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
+.opt.incorrect{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
+.opt:disabled{cursor:default}
+.swatch{width:15px;height:15px;border-radius:50%;border:1px solid var(--line);flex-shrink:0}
+.feedback{border-radius:13px;min-height:58px;padding:12px;text-align:center;background:var(--bg)}
+.feedback:empty{background:transparent}
+.feedback strong{display:block;font-size:16px}
+.feedback p{margin:3px 0 0;color:var(--mut);font-size:14px}
+.feedback .example{margin-top:8px;color:var(--fg)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{flex:1;min-width:135px;padding:13px 15px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font-weight:650;cursor:pointer;text-align:center;min-height:48px}
+.btn.primary{background:var(--acc);border-color:var(--acc);color:white}
+.btn.primary:hover{background:var(--acc-hover)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.end{text-align:center;display:flex;flex-direction:column;gap:14px}
+.end h2{font-size:42px;margin:0;letter-spacing:-.04em}
+.end p{color:var(--mut);margin:0}
+.summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.summary-grid div{padding:12px 6px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.summary-grid strong{display:block;font-size:20px}
+.summary-grid span{font-size:12px;color:var(--mut)}
+.empty{color:var(--mut);text-align:center;padding:18px}
+footer{text-align:center;color:var(--mut);font-size:12px}
+@media(max-width:480px){
+ main{padding:15px 12px 28px;gap:14px}
+ .brand h1{font-size:20px}
+ .top-right{width:100%;justify-content:space-between}
+ .hero{padding:16px}
+ .card{padding:21px 13px}
+ .opts{gap:8px}
+ .opt{font-size:14px;padding:12px 7px}
+ nav button{padding:10px 9px}
 }
-main {
-  width: 100%;
-  max-width: 540px;
-  padding: 16px 16px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-header h1 { font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -.01em; }
-.top-right { display: flex; align-items: center; gap: 6px; }
-.select-group { display: flex; align-items: center; gap: 3px; font-size: 11px; color: var(--mut); }
-#score { color: var(--acc); font-size: 15px; font-weight: 700; margin-left: 4px; }
-.lang-select {
-  background: var(--card);
-  border: 1px solid var(--line);
-  color: var(--fg);
-  border-radius: 8px;
-  padding: 4px 6px;
-  font: inherit;
-  font-size: 12px;
-  cursor: pointer;
-}
-nav {
-  display: flex;
-  gap: 4px;
-  overflow-x: auto;
-  border-bottom: 1px solid var(--line);
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-nav::-webkit-scrollbar { display: none; }
-nav button {
-  background: none;
-  border: 0;
-  border-bottom: 2px solid transparent;
-  padding: 8px 10px;
-  font: inherit;
-  font-size: 13px;
-  color: var(--mut);
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-nav button.on { color: var(--fg); border-bottom-color: var(--acc); font-weight: 600; }
-.meta { display: flex; justify-content: space-between; color: var(--mut); font-size: 12px; }
-.bar { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: -6px; }
-.bar i { display: block; height: 100%; width: 0; background: var(--acc); transition: width .3s; }
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 20px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-}
-.q { text-align: center; }
-.q small { color: var(--mut); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }
-.q h2 { font-size: 32px; font-weight: 700; margin: 4px 0 2px; letter-spacing: -.02em; }
-.q p { margin: 0; color: var(--mut); font-size: 14px; }
-.listen {
-  background: none;
-  border: 1px solid var(--line);
-  color: var(--fg);
-  border-radius: 20px;
-  padding: 5px 12px;
-  font: inherit;
-  font-size: 13px;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: background 0.2s;
-}
-.listen:active { background: var(--line); }
-.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.opt {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  color: var(--fg);
-  border-radius: 12px;
-  padding: 10px 8px;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  text-align: center;
-  min-height: 50px;
-}
-.opt:active { transform: scale(.98); }
-.opt.ok { border-color: var(--ok); color: var(--ok); background: rgba(33, 134, 83, 0.08); font-weight: 700; }
-.opt.bad { border-color: var(--bad); color: var(--bad); background: rgba(196, 61, 75, 0.08); }
-.opt:disabled { cursor: default; }
-.sw { width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--mut); flex-shrink: 0; }
-.fb { text-align: center; min-height: 56px; }
-.fb b { font-size: 16px; font-weight: 600; color: var(--fg); }
-.fb p { margin: 2px 0 0; color: var(--mut); font-size: 13px; }
-.row { display: flex; gap: 8px; flex-wrap: wrap; }
-.btn {
-  flex: 1;
-  min-width: 120px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--fg);
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-}
-.btn.main { background: var(--acc); border-color: var(--acc); color: #fff; }
-.end { text-align: center; display: flex; flex-direction: column; gap: 10px; }
-.end h2 { font-size: 36px; margin: 0 0 2px; }
-.end p { color: var(--mut); margin: 0 0 10px; font-size: 14px; }
-footer { text-align: center; color: var(--mut); font-size: 11px; }
 </style>
 </head>
 <body>
 <main>
- <header>
-   <h1 id="appTitle">Leren</h1>
-   <div class="top-right">
-     <div class="select-group">
-       <span>🎯</span>
-       <select id="targetLangPicker" class="lang-select" onchange="changeTargetLang(this.value)">
-         <option value="nl">🇳🇱 NL</option>
-         <option value="en">🇬🇧 EN</option>
-         <option value="fr">🇫🇷 FR</option>
-       </select>
-     </div>
-     <div class="select-group">
-       <span>🗣️</span>
-       <select id="uiLangPicker" class="lang-select" onchange="changeUiLang(this.value)">
-         <option value="uk">🇺🇦 UA</option>
-         <option value="en">🇬🇧 EN</option>
-         <option value="fr">🇫🇷 FR</option>
-       </select>
-     </div>
-     <span id="score">⚡ 0</span>
-   </div>
- </header>
- <nav id="tabs"></nav>
- <div class="meta"><span id="prog"></span><span id="rnd"></span></div>
- <div class="bar"><i id="barfill"></i></div>
- <div class="card" id="card"></div>
- <footer id="footText">Нідерландська для життя в Бельгії</footer>
+  <header>
+    <div class="brand">
+      <h1 id="appTitle">Polyglot Leren</h1>
+      <p id="tagline">Нідерландська для повсякденного життя</p>
+    </div>
+    <div class="top-right">
+      <label class="select-group"><span id="targetLabel">Вчу</span>
+        <select id="targetLangPicker" class="lang-select" aria-label="Мова навчання">
+          <option value="nl">🇧🇪 Nederlands</option><option value="en">🇬🇧 English</option><option value="fr">🇫🇷 Français</option>
+        </select>
+      </label>
+      <label class="select-group"><span id="uiLabel">Пояснення</span>
+        <select id="uiLangPicker" class="lang-select" aria-label="Мова пояснень">
+          <option value="uk">🇺🇦 Українська</option><option value="en">🇬🇧 English</option><option value="fr">🇫🇷 Français</option>
+        </select>
+      </label>
+      <span id="score" class="score-pill" aria-live="polite">⭐ 0</span>
+      <button class="theme-btn" id="themeToggle" type="button" aria-label="Змінити тему">🌙</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div><h2 id="welcomeTitle">Вчи мову крок за кроком</h2><p id="welcomeText">Короткі уроки, вимова та практичні фрази.</p></div>
+    <div class="hero-stat"><span id="progressLabel">Вивчені слова</span><strong id="learnedCount">0</strong><span id="reviewCount">До повторення: 0</span></div>
+  </section>
+
+  <nav id="tabs" aria-label="Навчальні теми" role="tablist"></nav>
+  <div class="row" id="modeButtons"></div>
+  <div class="meta"><span id="prog"></span><span id="rnd"></span></div>
+  <div class="bar" role="progressbar" aria-label="Прогрес уроку" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="barfill"></i></div>
+  <section class="card" id="card" aria-live="polite"></section>
+  <footer id="footText">Навчальний тренажер. Прогрес зберігається на цьому пристрої.</footer>
 </main>
+
 <script>
-var $ = function(id) { return document.getElementById(id); };
-var PER_ROUND = 10;
-
-var targetLang = localStorage.getItem("poly_target") || "nl";
-var uiLang = localStorage.getItem("poly_ui") || "uk";
-
-var UI = {
- uk: {
-  qProgress: "Питання", round: "Раунд", listen: "🔊 Слухати", next: "Далі", again: "Ще раз",
-  nextTopic: "Наступна тема", accuracy: "точність", foot: "Нідерландська для життя в Бельгії",
-  tabs: { pronouns: "Займенники", questions: "Запитання", dehet: "Артиклі", verbs: "Дієслова", colors: "Кольори", numbers: "Числа", seasons: "Час та дні" },
-  subs: { pronouns: "Оберіть переклад займенника", questions: "Що означає питальне слово?", dehet: "Оберіть правильний артикль", verbs: "Перекладіть дієслово", colors: "Який це колір?", numbers: "Переклад числа", seasons: "Перекладіть слово" },
-  hints: { pronouns: "Займенник", questions: "Запитання", dehet: "Артикль", verbs: "Дієслово", colors: "Колір", numbers: "Число", seasons: "Час / День" }
+"use strict";
+const $ = id => document.getElementById(id);
+const PER_ROUND = 10;
+const LANGS = ["nl","en","fr"];
+const UI_LANGS = ["uk","en","fr"];
+const UI = {
+ uk:{
+  tagline:"Нідерландська для повсякденного життя",target:"Вчу",ui:"Пояснення",
+  welcome:"Вчи мову крок за кроком",welcomeText:"Короткі уроки, вимова та практичні фрази.",
+  learned:"Вивчені слова",review:"До повторення",question:"Питання",round:"Раунд",
+  listen:"🔊 Прослухати",next:"Далі",study:"Вивчати",quiz:"Тест",audio:"Аудіювання",reviewMode:"Повторення",
+  correct:"Правильно! Чудова робота.",incorrect:"Не зовсім. Правильна відповідь:",meaning:"Переклад",
+  example:"Приклад",noSpeech:"Озвучування недоступне в цьому браузері.",nextTopic:"Наступна тема",
+  again:"Ще раз",accuracy:"точність",finished:"Раунд завершено!",points:"Балів за раунд",
+  right:"Правильні",words:"Слова в раунді",emptyReview:"Поки немає слів для повторення. Пройди тест, щоб додати слова.",
+  noItems:"У цій темі поки немає слів.",footer:"Навчальний тренажер. Прогрес зберігається на цьому пристрої.",
+  tabs:{pronouns:"Займенники",questions:"Запитання",dehet:"Артиклі",verbs:"Дієслова",colors:"Кольори",numbers:"Числа",seasons:"Час і дні",phrases:"Корисні фрази",family:"Сім'я",shop:"Магазин"},
+  subs:{pronouns:"Обери переклад займенника",questions:"Що означає це запитальне слово?",dehet:"Обери правильний артикль",verbs:"Обери переклад дієслова",colors:"Обери назву кольору",numbers:"Обери переклад числа",seasons:"Обери переклад слова",phrases:"Що означає ця фраза?",family:"Переклади слово",shop:"Що означає ця фраза"},
+  hints:{pronouns:"Займенник",questions:"Запитальне слово",dehet:"Артикль",verbs:"Дієслово",colors:"Колір",numbers:"Число",seasons:"Час / день",phrases:"Корисна фраза",family:"Сім'я",shop:"У магазині"},
+  modes:{study:"Вивчення",quiz:"Тест",audio:"Аудіювання",review:"Повторення"},
+  markKnown:"Знаю це",markAgain:"Повторити пізніше",correctWord:"Правильна відповідь",lessonProgress:"Питання"
  },
- en: {
-  qProgress: "Question", round: "Round", listen: "🔊 Listen", next: "Next", again: "Try again",
-  nextTopic: "Next topic", accuracy: "accuracy", foot: "Learn Dutch & Languages for Belgium",
-  tabs: { pronouns: "Pronouns", questions: "Questions", dehet: "Articles", verbs: "Verbs", colors: "Colors", numbers: "Numbers", seasons: "Time & Days" },
-  subs: { pronouns: "Translate the pronoun", questions: "What does this question word mean?", dehet: "Choose the correct article", verbs: "Translate the verb", colors: "Which color is this?", numbers: "Number translation", seasons: "Translate the word" },
-  hints: { pronouns: "Pronoun", questions: "Question", dehet: "Article", verbs: "Verb", colors: "Color", numbers: "Number", seasons: "Time / Day" }
+ en:{
+  tagline:"Dutch for everyday life",target:"Learn",ui:"Explain in",welcome:"Learn step by step",welcomeText:"Short lessons, pronunciation and practical phrases.",
+  learned:"Learned words",review:"Due to review",question:"Question",round:"Round",listen:"🔊 Listen",next:"Next",
+  study:"Study",quiz:"Quiz",audio:"Listening",reviewMode:"Review",correct:"Correct! Great job.",incorrect:"Not quite. The correct answer is:",
+  meaning:"Translation",example:"Example",noSpeech:"Speech is unavailable in this browser.",nextTopic:"Next topic",again:"Try again",
+  accuracy:"accuracy",finished:"Round complete!",points:"Points this round",right:"Correct",words:"Words this round",
+  emptyReview:"No words to review yet. Take a quiz to add words.",noItems:"There are no words in this topic yet.",
+  footer:"Learning trainer. Progress is saved on this device.",
+  tabs:{pronouns:"Pronouns",questions:"Questions",dehet:"Articles",verbs:"Verbs",colors:"Colors",numbers:"Numbers",seasons:"Time & days",phrases:"Useful phrases",family:"Family",shop:"Shopping"},
+  subs:{pronouns:"Choose the pronoun translation",questions:"What does this question word mean?",dehet:"Choose the correct article",verbs:"Choose the verb translation",colors:"Choose the color name",numbers:"Choose the number translation",seasons:"Choose the word translation",phrases:"What does this phrase mean?",family:"Translate the word",shop:"What does this phrase mean?"},
+  hints:{pronouns:"Pronoun",questions:"Question word",dehet:"Article",verbs:"Verb",colors:"Color",numbers:"Number",seasons:"Time / day",phrases:"Useful phrase",family:"Family",shop:"Shopping"},
+  modes:{study:"Study",quiz:"Quiz",audio:"Listening",review:"Review"},
+  markKnown:"I know this",markAgain:"Review later",correctWord:"Correct answer",lessonProgress:"Question"
  },
- fr: {
-  qProgress: "Question", round: "Tour", listen: "🔊 Écouter", next: "Suivant", again: "Recommencer",
-  nextTopic: "Sujet suivant", accuracy: "précision", foot: "Apprendre le néerlandais en Belgique",
-  tabs: { pronouns: "Pronoms", questions: "Questions", dehet: "Articles", verbs: "Verbes", colors: "Couleurs", numbers: "Nombres", seasons: "Temps & Jours" },
-  subs: { pronouns: "Traduisez le pronom", questions: "Que signifie ce mot interrogatif?", dehet: "Choisissez le bon article", verbs: "Traduisez le verbe", colors: "Quelle est cette couleur?", numbers: "Traduction du nombre", seasons: "Traduisez le mot" },
-  hints: { pronouns: "Pronom", questions: "Question", dehet: "Article", verbs: "Verbe", colors: "Couleur", numbers: "Nombre", seasons: "Temps / Jour" }
+ fr:{
+  tagline:"Le néerlandais au quotidien",target:"J'apprends",ui:"Explications",welcome:"Apprends pas à pas",welcomeText:"Courtes leçons, prononciation et phrases utiles.",
+  learned:"Mots appris",review:"À réviser",question:"Question",round:"Tour",listen:"🔊 Écouter",next:"Suivant",
+  study:"Apprendre",quiz:"Quiz",audio:"Écoute",reviewMode:"Révision",correct:"Correct ! Bravo.",incorrect:"Pas tout à fait. La bonne réponse est :",
+  meaning:"Traduction",example:"Exemple",noSpeech:"La synthèse vocale n'est pas disponible dans ce navigateur.",nextTopic:"Sujet suivant",again:"Recommencer",
+  accuracy:"précision",finished:"Tour terminé !",points:"Points de ce tour",right:"Correctes",words:"Mots du tour",
+  emptyReview:"Aucun mot à réviser. Fais un quiz pour ajouter des mots.",noItems:"Il n'y a pas encore de mots dans ce thème.",
+  footer:"Application d'apprentissage. La progression est enregistrée sur cet appareil.",
+  tabs:{pronouns:"Pronoms",questions:"Questions",dehet:"Articles",verbs:"Verbes",colors:"Couleurs",numbers:"Nombres",seasons:"Temps et jours",phrases:"Phrases utiles",family:"Famille",shop:"Magasin"},
+  subs:{pronouns:"Choisis la traduction du pronom",questions:"Que signifie ce mot interrogatif ?",dehet:"Choisis le bon article",verbs:"Choisis la traduction du verbe",colors:"Choisis le nom de la couleur",numbers:"Choisis la traduction du nombre",seasons:"Choisis la traduction du mot",phrases:"Que signifie cette phrase ?",family:"Traduis le mot",shop:"Que signifie cette phrase ?"},
+  hints:{pronouns:"Pronom",questions:"Mot interrogatif",dehet:"Article",verbs:"Verbe",colors:"Couleur",numbers:"Nombre",seasons:"Temps / jour",phrases:"Phrase utile",family:"Famille",shop:"Au magasin"},
+  modes:{study:"Apprendre",quiz:"Quiz",audio:"Écoute",review:"Révision"},
+  markKnown:"Je connais",markAgain:"À réviser",correctWord:"Bonne réponse",lessonProgress:"Question"
  }
 };
 
-var DATA = {
- pronouns: { labelKey: "pronouns", items: [
-  { id: "pr1", nl: "ik", en: "I", fr: "je", uk: "я", ex_nl: "Ik ben thuis.", ex_en: "I am home.", ex_fr: "Je suis à la maison.", ex_uk: "Я вдома." },
-  { id: "pr2", nl: "jij / je", en: "you (singular)", fr: "tu", uk: "ти", ex_nl: "Jij bent aardig.", ex_en: "You are kind.", ex_fr: "Tu es gentil.", ex_uk: "Ти добрий." },
-  { id: "pr3", nl: "hij", en: "he", fr: "il", uk: "він", ex_nl: "Hij werkt hard.", ex_en: "He works hard.", ex_fr: "Il travaille dur.", ex_uk: "Він багато працює." },
-  { id: "pr4", nl: "zij / ze", en: "she", fr: "elle", uk: "вона", ex_nl: "Zij leest een boek.", ex_en: "She reads a book.", ex_fr: "Elle lit un livre.", ex_uk: "Вона читає книжку." },
-  { id: "pr5", nl: "het", en: "it", fr: "il / elle (neutre)", uk: "воно (іменники het)", ex_nl: "Het is koud.", ex_en: "It is cold.", ex_fr: "Il fait froid.", ex_uk: "Холодно." },
-  { id: "pr6", nl: "wij / we", en: "we", fr: "nous", uk: "ми", ex_nl: "Wij zijn samen.", ex_en: "We are together.", ex_fr: "Nous sommes ensemble.", ex_uk: "Ми разом." },
-  { id: "pr7", nl: "jullie", en: "you (plural)", fr: "vous", uk: "ви (група людей)", ex_nl: "Jullie leren snel.", ex_en: "You learn fast.", ex_fr: "Vous apprenez vite.", ex_uk: "Ви вчитеся швидко." },
-  { id: "pr8", nl: "u", en: "you (formal)", fr: "vous (politesse)", uk: "Ви (ввічливо)", ex_nl: "Hoe gaat het met u?", ex_en: "How are you?", ex_fr: "Comment allez-vous?", ex_uk: "Як у Вас справи?" },
-  { id: "pr9", nl: "zij / ze (meervoud)", en: "they", fr: "ils / elles", uk: "вони", ex_nl: "Zij wonen hier.", ex_en: "They live here.", ex_fr: "Ils habitent ici.", ex_uk: "Вони живуть тут." }
+const DATA = {
+ pronouns:{items:[
+  {id:"pro_ik",nl:"ik",en:"I",fr:"je",uk:"я",ex_nl:"Ik ben hier.",ex_en:"I am here.",ex_fr:"Je suis ici.",ex_uk:"Я тут."},
+  {id:"pro_jij",nl:"jij / je",en:"you (singular)",fr:"tu",uk:"ти",ex_nl:"Jij bent aardig.",ex_en:"You are kind.",ex_fr:"Tu es gentil / gentille.",ex_uk:"Ти добрий / добра."},
+  {id:"pro_hij",nl:"hij",en:"he",fr:"il",uk:"він",ex_nl:"Hij werkt hard.",ex_en:"He works hard.",ex_fr:"Il travaille beaucoup.",ex_uk:"Він багато працює."},
+  {id:"pro_zij",nl:"zij / ze",en:"she",fr:"elle",uk:"вона",ex_nl:"Zij leest een boek.",ex_en:"She reads a book.",ex_fr:"Elle lit un livre.",ex_uk:"Вона читає книжку."},
+  {id:"pro_het",nl:"het",en:"it (neuter)",fr:"il / elle",uk:"воно",ex_nl:"Het is koud.",ex_en:"It is cold.",ex_fr:"Il fait froid.",ex_uk:"Холодно."},
+  {id:"pro_wij",nl:"wij / we",en:"we",fr:"nous",uk:"ми",ex_nl:"Wij zijn samen.",ex_en:"We are together.",ex_fr:"Nous sommes ensemble.",ex_uk:"Ми разом."},
+  {id:"pro_jullie",nl:"jullie",en:"you (plural)",fr:"vous",uk:"ви (група)",ex_nl:"Jullie leren snel.",ex_en:"You learn quickly.",ex_fr:"Vous apprenez vite.",ex_uk:"Ви швидко вчитеся."},
+  {id:"pro_u",nl:"u",en:"you (formal)",fr:"vous (polite)",uk:"Ви (ввічливо)",ex_nl:"Hoe gaat het met u?",ex_en:"How are you?",ex_fr:"Comment allez-vous ?",ex_uk:"Як у Вас справи?"},
+  {id:"pro_zijpl",nl:"zij / ze (meervoud)",en:"they",fr:"ils / elles",uk:"вони",ex_nl:"Zij wonen hier.",ex_en:"They live here.",ex_fr:"Ils / Elles habitent ici.",ex_uk:"Вони живуть тут."}
  ]},
- questions: { labelKey: "questions", items: [
-  { id: "q1", nl: "wat", en: "what", fr: "que / quoi", uk: "що", ex_nl: "Wat is je naam?", ex_en: "What is your name?", ex_fr: "Quel est ton nom?", ex_uk: "Яке твоє ім'я?" },
-  { id: "q2", nl: "wie", en: "who", fr: "qui", uk: "хто", ex_nl: "Wie is dat?", ex_en: "Who is that?", ex_fr: "Qui est-ce?", ex_uk: "Хто це?" },
-  { id: "q3", nl: "waar", en: "where", fr: "où", uk: "де", ex_nl: "Waar woon je?", ex_en: "Where do you live?", ex_fr: "Où habites-tu?", ex_uk: "Де ти живеш?" },
-  { id: "q4", nl: "wanneer", en: "when", fr: "quand", uk: "коли", ex_nl: "Wanneer begint de les?", ex_en: "When does the lesson start?", ex_fr: "Quand commence le cours?", ex_uk: "Коли починається урок?" },
-  { id: "q5", nl: "waarom", en: "why", fr: "pourquoi", uk: "чому", ex_nl: "Waarom leer je dit?", ex_en: "Why do you learn this?", ex_fr: "Pourquoi apprends-tu ceci?", ex_uk: "Чому ти це вчиш?" },
-  { id: "q6", nl: "hoe", en: "how", fr: "comment", uk: "як", ex_nl: "Hoe heet je?", ex_en: "What is your name?", ex_fr: "Comment t'appelles-tu?", ex_uk: "Як тебе звати?" },
-  { id: "q7", nl: "hoeveel", en: "how much", fr: "combien", uk: "скільки", ex_nl: "Hoeveel kost dit?", ex_en: "How much does this cost?", ex_fr: "Combien ça coûte?", ex_uk: "Скільки це коштує?" }
+ questions:{items:[
+  {id:"q_wat",nl:"wat",en:"what",fr:"quoi",uk:"що",ex_nl:"Wat is je naam?",ex_en:"What is your name?",ex_fr:"Comment tu t'appelles ?",ex_uk:"Як тебе звати?"},
+  {id:"q_wie",nl:"wie",en:"who",fr:"qui",uk:"хто",ex_nl:"Wie is dat?",ex_en:"Who is that?",ex_fr:"Qui est-ce ?",ex_uk:"Хто це?"},
+  {id:"q_waar",nl:"waar",en:"where",fr:"où",uk:"де",ex_nl:"Waar woon je?",ex_en:"Where do you live?",ex_fr:"Où habites-tu ?",ex_uk:"Де ти живеш?"},
+  {id:"q_wanneer",nl:"wanneer",en:"when",fr:"quand",uk:"коли",ex_nl:"Wanneer begint de les?",ex_en:"When does the lesson start?",ex_fr:"Quand commence le cours ?",ex_uk:"Коли починається урок?"},
+  {id:"q_waarom",nl:"waarom",en:"why",fr:"pourquoi",uk:"чому",ex_nl:"Waarom leer je Nederlands?",ex_en:"Why are you learning Dutch?",ex_fr:"Pourquoi apprends-tu le néerlandais ?",ex_uk:"Чому ти вивчаєш нідерландську?"},
+  {id:"q_hoe",nl:"hoe",en:"how",fr:"comment",uk:"як",ex_nl:"Hoe gaat het?",ex_en:"How are you?",ex_fr:"Comment ça va ?",ex_uk:"Як справи?"},
+  {id:"q_hoeveel",nl:"hoeveel",en:"how much / how many",fr:"combien",uk:"скільки",ex_nl:"Hoeveel kost het?",ex_en:"How much does it cost?",ex_fr:"Combien ça coûte ?",ex_uk:"Скільки це коштує?"}
  ]},
- dehet: { labelKey: "dehet", items: [
-  { id: "dh1", nl: "huis", en: "house", fr: "maison", uk: "будинок", art_nl: "het", art_en: "the", art_fr: "la" },
-  { id: "dh2", nl: "man", en: "man", fr: "homme", uk: "чоловік", art_nl: "de", art_en: "the", art_fr: "l'" },
-  { id: "dh3", nl: "vrouw", en: "woman", fr: "femme", uk: "жінка", art_nl: "de", art_en: "the", art_fr: "la" },
-  { id: "dh4", nl: "kind", en: "child", fr: "enfant", uk: "дитина", art_nl: "het", art_en: "the", art_fr: "l'" },
-  { id: "dh5", nl: "boek", en: "book", fr: "livre", uk: "книга", art_nl: "het", art_en: "the", art_fr: "le" },
-  { id: "dh6", nl: "auto", en: "car", fr: "voiture", uk: "автомобіль", art_nl: "de", art_en: "the", art_fr: "la" },
-  { id: "dh7", nl: "tafel", en: "table", fr: "table", uk: "стіл", art_nl: "de", art_en: "the", art_fr: "la" },
-  { id: "dh8", nl: "deur", en: "door", fr: "porte", uk: "двері", art_nl: "de", art_en: "the", art_fr: "la" },
-  { id: "dh9", nl: "stad", en: "city", fr: "ville", uk: "місто", art_nl: "de", art_en: "the", art_fr: "la" },
-  { id: "dh10", nl: "land", en: "country", fr: "pays", uk: "країна", art_nl: "het", art_en: "the", art_fr: "le" }
+ dehet:{items:[
+  {id:"art_huis",nl:"huis",en:"house",fr:"maison",uk:"будинок",art_nl:"het",art_fr:"la",ex_nl:"Het huis is groot.",ex_en:"The house is big.",ex_fr:"La maison est grande.",ex_uk:"Будинок великий."},
+  {id:"art_man",nl:"man",en:"man",fr:"homme",uk:"чоловік",art_nl:"de",art_fr:"l'",ex_nl:"De man is hier.",ex_en:"The man is here.",ex_fr:"L'homme est ici.",ex_uk:"Чоловік тут."},
+  {id:"art_vrouw",nl:"vrouw",en:"woman",fr:"femme",uk:"жінка",art_nl:"de",art_fr:"la",ex_nl:"De vrouw leest.",ex_en:"The woman is reading.",ex_fr:"La femme lit.",ex_uk:"Жінка читає."},
+  {id:"art_kind",nl:"kind",en:"child",fr:"enfant",uk:"дитина",art_nl:"het",art_fr:"l'",ex_nl:"Het kind speelt.",ex_en:"The child is playing.",ex_fr:"L'enfant joue.",ex_uk:"Дитина грається."},
+  {id:"art_boek",nl:"boek",en:"book",fr:"livre",uk:"книга",art_nl:"het",art_fr:"le",ex_nl:"Het boek is nieuw.",ex_en:"The book is new.",ex_fr:"Le livre est neuf.",ex_uk:"Книга нова."},
+  {id:"art_auto",nl:"auto",en:"car",fr:"voiture",uk:"автомобіль",art_nl:"de",art_fr:"la",ex_nl:"De auto is rood.",ex_en:"The car is red.",ex_fr:"La voiture est rouge.",ex_uk:"Автомобіль червоний."},
+  {id:"art_tafel",nl:"tafel",en:"table",fr:"table",uk:"стіл",art_nl:"de",art_fr:"la",ex_nl:"De tafel is groot.",ex_en:"The table is big.",ex_fr:"La table est grande.",ex_uk:"Стіл великий."}
  ]},
- verbs: { labelKey: "verbs", items: [
-  { id: "v1", nl: "zijn", en: "to be", fr: "être", uk: "бути", ex_nl: "Ik ben thuis.", ex_en: "I am home.", ex_fr: "Je suis à la maison.", ex_uk: "Я вдома." },
-  { id: "v2", nl: "hebben", en: "to have", fr: "avoir", uk: "мати", ex_nl: "Ik heb honger.", ex_en: "I am hungry.", ex_fr: "J'ai faim.", ex_uk: "Я голодний." },
-  { id: "v3", nl: "doen", en: "to do", fr: "faire", uk: "робити", ex_nl: "Wat doe je?", ex_en: "What are you doing?", ex_fr: "Que fais-tu?", ex_uk: "Що ти робиш?" },
-  { id: "v4", nl: "gaan", en: "to go", fr: "aller", uk: "іти / їхати", ex_nl: "Ik ga naar huis.", ex_en: "I go home.", ex_fr: "Je vais à la maison.", ex_uk: "Я йду додому." },
-  { id: "v5", nl: "komen", en: "to come", fr: "venir", uk: "приходити", ex_nl: "Ik kom uit Oekraïne.", ex_en: "I come from Ukraine.", ex_fr: "Je viens d'Ukraine.", ex_uk: "Я з України." },
-  { id: "v6", nl: "zien", en: "to see", fr: "voir", uk: "бачити", ex_nl: "Ik zie het.", ex_en: "I see it.", ex_fr: "Je le vois.", ex_uk: "Я це бачу." },
-  { id: "v7", nl: "spreken", en: "to speak", fr: "parler", uk: "говорити", ex_nl: "Ik spreek Nederlands.", ex_en: "I speak Dutch.", ex_fr: "Je parle néerlandais.", ex_uk: "Я говорю нідерландською." },
-  { id: "v8", nl: "kopen", en: "to buy", fr: "acheter", uk: "купувати", ex_nl: "Ik koop brood.", ex_en: "I buy bread.", ex_fr: "J'achète du pain.", ex_uk: "Я купую хліб." },
-  { id: "v9", nl: "eten", en: "to eat", fr: "manger", uk: "їсти", ex_nl: "Wij eten een appel.", ex_en: "We eat an apple.", ex_fr: "Nous mangeons une pomme.", ex_uk: "Ми їмо яблуко." },
-  { id: "v10", nl: "drinken", en: "to drink", fr: "boire", uk: "пити", ex_nl: "Ik drink water.", ex_en: "I drink water.", ex_fr: "Je bois de l'eau.", ex_uk: "Я п'ю воду." }
+ verbs:{items:[
+  {id:"v_zijn",nl:"zijn",en:"to be",fr:"être",uk:"бути",ex_nl:"Ik ben thuis.",ex_en:"I am at home.",ex_fr:"Je suis à la maison.",ex_uk:"Я вдома."},
+  {id:"v_hebben",nl:"hebben",en:"to have",fr:"avoir",uk:"мати",ex_nl:"Ik heb honger.",ex_en:"I am hungry.",ex_fr:"J'ai faim.",ex_uk:"Я голодний / голодна."},
+  {id:"v_doen",nl:"doen",en:"to do",fr:"faire",uk:"робити",ex_nl:"Wat doe je?",ex_en:"What are you doing?",ex_fr:"Que fais-tu ?",ex_uk:"Що ти робиш?"},
+  {id:"v_gaan",nl:"gaan",en:"to go",fr:"aller",uk:"іти / їхати",ex_nl:"Ik ga naar huis.",ex_en:"I am going home.",ex_fr:"Je rentre à la maison.",ex_uk:"Я йду / їду додому."},
+  {id:"v_komen",nl:"komen",en:"to come",fr:"venir",uk:"приходити",ex_nl:"Ik kom eraan.",ex_en:"I'm on my way.",ex_fr:"J'arrive.",ex_uk:"Я вже йду."},
+  {id:"v_zien",nl:"zien",en:"to see",fr:"voir",uk:"бачити",ex_nl:"Ik zie het.",ex_en:"I see it.",ex_fr:"Je le vois.",ex_uk:"Я це бачу."},
+  {id:"v_spreken",nl:"spreken",en:"to speak",fr:"parler",uk:"говорити",ex_nl:"Ik spreek Nederlands.",ex_en:"I speak Dutch.",ex_fr:"Je parle néerlandais.",ex_uk:"Я розмовляю нідерландською."}
  ]},
- colors: { labelKey: "colors", items: [
-  { id: "c1", nl: "rood", en: "red", fr: "rouge", uk: "червоний", c: "#ef4444" },
-  { id: "c2", nl: "blauw", en: "blue", fr: "bleu", uk: "синій", c: "#3b82f6" },
-  { id: "c3", nl: "groen", en: "green", fr: "vert", uk: "зелений", c: "#22c55e" },
-  { id: "c4", nl: "geel", en: "yellow", fr: "jaune", uk: "жовтий", c: "#eab308" },
-  { id: "c5", nl: "zwart", en: "black", fr: "noir", uk: "чорний", c: "#09090b" },
-  { id: "c6", nl: "wit", en: "white", fr: "blanc", uk: "білий", c: "#ffffff" },
-  { id: "c7", nl: "oranje", en: "orange", fr: "orange", uk: "помаранчевий", c: "#f97316" },
-  { id: "c8", nl: "roze", en: "pink", fr: "rose", uk: "рожевий", c: "#ec4899" },
-  { id: "c9", nl: "paars", en: "purple", fr: "violet", uk: "фіолетовий", c: "#a855f7" },
-  { id: "c10", nl: "grijs", en: "grey", fr: "gris", uk: "сірий", c: "#6b7280" }
+ colors:{items:[
+  ["rood","red","rouge","червоний","#ef4444"],["blauw","blue","bleu","синій","#3b82f6"],["groen","green","vert","зелений","#22c55e"],
+  ["geel","yellow","jaune","жовтий","#eab308"],["zwart","black","noir","чорний","#09090b"],["wit","white","blanc","білий","#ffffff"],
+  ["oranje","orange","orange","помаранчевий","#f97316"],["roze","pink","rose","рожевий","#ec4899"],["paars","purple","violet","фіолетовий","#a855f7"]
+ ].map((x,i)=>({id:"c_"+i,nl:x[0],en:x[1],fr:x[2],uk:x[3],c:x[4]}))},
+ numbers:{items:[
+  ["een","one","un","1 · один"],["twee","two","deux","2 · два"],["drie","three","trois","3 · три"],["vier","four","quatre","4 · чотири"],
+  ["vijf","five","cinq","5 · п'ять"],["zes","six","six","6 · шість"],["zeven","seven","sept","7 · сім"],["acht","eight","huit","8 · вісім"],
+  ["negen","nine","neuf","9 · дев'ять"],["tien","ten","dix","10 · десять"]
+ ].map((x,i)=>({id:"n_"+i,nl:x[0],en:x[1],fr:x[2],uk:x[3]}))},
+ seasons:{items:[
+  {id:"s_lente",nl:"de lente",en:"spring",fr:"le printemps",uk:"весна",ex_nl:"Het is lente.",ex_en:"It is spring.",ex_fr:"C'est le printemps.",ex_uk:"Зараз весна."},
+  {id:"s_zomer",nl:"de zomer",en:"summer",fr:"l'été",uk:"літо",ex_nl:"Het is zomer.",ex_en:"It is summer.",ex_fr:"C'est l'été.",ex_uk:"Зараз літо."},
+  {id:"s_herfst",nl:"de herfst",en:"autumn / fall",fr:"l'automne",uk:"осінь",ex_nl:"Het is herfst.",ex_en:"It is autumn.",ex_fr:"C'est l'automne.",ex_uk:"Зараз осінь."},
+  {id:"s_winter",nl:"de winter",en:"winter",fr:"l'hiver",uk:"зима",ex_nl:"Het is winter.",ex_en:"It is winter.",ex_fr:"C'est l'hiver.",ex_uk:"Зараз взимку."}
  ]},
- numbers: { labelKey: "numbers", items: [
-  { id: "n1", nl: "een", en: "one", fr: "un", uk: "1 · один" },
-  { id: "n2", nl: "twee", en: "two", fr: "deux", uk: "2 · два" },
-  { id: "n3", nl: "drie", en: "three", fr: "trois", uk: "3 · три" },
-  { id: "n4", nl: "vier", en: "four", fr: "quatre", uk: "4 · чотири" },
-  { id: "n5", nl: "vijf", en: "five", fr: "cinq", uk: "5 · п'ять" },
-  { id: "n6", nl: "tien", en: "ten", fr: "dix", uk: "10 · десять" },
-  { id: "n7", nl: "twintig", en: "twenty", fr: "vingt", uk: "20 · двадцять" },
-  { id: "n8", nl: "honderd", en: "hundred", fr: "cent", uk: "100 · сто" }
+ phrases:{items:[
+  {id:"p_hallo",nl:"Hallo!",en:"Hello!",fr:"Bonjour !",uk:"Привіт!",ex_nl:"Hallo, hoe gaat het?",ex_en:"Hello, how are you?",ex_fr:"Bonjour, comment ça va ?",ex_uk:"Привіт, як справи?"},
+  {id:"p_dank",nl:"Dank je wel.",en:"Thank you.",fr:"Merci.",uk:"Дякую.",ex_nl:"Dank je wel voor je hulp.",ex_en:"Thank you for your help.",ex_fr:"Merci pour ton aide.",ex_uk:"Дякую за допомогу."},
+  {id:"p_alstublieft",nl:"Alstublieft.",en:"Please / here you are",fr:"S'il vous plaît",uk:"Будь ласка / ось, тримайте",ex_nl:"Een koffie, alstublieft.",ex_en:"A coffee, please.",ex_fr:"Un café, s'il vous plaît.",ex_uk:"Каву, будь ласка."}
  ]},
- seasons: { labelKey: "seasons", items: [
-  { id: "s1", nl: "de lente", en: "spring", fr: "le printemps", uk: "весна", ex_nl: "Het is lente.", ex_en: "It is spring.", ex_fr: "C'est le printemps.", ex_uk: "Зараз весна." },
-  { id: "s2", nl: "de zomer", en: "summer", fr: "l'été", uk: "літо", ex_nl: "In de zomer is het warm.", ex_en: "In summer it is warm.", ex_fr: "En été il fait chaud.", ex_uk: "Влітку тепло." },
-  { id: "s3", nl: "de herfst", en: "autumn", fr: "l'automne", uk: "осінь", ex_nl: "In de herfst regent het.", ex_en: "In autumn it rains.", ex_fr: "En automne il pleut.", ex_uk: "Восени іде дощ." },
-  { id: "s4", nl: "de winter", en: "winter", fr: "l'hiver", uk: "зима", ex_nl: "In de winter is het koud.", ex_en: "In winter it is cold.", ex_fr: "En hiver il fait froid.", ex_uk: "Взимку холодно." },
-  { id: "s5", nl: "vandaag", en: "today", fr: "aujourd'hui", uk: "сьогодні", ex_nl: "Vandaag is het mooi.", ex_en: "Today it is nice.", ex_fr: "Aujourd'hui il fait beau.", ex_uk: "Сьогодні гарна погода." },
-  { id: "s6", nl: "morgen", en: "tomorrow", fr: "demain", uk: "завтра", ex_nl: "Tot morgen!", ex_en: "See you tomorrow!", ex_fr: "À demain!", ex_uk: "До завтра!" },
-  { id: "s7", nl: "gisteren", en: "yesterday", fr: "hier", uk: "вчора", ex_nl: "Gisteren was het leuk.", ex_en: "Yesterday was fun.", ex_fr: "Hier c'était amusant.", ex_uk: "Учора було весело." }
+ family:{items:[
+  {id:"f_gezin",nl:"het gezin",en:"family",fr:"la famille",uk:"сім'я",ex_nl:"Mijn gezin woont in België.",ex_en:"My family lives in Belgium.",ex_fr:"Ma famille habite en Belgique.",ex_uk:"Моя сім'я живе в Бельгії."},
+  {id:"f_kind",nl:"het kind",en:"child",fr:"l'enfant",uk:"дитина",ex_nl:"Het kind gaat naar school.",ex_en:"The child goes to school.",ex_fr:"L'enfant va à l'école.",ex_uk:"Дитина ходить до школи."}
+ ]},
+ shop:{items:[
+  {id:"sh_kost",nl:"Hoeveel kost dit?",en:"How much does this cost?",fr:"Combien ça coûte ?",uk:"Скільки це коштує?",ex_nl:"Hoeveel kost dit brood?",ex_en:"How much does this bread cost?",ex_fr:"Combien coûte ce pain ?",ex_uk:"Скільки коштує цей хліб?"},
+  {id:"sh_kassa",nl:"Waar is de kassa?",en:"Where is the checkout?",fr:"Où est la caisse ?",uk:"Де каса?",ex_nl:"Waar is de kassa, alstublieft?",ex_en:"Where is the checkout, please?",ex_fr:"Où est la caisse, s'il vous plaît ?",ex_uk:"Де каса, будь ласка?"}
  ]}
 };
 
-var tab = "pronouns", deck = [], q = 0, right = 0, round = 1, locked = false, item = null, score = 0;
-try { score = parseInt(localStorage.getItem("nl_score") || "0", 10) || 0; } catch(e) {}
+let targetLang = validStored("poly_target", LANGS, "nl");
+let uiLang = validStored("poly_ui", UI_LANGS, "uk");
+if (targetLang === uiLang) uiLang = targetLang === "uk" ? "en" : "uk";
+let tab = "pronouns", mode = "quiz", deck = [], q = 0, right = 0, round = 1, locked = false, item = null;
+let score = loadNumber("poly_score", 0), roundPoints = 0, sessionIds = [];
+let store = loadStore();
 
-function changeTargetLang(l) {
- targetLang = l;
- localStorage.setItem("poly_target", l);
- if(targetLang === uiLang) {
-  uiLang = (targetLang === "uk") ? "en" : "uk";
-  $("uiLangPicker").value = uiLang;
-  localStorage.setItem("poly_ui", uiLang);
- }
- updateHeaderTitle();
- buildTabs();
- newRound();
+function validStored(key, allowed, fallback){try{const v=localStorage.getItem(key);return allowed.includes(v)?v:fallback}catch(e){return fallback}}
+function loadNumber(key, fallback){try{const n=Number(localStorage.getItem(key));return Number.isFinite(n)&&n>=0?n:fallback}catch(e){return fallback}}
+function loadStore(){try{const v=JSON.parse(localStorage.getItem("poly_progress")||"{}");return v&&typeof v==="object"?v:{}}catch(e){return {}}}
+function saveStore(){try{localStorage.setItem("poly_progress",JSON.stringify(store));localStorage.setItem("poly_score",String(score));localStorage.setItem("poly_target",targetLang);localStorage.setItem("poly_ui",uiLang)}catch(e){}}
+function getUI(){return UI[uiLang]||UI.uk}
+function itemsFor(k=tab){return (DATA[k]&&DATA[k].items)||[]}
+function labelFor(item,lang=targetLang){return String(item[lang]??item.nl??"")}
+function meaningFor(item){return String(item[uiLang]??item.uk??item.nl??"")}
+function stateFor(id){if(!store[id])store[id]={seen:0,correct:0,wrong:0,due:0,known:false};return store[id]}
+function dueItems(){const now=Date.now();return Object.values(DATA).flatMap(d=>d.items).filter(x=>{const s=stateFor(x.id);return s.seen>0&&!s.known&&s.due<=now})}
+function learnedCount(){return Object.values(DATA).flatMap(d=>d.items).filter(x=>stateFor(x.id).known).length}
+function updateStats(){$("score").textContent="⭐ "+score;$("learnedCount").textContent=learnedCount();$("reviewCount").textContent=getUI().review+": "+dueItems().length}
+
+function updateHeader(){
+ const u=getUI();
+ $("appTitle").textContent="Polyglot Leren";
+ $("tagline").textContent=u.tagline;
+ $("targetLabel").textContent=u.target;
+ $("uiLabel").textContent=u.ui;
+ $("welcomeTitle").textContent=u.welcome;
+ $("welcomeText").textContent=u.welcomeText;
+ $("progressLabel").textContent=u.learned;
+ $("footText").textContent=u.footer;
+ $("targetLangPicker").value=targetLang;
+ $("uiLangPicker").value=uiLang;
+ document.documentElement.lang=uiLang;
+ const isDark=document.documentElement.dataset.theme==="dark";
+ $("themeToggle").textContent=isDark?"☀️":"🌙";
+ $("themeToggle").title=isDark?u.light:u.dark;
+ $("themeToggle").setAttribute("aria-label",isDark?u.light:u.dark);
+ updateStats();
+ updateModeButtons();
 }
 
-function changeUiLang(l) {
- uiLang = l;
- localStorage.setItem("poly_ui", l);
- $("footText").textContent = UI[uiLang].foot;
- updateHeaderTitle();
- buildTabs();
- newRound();
-}
+function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 
-function updateHeaderTitle() {
- const names = { nl: "Nederlands", en: "English", fr: "Français" };
- $("appTitle").textContent = names[targetLang] + " Leren";
-}
-
-function shuffle(a) { a = a.slice(); for(var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-
-function say(t, langCode) {
- try {
-  if(!window.speechSynthesis) return;
-  speechSynthesis.cancel();
-  var u = new SpeechSynthesisUtterance(t);
-  var langMap = { nl: "nl-NL", en: "en-US", fr: "fr-FR" };
-  u.lang = langMap[langCode] || "en-US";
-  u.rate = .85;
-  speechSynthesis.speak(u);
- } catch(e) {}
-}
-
-function buildTabs() {
- $("tabs").innerHTML = "";
- var u = UI[uiLang];
- Object.keys(DATA).forEach(function(k) {
-  var b = document.createElement("button");
-  b.textContent = u.tabs[k] || DATA[k].labelKey;
-  b.className = k === tab ? "on" : "";
-  b.onclick = function() { tab = k; buildTabs(); newRound(); };
-  $("tabs").appendChild(b);
+function buildTabs(){
+ const nav=$("tabs");nav.replaceChildren();const u=getUI();
+ Object.keys(DATA).forEach(k=>{
+  const b=document.createElement("button");
+  b.type="button";
+  b.textContent=u.tabs[k]||k;
+  b.setAttribute("role","tab");
+  b.setAttribute("aria-selected",String(k===tab));
+  b.onclick=()=>{tab=k;buildTabs();newRound()};
+  nav.appendChild(b);
  });
 }
 
-function newRound() { q = 0; right = 0; deck = []; next(); }
-function draw() { if(!deck.length) deck = shuffle(DATA[tab].items); return deck.pop(); }
+function changeTargetLang(l){if(!LANGS.includes(l))return;targetLang=l;if(targetLang===uiLang)uiLang=targetLang==="en"?"uk":"en";saveStore();updateHeader();buildTabs();newRound()}
+function changeUiLang(l){if(!UI_LANGS.includes(l))return;uiLang=l;if(targetLang===uiLang)targetLang=targetLang==="en"?"nl":"en";saveStore();updateHeader();buildTabs();newRound()}
 
-function next() {
- if(q >= PER_ROUND) return end();
- locked = false; item = draw(); q++;
- var d = DATA[tab];
- var u = UI[uiLang];
- 
- $("prog").textContent = u.qProgress + " " + q + " / " + PER_ROUND;
- $("rnd").textContent = u.round + " " + round;
- $("barfill").style.width = ((q - 1) / PER_ROUND * 100) + "%";
- $("score").textContent = "⚡ " + score;
- 
- var promptText = item[targetLang] || item.nl;
- var hintText = item[uiLang] || item.uk;
- 
- var opts;
- if(tab === "dehet") {
-  if(targetLang === "nl") opts = ["de", "het"].map(a => ({ label: a, ok: a === item.art_nl }));
-  else if(targetLang === "fr") opts = ["le", "la", "l'"].map(a => ({ label: a, ok: a === item.art_fr }));
-  else opts = ["a/an", "the"].map(a => ({ label: a, ok: a === item.art_en }));
- } else {
-  var others = shuffle(d.items.filter(x => x.id !== item.id)).slice(0, 3);
-  opts = shuffle(others.concat([item])).map(x => ({ label: x[uiLang] || x.uk, ok: x.id === item.id, c: x.c }));
+function say(text,lang=targetLang){
+ try{
+  if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){showSpeechMessage();return}
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang={nl:"nl-BE",en:"en-GB",fr:"fr-BE"}[lang]||"nl-BE";
+  u.rate=.86;
+  const voices=window.speechSynthesis.getVoices();
+  const prefix=u.lang.toLowerCase().split("-")[0];
+  const voice=voices.find(v=>v.lang.toLowerCase()===u.lang.toLowerCase())||voices.find(v=>v.lang.toLowerCase().startsWith(prefix));
+  if(voice)u.voice=voice;
+  u.onerror=()=>showSpeechMessage();
+  window.speechSynthesis.speak(u);
+ }catch(e){showSpeechMessage()}
+}
+
+function showSpeechMessage(){const fb=$("feedback");if(fb)fb.textContent=getUI().noSpeech}
+function updateProgress(){const percent=Math.round(Math.max(0,(q-1)/PER_ROUND)*100);$("barfill").style.width=percent+"%";$("barfill").parentElement.setAttribute("aria-valuenow",String(percent))}
+
+function newRound(){
+ q=0;right=0;roundPoints=0;locked=false;sessionIds=[];
+ let list=itemsFor();
+ if(mode==="review")list=dueItems().filter(x=>itemsFor().some(y=>y.id===x.id));
+ if(!list.length){renderEmpty();return}
+ deck=shuffle(list);
+ nextQuestion();
+}
+
+function makeOptions(current){
+ if(tab==="dehet"&&targetLang==="nl"){
+  return shuffle(["de","het","een"].map(label=>({label,ok:label===current.art_nl})));
  }
+ if(tab==="dehet"&&targetLang==="fr"){
+  const correct=current.art_fr||"le";
+  return shuffle(["le","la","l'"].map(label=>({label,ok:label===correct})));
+ }
+ const all=itemsFor().filter(x=>x.id!==current.id);
+ const correct=labelFor(current);
+ const candidates=shuffle(all.filter(x=>labelFor(x)!==correct));
+ const chosen=[];const seen=new Set([correct]);
+ for(const x of candidates){
+   const v=labelFor(x);
+   if(!seen.has(v)){seen.add(v);chosen.push({label:v,ok:false,c:x.c});if(chosen.length===3)break}
+ }
+ chosen.push({label:correct,ok:true,c:current.c});
+ return shuffle(chosen);
+}
+
+function nextQuestion(){
+ if(q>=PER_ROUND||!deck.length){endRound();return}
+ locked=false;
+ item=deck.pop();
+ if(!item){endRound();return}
+ q++;
+ sessionIds.push(item.id);
+ const u=getUI();
+ $("prog").textContent=u.lessonProgress+" "+q+" / "+Math.min(PER_ROUND,sessionIds.length+deck.length);
+ $("rnd").textContent=u.round+" "+round+" · "+u.modes[mode];
+ updateProgress();
  
- var subText = u.subs[tab];
- var cardHint = tab === "dehet" ? hintText : u.hints[tab];
- 
- $("card").innerHTML = '<div class="q"><small>' + subText + '</small><h2>' + promptText + '</h2><p>' + cardHint + '</p><button class="listen" id="hear">' + u.listen + '</button></div>' +
-  '<div class="opts" id="opts"></div><div class="fb" id="fb"></div><div class="row"><button class="btn main" id="nx" disabled>' + u.next + '</button></div>';
- 
- $("hear").onclick = function() { say(promptText, targetLang); };
- 
- var box = $("opts");
- opts.forEach(function(o) {
-  var b = document.createElement("button"); b.className = "opt";
-  b.innerHTML = (o.c ? '<span class="sw" style="background:' + o.c + '"></span>' : "") + "<span></span>";
-  b.lastChild.textContent = o.label; b.dataset.ok = o.ok ? "1" : "";
-  b.onclick = function() { answer(o.ok, b); }; box.appendChild(b);
+ const card=$("card");card.replaceChildren();
+ const top=document.createElement("div");top.className="q";
+ const small=document.createElement("small");small.textContent=(u.subs[tab]||"");top.appendChild(small);
+ const h=document.createElement("h2");h.textContent=(mode==="audio"?"🔊":labelFor(item));top.appendChild(h);
+ const hint=document.createElement("p");hint.textContent=mode==="study"?u.meaning+": "+meaningFor(item):(u.hints[tab]||"");top.appendChild(hint);
+ const hear=document.createElement("button");hear.className="listen";hear.type="button";hear.textContent=u.listen;hear.onclick=()=>say(labelFor(item));top.appendChild(hear);
+ card.appendChild(top);
+
+ if(mode==="study"){renderStudyControls(card);return}
+
+ const opts=document.createElement("div");opts.className="opts";opts.id="opts";card.appendChild(opts);
+ const feedback=document.createElement("div");feedback.className="feedback";feedback.id="feedback";feedback.setAttribute("aria-live","polite");card.appendChild(feedback);
+ const row=document.createElement("div");row.className="row";
+ const nx=document.createElement("button");nx.className="btn primary";nx.type="button";nx.disabled=true;nx.textContent=u.next;nx.onclick=nextQuestion;nx.id="nx";
+ row.appendChild(nx);card.appendChild(row);
+
+ let options=makeOptions(item);
+ options.forEach(o=>{
+  const b=document.createElement("button");b.type="button";b.className="opt";b.dataset.ok=o.ok?"1":"";
+  if(o.c){const sw=document.createElement("span");sw.className="swatch";sw.style.background=o.c;b.appendChild(sw)}
+  const text=document.createElement("span");text.textContent=o.label;b.appendChild(text);
+  b.onclick=()=>answer(o.ok,b);opts.appendChild(b);
+ });
+ if(mode==="audio")say(labelFor(item));
+}
+
+function renderStudyControls(card){
+ const u=getUI();const fb=document.createElement("div");fb.className="feedback";fb.id="feedback";
+ const translation=document.createElement("strong");translation.textContent=meaningFor(item);fb.appendChild(translation);
+ if(item["ex_"+targetLang]){const ex=document.createElement("p");ex.className="example";ex.textContent=item["ex_"+targetLang];fb.appendChild(ex)}
+ if(item["ex_"+uiLang]){const tr=document.createElement("p");tr.textContent=item["ex_"+uiLang];fb.appendChild(tr)}
+ card.appendChild(fb);
+ const row=document.createElement("div");row.className="row";
+ const hear=document.createElement("button");hear.className="btn";hear.textContent=u.listen;hear.onclick=()=>say(labelFor(item));row.appendChild(hear);
+ const known=document.createElement("button");known.className="btn primary";known.textContent=u.markKnown;known.onclick=()=>{const s=stateFor(item.id);s.seen++;s.correct++;s.known=true;s.due=0;saveStore();updateStats();nextQuestion()};row.appendChild(known);
+ const review=document.createElement("button");review.className="btn";review.textContent=u.markAgain;review.onclick=()=>{const s=stateFor(item.id);s.seen++;s.known=false;s.due=Date.now()+24*60*60*1000;saveStore();updateStats();nextQuestion()};row.appendChild(review);card.appendChild(row);
+}
+
+function answer(ok,btn){
+ if(locked)return;locked=true;const u=getUI();const s=stateFor(item.id);s.seen++;
+ if(ok){right++;roundPoints+=10;score+=10;s.correct++;s.known=s.correct>=2&&s.wrong===0;s.due=Date.now()+(s.correct>=3?7:1)*24*60*60*1000}
+ else{s.wrong++;s.known=false;s.due=Date.now()+24*60*60*1000}
+ saveStore();updateStats();
+ document.querySelectorAll(".opt").forEach(b=>{b.disabled=true;if(b.dataset.ok==="1")b.classList.add("correct")});
+ if(!ok)btn.classList.add("incorrect");
+ const fb=$("feedback");fb.replaceChildren();
+ const title=document.createElement("strong");title.textContent=ok?u.correct:u.incorrect;fb.appendChild(title);
+ if(!ok){const p=document.createElement("p");p.textContent=u.correctWord+" "+labelFor(item);fb.appendChild(p)}
+ const meaning=document.createElement("p");meaning.textContent=meaningFor(item);fb.appendChild(meaning);
+ const exKey="ex_"+targetLang;if(item[exKey]){const ex=document.createElement("p");ex.className="example";ex.textContent=item[exKey];fb.appendChild(ex)}
+ const trKey="ex_"+uiLang;if(item[trKey]){const tr=document.createElement("p");tr.textContent=item[trKey];fb.appendChild(tr)}
+ $("nx").disabled=false;say(item[exKey]||labelFor(item));
+}
+
+function renderEmpty(){
+ const u=getUI();$("prog").textContent="";$("rnd").textContent="";updateProgress();
+ const card=$("card");card.replaceChildren();const div=document.createElement("div");div.className="empty";
+ div.textContent=mode==="review"?u.emptyReview:u.noItems;card.appendChild(div);
+ const row=document.createElement("div");row.className="row";
+ const btn=document.createElement("button");btn.className="btn primary";btn.textContent=u.quiz;btn.onclick=()=>{mode="quiz";updateModeButtons();newRound()};row.appendChild(btn);card.appendChild(row);
+}
+
+function endRound(){
+ const u=getUI();updateProgress();$("barfill").style.width="100%";$("barfill").parentElement.setAttribute("aria-valuenow","100");
+ const pct=sessionIds.length?Math.round(right/sessionIds.length*100):0;
+ const card=$("card");card.replaceChildren();const end=document.createElement("div");end.className="end";
+ const title=document.createElement("h2");title.textContent=mode==="study"?u.finished:right+" / "+sessionIds.length;end.appendChild(title);
+ const p=document.createElement("p");p.textContent=mode==="study"?u.finished:pct+"% "+u.accuracy;end.appendChild(p);
+ const grid=document.createElement("div");grid.className="summary-grid";
+ [[u.right,mode==="study"?"—":right],[u.points,roundPoints],[u.learned,learnedCount()]].forEach(([label,value])=>{const d=document.createElement("div");const strong=document.createElement("strong");strong.textContent=value;const span=document.createElement("span");span.textContent=label;d.append(strong,span);grid.appendChild(d)});end.appendChild(grid);
+ const row=document.createElement("div");row.className="row";
+ const again=document.createElement("button");again.className="btn";again.textContent=u.again;again.onclick=newRound;row.appendChild(again);
+ const review=document.createElement("button");review.className="btn";review.textContent=u.reviewMode;review.onclick=()=>{mode="review";updateModeButtons();newRound()};row.appendChild(review);
+ const nextTopic=document.createElement("button");nextTopic.className="btn primary";nextTopic.textContent=u.nextTopic;nextTopic.onclick=()=>{const keys=Object.keys(DATA);tab=keys[(keys.indexOf(tab)+1)%keys.length];buildTabs();mode="quiz";updateModeButtons();newRound()};row.appendChild(nextTopic);
+ end.appendChild(row);card.appendChild(end);round++;
+}
+
+function updateModeButtons(){
+ const u=getUI();const wrap=$("modeButtons");if(!wrap)return;wrap.replaceChildren();
+ [["study",u.study],["quiz",u.quiz],["audio",u.audio],["review",u.reviewMode]].forEach(([m,label])=>{
+  const b=document.createElement("button");
+  b.className="btn"+(m===mode?" primary":"");
+  b.type="button";
+  b.textContent=label;
+  b.onclick=()=>{mode=m;updateModeButtons();newRound()};
+  wrap.appendChild(b);
  });
 }
 
-function saveError(itemObj) {
- try {
-  let errs = JSON.parse(localStorage.getItem("nl_errors") || "[]");
-  if(!errs.some(e => e.id === itemObj.id)) {
-   errs.push(itemObj);
-   localStorage.setItem("nl_errors", JSON.stringify(errs));
-  }
- } catch(e) {}
-}
+$("targetLangPicker").addEventListener("change",e=>changeTargetLang(e.target.value));
+$("uiLangPicker").addEventListener("change",e=>changeUiLang(e.target.value));
+$("themeToggle").addEventListener("click",()=>{
+ const next=document.documentElement.dataset.theme==="dark"?"light":"dark";
+ document.documentElement.dataset.theme=next;
+ try{localStorage.setItem("poly_theme",next)}catch(e){}
+ updateHeader();
+});
 
-function answer(ok, btn) {
- if(locked) return; locked = true;
- var u = UI[uiLang];
- document.querySelectorAll(".opt").forEach(function(b) { b.disabled = true; if(b.dataset.ok) b.classList.add("ok"); });
- if(ok) {
-  right++; score += 10;
-  try { localStorage.setItem("nl_score", score); } catch(e) {}
- } else {
-  btn.classList.add("bad");
-  saveError(item);
- }
- $("score").textContent = "⚡ " + score;
- 
- var line = item["ex_" + targetLang] || item[targetLang] || item.nl;
- var tr = item["ex_" + uiLang] || item[uiLang] || item.uk;
- 
- $("fb").innerHTML = '<b></b><p></p>';
- $("fb").firstChild.textContent = line;
- $("fb").lastChild.textContent = tr;
- $("nx").disabled = false;
- $("nx").onclick = next;
- say(line, targetLang);
-}
-
-function end() {
- $("barfill").style.width = "100%";
- var pct = Math.round(right / PER_ROUND * 100);
- var u = UI[uiLang];
- var keys = Object.keys(DATA);
- var nextIndex = (keys.indexOf(tab) + 1) % keys.length;
- var nextTabKey = keys[nextIndex];
- var nextTabLabel = u.tabs[nextTabKey];
-
- $("card").innerHTML = '<div class="end"><h2>' + right + ' / ' + PER_ROUND + '</h2><p>' + pct + '% ' + u.accuracy + '</p>' +
-  '<div class="row">' +
-  '<button class="btn" id="again">' + u.again + '</button>' +
-  '<button class="btn main" id="nextTopic">' + u.nextTopic + ' (' + nextTabLabel + ') ➔</button>' +
-  '</div></div>';
- 
- round++;
- $("again").onclick = newRound;
- $("nextTopic").onclick = function() {
-  tab = nextTabKey;
-  buildTabs();
-  newRound();
- };
-}
-
-window.onload = function() {
- $("targetLangPicker").value = targetLang;
- $("uiLangPicker").value = uiLang;
- $("footText").textContent = UI[uiLang].foot;
- updateHeaderTitle();
+function start(){
+ try{
+  const t=localStorage.getItem("poly_theme");
+  if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;
+  else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";
+ }catch(e){}
+ updateHeader();
  buildTabs();
  newRound();
-};
+}
+
+start();
 </script>
 </body>
 </html>
