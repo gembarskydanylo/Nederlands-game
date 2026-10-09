@@ -12,24 +12,27 @@
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:var(--bg);color:var(--fg);font:16px/1.4 -apple-system,"Inter","Segoe UI",Roboto,sans-serif;display:flex;justify-content:center;min-height:100vh}
-main{width:100%;max-width:460px;padding:16px 16px 24px;display:flex;flex-direction:column;gap:14px}
-header{display:flex;justify-content:space-between;align-items:baseline}
-header h1{font-size:18px;font-weight:600;margin:0;letter-spacing:-.01em}
-#score{color:var(--mut);font-size:14px}
-nav{display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
-nav button{background:none;border:0;border-bottom:2px solid transparent;padding:8px 8px;font:inherit;font-size:14px;color:var(--mut);cursor:pointer;white-space:nowrap}
+main{width:100%;max-width:540px;padding:20px 16px 32px;display:flex;flex-direction:column;gap:16px}
+header{display:flex;justify-content:space-between;align-items:center}
+header h1{font-size:20px;font-weight:600;margin:0;letter-spacing:-.01em}
+.top-right{display:flex;align-items:center;gap:10px}
+#score{color:var(--mut);font-size:15px;font-weight:500}
+.lang-select{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:8px;padding:4px 8px;font:inherit;font-size:13px;cursor:pointer}
+nav{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+nav::-webkit-scrollbar{display:none}
+nav button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 12px;font:inherit;font-size:14px;color:var(--mut);cursor:pointer;white-space:nowrap;flex-shrink:0}
 nav button.on{color:var(--fg);border-bottom-color:var(--acc);font-weight:600}
 .meta{display:flex;justify-content:space-between;color:var(--mut);font-size:13px}
 .bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:-8px}
 .bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .3s}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 16px;display:flex;flex-direction:column;gap:18px}
 .q{text-align:center}
 .q small{color:var(--mut);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 .q h2{font-size:36px;font-weight:600;margin:6px 0 2px;letter-spacing:-.02em}
 .q p{margin:0;color:var(--mut);font-size:14px}
-.listen{background:none;border:1px solid var(--line);color:var(--fg);border-radius:20px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer;margin-top:8px}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:12px 6px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:52px}
+.listen{background:none;border:1px solid var(--line);color:var(--fg);border-radius:20px;padding:6px 14px;font:inherit;font-size:13px;cursor:pointer;margin-top:8px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:12px 8px;font:inherit;font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:52px}
 .opt:active{transform:scale(.97)}
 .opt.ok{border-color:var(--ok);color:var(--ok)}
 .opt.bad{border-color:var(--bad);color:var(--bad)}
@@ -38,92 +41,140 @@ nav button.on{color:var(--fg);border-bottom-color:var(--acc);font-weight:600}
 .fb{text-align:center;min-height:60px}
 .fb b{font-size:17px;font-weight:600}
 .fb p{margin:2px 0 0;color:var(--mut);font-size:13px}
-.row{display:flex;gap:10px}
-.btn{flex:1;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-weight:500;cursor:pointer}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{flex:1;min-width:140px;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-weight:500;cursor:pointer;text-align:center}
 .btn.main{background:var(--acc);border-color:var(--acc);color:#fff}
-.end{text-align:center}
-.end h2{font-size:36px;margin:0 0 4px}
-.end p{color:var(--mut);margin:0 0 18px}
+.end{text-align:center;display:flex;flex-direction:column;gap:12px}
+.end h2{font-size:40px;margin:0 0 2px}
+.end p{color:var(--mut);margin:0 0 12px;font-size:15px}
 footer{text-align:center;color:var(--mut);font-size:12px}
 </style>
 </head>
 <body>
 <main>
- <header><h1>Nederlands leren</h1><span id="score"></span></header>
+ <header>
+   <h1>Nederlands leren</h1>
+   <div class="top-right">
+     <select id="langPicker" class="lang-select" onchange="changeLang(this.value)">
+       <option value="uk">🇺🇦 UA</option>
+       <option value="en">🇬🇧 EN</option>
+       <option value="fr">🇫🇷 FR</option>
+     </select>
+     <span id="score"></span>
+   </div>
+ </header>
  <nav id="tabs"></nav>
  <div class="meta"><span id="prog"></span><span id="rnd"></span></div>
  <div class="bar"><i id="barfill"></i></div>
  <div class="card" id="card"></div>
- <footer>Нідерландська мова для українців</footer>
+ <footer id="footText">Нідерландська мова для всіх</footer>
 </main>
 <script>
 var PER_ROUND=10;
+var userLang=localStorage.getItem("nl_lang")||"uk";
+$("langPicker").value=userLang;
+
+var UI={
+ uk:{
+  qProgress:"Питання",round:"Раунд",listen:"🔊 Слухати",next:"Далі",again:"Ще раз",
+  nextTopic:"Наступна тема",accuracy:"точність",foot:"Нідерландська мова для всіх",
+  tabs:{questions:"Запитання",dehet:"De / Het",verbs:"Дієслова",colors:"Кольори",numbers:"Числа",seasons:"Пори та час"},
+  subs:{questions:"Що означає питальне слово?",dehet:"Оберіть артикль",verbs:"Перекладіть дієслово",colors:"Який це колір?",numbers:"Переклад числа",seasons:"Перекладіть слово"},
+  hints:{questions:"Запитання",verbs:"Дієслово",colors:"Колір",numbers:"Число",seasons:"Час / Пора року"}
+ },
+ en:{
+  qProgress:"Question",round:"Round",listen:"🔊 Listen",next:"Next",again:"Try again",
+  nextTopic:"Next topic",accuracy:"accuracy",foot:"Learn Dutch easily",
+  tabs:{questions:"Questions",dehet:"De / Het",verbs:"Verbs",colors:"Colors",numbers:"Numbers",seasons:"Seasons & Time"},
+  subs:{questions:"What does this question word mean?",dehet:"Choose the article",verbs:"Translate the verb",colors:"Which color is this?",numbers:"Number translation",seasons:"Translate the word"},
+  hints:{questions:"Question",verbs:"Verb",colors:"Color",numbers:"Number",seasons:"Time / Season"}
+ },
+ fr:{
+  qProgress:"Question",round:"Tour",listen:"🔊 Écouter",next:"Suivant",again:"Recommencer",
+  nextTopic:"Sujet suivant",accuracy:"précision",foot:"Apprendre le néerlandais",
+  tabs:{questions:"Questions",dehet:"De / Het",verbs:"Verbes",colors:"Couleurs",numbers:"Nombres",seasons:"Saisons & Temps"},
+  subs:{questions:"Que signifie ce mot interrogatif?",dehet:"Choisissez l'article",verbs:"Traduisez le verbe",colors:"Quelle est cette couleur?",numbers:"Traduction du nombre",seasons:"Traduisez le mot"},
+  hints:{questions:"Question",verbs:"Verbe",colors:"Couleur",numbers:"Nombre",seasons:"Temps / Saison"}
+ }
+};
+
 var DATA={
- questions:{label:"Запитання",sub:"Що означає питальне слово?",hint:"Запитання",items:[
-  {nl:"wat",uk:"що",ex:"Wat is je naam?",exuk:"Яке твоє ім'я?"},
-  {nl:"wie",uk:"хто",ex:"Wie is dat?",exuk:"Хто це?"},
-  {nl:"waar",uk:"де",ex:"Waar woon je?",exuk:"Де ти живеш?"},
-  {nl:"waarvandaan",uk:"звідки",ex:"Waar kom je vandaan?",exuk:"Звідки ти?"},
-  {nl:"wanneer",uk:"коли",ex:"Wanneer begint de les?",exuk:"Коли починається урок?"},
-  {nl:"waarom",uk:"чому",ex:"Waarom leer je Nederlands?",exuk:"Чому ти вчиш нідерландську?"},
-  {nl:"hoe",uk:"як",ex:"Hoe heet je?",exuk:"Як тебе звати?"},
-  {nl:"hoeveel",uk:"скільки",ex:"Hoeveel kinderen heb je?",exuk:"Скільки в тебе дітей?"},
-  {nl:"hoe laat",uk:"котра година",ex:"Hoe laat is het?",exuk:"Котра зараз година?"},
-  {nl:"welke / welk",uk:"який / яка",ex:"Welke kleur is dit?",exuk:"Який це колір?",say:"welke, welk"}
+ questions:{labelKey:"questions",subKey:"questions",hintKey:"questions",items:[
+  {nl:"wat",uk:"що",en:"what",fr:"quoi",ex:"Wat is je naam?",exuk:"Яке твоє ім'я?",exen:"What is your name?",exfr:"Quel est ton nom?"},
+  {nl:"wie",uk:"хто",en:"who",fr:"qui",ex:"Wie is dat?",exuk:"Хто це?",exen:"Who is that?",exfr:"Qui est-ce?"},
+  {nl:"waar",uk:"де",en:"where",fr:"où",ex:"Waar woon je?",exuk:"Де ти живеш?",exen:"Where do you live?",exfr:"Où habites-tu?"},
+  {nl:"waarvandaan",uk:"звідки",en:"where from",fr:"d'où",ex:"Waar kom je vandaan?",exuk:"Звідки ти?",exen:"Where are you from?",exfr:"D'où viens-tu?"},
+  {nl:"wanneer",uk:"коли",en:"when",fr:"quand",ex:"Wanneer begint de les?",exuk:"Коли починається урок?",exen:"When does the lesson start?",exfr:"Quand commence le cours?"},
+  {nl:"waarom",uk:"чому",en:"why",fr:"pourquoi",ex:"Waarom leer je Nederlands?",exuk:"Чому ти вчиш нідерландську?",exen:"Why do you learn Dutch?",exfr:"Pourquoi apprends-tu le néerlandais?"},
+  {nl:"hoe",uk:"як",en:"how",fr:"comment",ex:"Hoe heet je?",exuk:"Як тебе звати?",exen:"What is your name?",exfr:"Comment t'appelles-tu?"},
+  {nl:"hoeveel",uk:"скільки",en:"how much / many",fr:"combien",ex:"Hoeveel kinderen heb je?",exuk:"Скільки в тебе дітей?",exen:"How many children do you have?",exfr:"Combien d'enfants as-tu?"},
+  {nl:"hoe laat",uk:"котра година",en:"what time",fr:"quelle heure",ex:"Hoe laat is het?",exuk:"Котра зараз година?",exen:"What time is it?",exfr:"Quelle heure est-il?"},
+  {nl:"welke / welk",uk:"який / яка",en:"which",fr:"quel / quelle",ex:"Welke kleur is dit?",exuk:"Який це колір?",exen:"Which color is this?",exfr:"Quelle couleur est-ce?",say:"welke, welk"}
  ]},
- dehet:{label:"De / Het",sub:"Оберіть артикль",hint:null,items:[
-  {nl:"huis",uk:"будинок",art:"het"},{nl:"man",uk:"чоловік",art:"de"},{nl:"vrouw",uk:"жінка",art:"de"},
-  {nl:"kind",uk:"дитина",art:"het"},{nl:"tafel",uk:"стіл",art:"de"},{nl:"stoel",uk:"стілець",art:"de"},
-  {nl:"boek",uk:"книга",art:"het"},{nl:"auto",uk:"автомобіль",art:"de"},{nl:"water",uk:"вода",art:"het"},
-  {nl:"kat",uk:"кіт",art:"de"},{nl:"hond",uk:"собака",art:"de"},{nl:"meisje",uk:"дівчинка",art:"het"},
-  {nl:"brood",uk:"хліб",art:"het"},{nl:"fiets",uk:"велосипед",art:"de"},{nl:"school",uk:"школа",art:"de"},{nl:"raam",uk:"вікно",art:"het"}
+ dehet:{labelKey:"dehet",subKey:"dehet",hintKey:null,items:[
+  {nl:"huis",uk:"будинок",en:"house",fr:"maison",art:"het"},{nl:"man",uk:"чоловік",en:"man",fr:"homme",art:"de"},{nl:"vrouw",uk:"жінка",en:"woman",fr:"femme",art:"de"},
+  {nl:"kind",uk:"дитина",en:"child",fr:"enfant",art:"het"},{nl:"tafel",uk:"стіл",en:"table",fr:"table",art:"de"},{nl:"stoel",uk:"стілець",en:"chair",fr:"chaise",art:"de"},
+  {nl:"boek",uk:"книга",en:"book",fr:"livre",art:"het"},{nl:"auto",uk:"автомобіль",en:"car",fr:"voiture",art:"de"},{nl:"water",uk:"вода",en:"water",fr:"eau",art:"het"},
+  {nl:"kat",uk:"кіт",en:"cat",fr:"chat",art:"de"},{nl:"hond",uk:"собака",en:"dog",fr:"chien",art:"de"},{nl:"meisje",uk:"дівчинка",en:"girl",fr:"fille",art:"het"},
+  {nl:"brood",uk:"хліб",en:"bread",fr:"pain",art:"het"},{nl:"fiets",uk:"велосипед",en:"bicycle",fr:"vélo",art:"de"},{nl:"school",uk:"школа",en:"school",fr:"école",art:"de"},{nl:"raam",uk:"вікно",en:"window",fr:"fenêtre",art:"het"}
  ]},
- verbs:{label:"Дієслова",sub:"Перекладіть дієслово",hint:"Дієслово",items:[
-  {nl:"zijn",uk:"бути",ex:"Ik ben thuis.",exuk:"Я вдома."},
-  {nl:"hebben",uk:"мати",ex:"Ik heb twee kinderen.",exuk:"У мене двоє дітей."},
-  {nl:"doen",uk:"робити",ex:"Wat doe je?",exuk:"Що ти робиш?"},
-  {nl:"gaan",uk:"іти / їхати",ex:"Ik ga naar school.",exuk:"Я йду до школи."},
-  {nl:"komen",uk:"приходити",ex:"Ik kom uit Oekraïne.",exuk:"Я з України."},
-  {nl:"zien",uk:"бачити",ex:"Ik zie een kat.",exuk:"Я бачу кота."},
-  {nl:"willen",uk:"хотіти",ex:"Ik wil water.",exuk:"Я хочу води."},
-  {nl:"wonen",uk:"жити",ex:"Ik woon in België.",exuk:"Я живу в Бельгії."},
-  {nl:"werken",uk:"працювати",ex:"Hij werkt veel.",exuk:"Він багато працює."},
-  {nl:"spreken",uk:"говорити",ex:"Spreek je Nederlands?",exuk:"Ти говориш нідерландською?"},
-  {nl:"kijken",uk:"дивитися",ex:"Ik kijk TV.",exuk:"Я дивлюся телевізор."},
-  {nl:"luisteren",uk:"слухати",ex:"Ik luister naar muziek.",exuk:"Я слухаю музику."},
-  {nl:"schrijven",uk:"писати",ex:"Hij schrijft een brief.",exuk:"Він пише листа."},
-  {nl:"lezen",uk:"читати",ex:"Zij leest een boek.",exuk:"Вона читає книжку."},
-  {nl:"kopen",uk:"купувати",ex:"Ik koop brood.",exuk:"Я купую хліб."},
-  {nl:"eten",uk:"їсти",ex:"Wij eten appel.",exuk:"Ми їмо яблуко."},
-  {nl:"drinken",uk:"пити",ex:"Ik drink koffie.",exuk:"Я п'ю каву."}
+ verbs:{labelKey:"verbs",subKey:"verbs",hintKey:"verbs",items:[
+  {nl:"zijn",uk:"бути",en:"to be",fr:"être",ex:"Ik ben thuis.",exuk:"Я вдома.",exen:"I am home.",exfr:"Je suis à la maison."},
+  {nl:"hebben",uk:"мати",en:"to have",fr:"avoir",ex:"Ik heb twee kinderen.",exuk:"У мене двоє дітей.",exen:"I have two children.",exfr:"J'ai deux enfants."},
+  {nl:"doen",uk:"робити",en:"to do",fr:"faire",ex:"Wat doe je?",exuk:"Що ти робиш?",exen:"What are you doing?",exfr:"Que fais-tu?"},
+  {nl:"gaan",uk:"іти / їхати",en:"to go",fr:"aller",ex:"Ik ga naar school.",exuk:"Я йду до школи.",exen:"I go to school.",exfr:"Je vais à l'école."},
+  {nl:"komen",uk:"приходити",en:"to come",fr:"venir",ex:"Ik kom uit Oekraïne.",exuk:"Я з України.",exen:"I come from Ukraine.",exfr:"Je viens d'Ukraine."},
+  {nl:"zien",uk:"бачити",en:"to see",fr:"voir",ex:"Ik zie een kat.",exuk:"Я бачу кота.",exen:"I see a cat.",exfr:"Je vois un chat."},
+  {nl:"willen",uk:"хотіти",en:"to want",fr:"vouloir",ex:"Ik wil water.",exuk:"Я хочу води.",exen:"I want water.",exfr:"Je veux de l'eau."},
+  {nl:"wonen",uk:"жити",en:"to live",fr:"habiter",ex:"Ik woon in België.",exuk:"Я живу в Бельгії.",exen:"I live in Belgium.",exfr:"J'habite en Belgique."},
+  {nl:"werken",uk:"працювати",en:"to work",fr:"travailler",ex:"Hij werkt veel.",exuk:"Він багато працює.",exen:"He works a lot.",exfr:"Il travaille beaucoup."},
+  {nl:"spreken",uk:"говорити",en:"to speak",fr:"parler",ex:"Spreek je Nederlands?",exuk:"Ти говориш нідерландською?",exen:"Do you speak Dutch?",exfr:"Parles-tu néerlandais?"},
+  {nl:"kijken",uk:"дивитися",en:"to watch",fr:"regarder",ex:"Ik kijk TV.",exuk:"Я дивлюся телевізор.",exen:"I watch TV.",exfr:"Je regarde la télé."},
+  {nl:"luisteren",uk:"слухати",en:"to listen",fr:"écouter",ex:"Ik luister naar muziek.",exuk:"Я слухаю музику.",exen:"I listen to music.",exfr:"J'écoute de la musique."},
+  {nl:"schrijven",uk:"писати",en:"to write",fr:"écrire",ex:"Hij schrijft een brief.",exuk:"Він пише листа.",exen:"He writes a letter.",exfr:"Il écrit une lettre."},
+  {nl:"lezen",uk:"читати",en:"to read",fr:"lire",ex:"Zij leest een boek.",exuk:"Вона читає книжку.",exen:"She reads a book.",exfr:"Elle lit un livre."},
+  {nl:"kopen",uk:"купувати",en:"to buy",fr:"acheter",ex:"Ik koop brood.",exuk:"Я купую хліб.",exen:"I buy bread.",exfr:"J'achète du pain."},
+  {nl:"eten",uk:"їсти",en:"to eat",fr:"manger",ex:"Wij eten appel.",exuk:"Ми їмо яблуко.",exen:"We eat an apple.",exfr:"Nous mangeons une pomme."},
+  {nl:"drinken",uk:"пити",en:"to drink",fr:"boire",ex:"Ik drink koffie.",exuk:"Я п'ю каву.",exen:"I drink coffee.",exfr:"Je bois du café."}
  ]},
- colors:{label:"Кольори",sub:"Який це колір?",hint:"Колір",items:[
-  {nl:"rood",uk:"червоний",c:"#ef4444"},{nl:"blauw",uk:"синій",c:"#3b82f6"},{nl:"groen",uk:"зелений",c:"#22c55e"},
-  {nl:"geel",uk:"жовтий",c:"#eab308"},{nl:"zwart",uk:"чорний",c:"#09090b"},{nl:"wit",uk:"білий",c:"#ffffff"},
-  {nl:"oranje",uk:"помаранчевий",c:"#f97316"},{nl:"roze",uk:"рожевий",c:"#ec4899"},{nl:"paars",uk:"фіолетовий",c:"#a855f7"},
-  {nl:"grijs",uk:"сірий",c:"#6b7280"},{nl:"bruin",uk:"коричневий",c:"#78350f"}
+ colors:{labelKey:"colors",subKey:"colors",hintKey:"colors",items:[
+  {nl:"rood",uk:"червоний",en:"red",fr:"rouge",c:"#ef4444"},{nl:"blauw",uk:"синій",en:"blue",fr:"bleu",c:"#3b82f6"},{nl:"groen",uk:"зелений",en:"green",fr:"vert",c:"#22c55e"},
+  {nl:"geel",uk:"жовтий",en:"yellow",fr:"jaune",c:"#eab308"},{nl:"zwart",uk:"чорний",en:"black",fr:"noir",c:"#09090b"},{nl:"wit",uk:"білий",en:"white",fr:"blanc",c:"#ffffff"},
+  {nl:"oranje",uk:"помаранчевий",en:"orange",fr:"orange",c:"#f97316"},{nl:"roze",uk:"рожевий",en:"pink",fr:"rose",c:"#ec4899"},{nl:"paars",uk:"фіолетовий",en:"purple",fr:"violet",c:"#a855f7"},
+  {nl:"grijs",uk:"сірий",en:"grey",fr:"gris",c:"#6b7280"},{nl:"bruin",uk:"коричневий",en:"brown",fr:"marron",c:"#78350f"}
  ]},
- numbers:{label:"Числа",sub:"Переклад числа",hint:"Число",items:[
-  {nl:"een",uk:"1 · один"},{nl:"twee",uk:"2 · два"},{nl:"drie",uk:"3 · три"},{nl:"vier",uk:"4 · чотири"},
-  {nl:"vijf",uk:"5 · п’ять"},{nl:"zes",uk:"6 · шість"},{nl:"zeven",uk:"7 · сім"},{nl:"acht",uk:"8 · вісім"},
-  {nl:"negen",uk:"9 · дев’ять"},{nl:"tien",uk:"10 · десять"},{nl:"elf",uk:"11 · одинадцять"},
-  {nl:"twaalf",uk:"12 · дванадцять"},{nl:"vijftien",uk:"15 · п'ятнадцять"},{nl:"twintig",uk:"20 · двадцять"},
-  {nl:"dertig",uk:"30 · тридцять"},{nl:"vijftig",uk:"50 · п'ятдесят"},{nl:"honderd",uk:"100 · сто"},
-  {nl:"duizend",uk:"1000 · тисяча"}
+ numbers:{labelKey:"numbers",subKey:"numbers",hintKey:"numbers",items:[
+  {nl:"een",uk:"1 · один",en:"1 · one",fr:"1 · un"},{nl:"twee",uk:"2 · два",en:"2 · two",fr:"2 · deux"},{nl:"drie",uk:"3 · три",en:"3 · three",fr:"3 · trois"},{nl:"vier",uk:"4 · чотири",en:"4 · four",fr:"4 · quatre"},
+  {nl:"vijf",uk:"5 · п’ять",en:"5 · five",fr:"5 · cinq"},{nl:"zes",uk:"6 · шість",en:"6 · six",fr:"6 · six"},{nl:"zeven",uk:"7 · сім",en:"7 · seven",fr:"7 · sept"},{nl:"acht",uk:"8 · вісім",en:"8 · eight",fr:"8 · huit"},
+  {nl:"negen",uk:"9 · дев’ять",en:"9 · nine",fr:"9 · neuf"},{nl:"tien",uk:"10 · десять",en:"10 · ten",fr:"10 · dix"},{nl:"elf",uk:"11 · одинадцять",en:"11 · eleven",fr:"11 · onze"},
+  {nl:"twaalf",uk:"12 · дванадцять",en:"12 · twelve",fr:"12 · douze"},{nl:"vijftien",uk:"15 · п'ятнадцять",en:"15 · fifteen",fr:"15 · quinze"},{nl:"twintig",uk:"20 · двадцять",en:"20 · twenty",fr:"20 · vingt"},
+  {nl:"dertig",uk:"30 · тридцять",en:"30 · thirty",fr:"30 · trente"},{nl:"vijftig",uk:"50 · п'ятдесят",en:"50 · fifty",fr:"50 · cinquante"},{nl:"honderd",uk:"100 · сто",en:"100 · hundred",fr:"100 · cent"},
+  {nl:"duizend",uk:"1000 · тисяча",en:"1000 · thousand",fr:"1000 · mille"}
  ]},
- seasons:{label:"Пори року та час",sub:"Перекладіть слово",hint:"Час / Пора року",items:[
-  {nl:"de lente",uk:"весна",ex:"Het is lente.",exuk:"Зараз весна."},
-  {nl:"de zomer",uk:"літо",ex:"In de zomer is het warm.",exuk:"Улітку тепло."},
-  {nl:"de herfst",uk:"осінь",ex:"In de herfst regent het.",exuk:"Восени іде дощ."},
-  {nl:"de winter",uk:"зима",ex:"In de winter is het koud.",exuk:"Узимку холодно."},
-  {nl:"vandaag",uk:"сьогодні",ex:"Vandaag is het maandag.",exuk:"Сьогодні понеділок."},
-  {nl:"morgen",uk:"завтра",ex:"Tot morgen!",exuk:"До завтра!"},
-  {nl:"gisteren",uk:"вчора",ex:"Gisteren was het zondag.",exuk:"Учора була неділя."}
+ seasons:{labelKey:"seasons",subKey:"seasons",hintKey:"seasons",items:[
+  {nl:"de lente",uk:"весна",en:"spring",fr:"printemps",ex:"Het is lente.",exuk:"Зараз весна.",exen:"It is spring.",exfr:"C'est le printemps."},
+  {nl:"de zomer",uk:"літо",en:"summer",fr:"été",ex:"In de zomer is het warm.",exuk:"Улітку тепло.",exen:"In summer it is warm.",exfr:"En été il fait chaud."},
+  {nl:"de herfst",uk:"осінь",en:"autumn",fr:"automne",ex:"In de herfst regent het.",exuk:"Восени іде дощ.",exen:"In autumn it rains.",exfr:"En automne il pleut."},
+  {nl:"de winter",uk:"зима",en:"winter",fr:"hiver",ex:"In de winter is het koud.",exuk:"Узимку холодно.",exen:"In winter it is cold.",exfr:"En hiver il fait froid."},
+  {nl:"vandaag",uk:"сьогодні",en:"today",fr:"aujourd'hui",ex:"Vandaag is het maandag.",exuk:"Сьогодні понеділок.",exen:"Today is Monday.",exfr:"Aujourd'hui c'est lundi."},
+  {nl:"morgen",uk:"завтра",en:"tomorrow",fr:"demain",ex:"Tot morgen!",exuk:"До завтра!",exen:"See you tomorrow!",exfr:"À demain!"},
+  {nl:"gisteren",uk:"вчора",en:"yesterday",fr:"hier",ex:"Gisteren was het zondag.",exuk:"Учора була неділя.",exen:"Yesterday was Sunday.",exfr:"Hier c'était dimanche."}
  ]}
 };
+
 var $=function(id){return document.getElementById(id)};
 var tab="questions",deck=[],q=0,right=0,round=1,locked=false,item=null,score=0,voice=null;
 try{score=parseInt(localStorage.getItem("nl_score")||"0",10)||0}catch(e){}
+
+function getTr(obj,field){return obj[field+"_"+userLang]||obj[field]||obj[field+"_uk"]||"";}
+
+function changeLang(l){
+ userLang=l;
+ localStorage.setItem("nl_lang",l);
+ $("footText").textContent=UI[userLang].foot;
+ buildTabs();
+ newRound();
+}
 
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function pickVoice(){var v=(window.speechSynthesis&&speechSynthesis.getVoices())||[];voice=v.find(function(x){return /^nl/i.test(x.lang)})||null}
@@ -134,11 +185,16 @@ function spoken(it){return it.ex?(it.say||it.nl)+". "+it.ex:full(it)}
 
 function buildTabs(){
  $("tabs").innerHTML="";
+ var u=UI[userLang];
  Object.keys(DATA).forEach(function(k){
-  var b=document.createElement("button");b.textContent=DATA[k].label;b.className=k===tab?"on":"";
-  b.onclick=function(){tab=k;buildTabs();newRound()};$("tabs").appendChild(b);
+  var b=document.createElement("button");
+  b.textContent=u.tabs[k]||DATA[k].labelKey;
+  b.className=k===tab?"on":"";
+  b.onclick=function(){tab=k;buildTabs();newRound()};
+  $("tabs").appendChild(b);
  });
 }
+
 function newRound(){q=0;right=0;deck=[];next()}
 function draw(){if(!deck.length)deck=shuffle(DATA[tab].items);return deck.pop()}
 
@@ -146,17 +202,29 @@ function next(){
  if(q>=PER_ROUND)return end();
  locked=false;item=draw();q++;
  var d=DATA[tab];
- $("prog").textContent="Питання "+q+" з "+PER_ROUND;$("rnd").textContent="Раунд "+round;
- $("barfill").style.width=((q-1)/PER_ROUND*100)+"%";$("score").textContent="⚡ "+score;
+ var u=UI[userLang];
+ 
+ $("prog").textContent=u.qProgress+" "+q+" / "+PER_ROUND;
+ $("rnd").textContent=u.round+" "+round;
+ $("barfill").style.width=((q-1)/PER_ROUND*100)+"%";
+ $("score").textContent="⚡ "+score;
+ 
  var opts;
- if(tab==="dehet"){opts=["de","het"].map(function(a){return{label:a,ok:a===item.art}})}
- else{
-  var others=shuffle(d.items.filter(function(x){return x.uk!==item.uk})).slice(0,3);
-  opts=shuffle(others.concat([item])).map(function(x){return{label:x.uk,ok:x===item,c:x.c}});
+ if(tab==="dehet"){
+  opts=["de","het"].map(function(a){return{label:a,ok:a===item.art}});
+ } else {
+  var others=shuffle(d.items.filter(function(x){return getTr(x,userLang)!==getTr(item,userLang)})).slice(0,3);
+  opts=shuffle(others.concat([item])).map(function(x){return{label:getTr(x,userLang),ok:x===item,c:x.c}});
  }
- $("card").innerHTML='<div class="q"><small>'+d.sub+'</small><h2 lang="nl">'+item.nl+'</h2><p>'+(tab==="dehet"?item.uk:d.hint)+'</p><button class="listen" id="hear">🔊 Слухати</button></div>'+
-  '<div class="opts" id="opts"></div><div class="fb" id="fb"></div><div class="row"><button class="btn main" id="nx" disabled>Далі</button></div>';
+ 
+ var subText=u.subs[tab];
+ var hintText=tab==="dehet"?getTr(item,userLang):u.hints[tab];
+ 
+ $("card").innerHTML='<div class="q"><small>'+subText+'</small><h2 lang="nl">'+item.nl+'</h2><p>'+hintText+'</p><button class="listen" id="hear">'+u.listen+'</button></div>'+
+  '<div class="opts" id="opts"></div><div class="fb" id="fb"></div><div class="row"><button class="btn main" id="nx" disabled>'+u.next+'</button></div>';
+ 
  $("hear").onclick=function(){say(tab==="dehet"?item.nl:item.nl==="welke / welk"?"welke, welk":item.nl)};
+ 
  var box=$("opts");
  opts.forEach(function(o){
   var b=document.createElement("button");b.className="opt";
@@ -165,22 +233,51 @@ function next(){
   b.onclick=function(){answer(o.ok,b)};box.appendChild(b);
  });
 }
+
 function answer(ok,btn){
  if(locked)return;locked=true;
+ var u=UI[userLang];
  document.querySelectorAll(".opt").forEach(function(b){b.disabled=true;if(b.dataset.ok)b.classList.add("ok")});
  if(ok){right++;score+=10;try{localStorage.setItem("nl_score",score)}catch(e){}}else{btn.classList.add("bad")}
  $("score").textContent="⚡ "+score;
- var line=item.ex||full(item),tr=item.exuk||item.uk;
- $("fb").innerHTML='<b lang="nl"></b><p></p>';$("fb").firstChild.textContent=line;$("fb").lastChild.textContent=tr;
- $("nx").disabled=false;$("nx").onclick=next;say(spoken(item));
+ 
+ var line=item.ex||full(item);
+ var tr=getTr(item,"ex"+userLang)||getTr(item,userLang);
+ $("fb").innerHTML='<b lang="nl"></b><p></p>';
+ $("fb").firstChild.textContent=line;
+ $("fb").lastChild.textContent=tr;
+ $("nx").disabled=false;
+ $("nx").onclick=next;
+ say(spoken(item));
 }
+
 function end(){
  $("barfill").style.width="100%";
  var pct=Math.round(right/PER_ROUND*100);
- $("card").innerHTML='<div class="end"><h2>'+right+' / '+PER_ROUND+'</h2><p>'+pct+'% точність</p><div class="row"><button class="btn main" id="again">Ще раз</button></div></div>';
- round++;$("again").onclick=newRound;
+ var u=UI[userLang];
+ var keys=Object.keys(DATA);
+ var nextIndex=(keys.indexOf(tab)+1)%keys.length;
+ var nextTabKey=keys[nextIndex];
+ var nextTabLabel=u.tabs[nextTabKey];
+
+ $("card").innerHTML='<div class="end"><h2>'+right+' / '+PER_ROUND+'</h2><p>'+pct+'% '+u.accuracy+'</p>'+
+  '<div class="row">'+
+  '<button class="btn" id="again">'+u.again+'</button>'+
+  '<button class="btn main" id="nextTopic">'+u.nextTopic+' ('+nextTabLabel+') ➔</button>'+
+  '</div></div>';
+ 
+ round++;
+ $("again").onclick=newRound;
+ $("nextTopic").onclick=function(){
+  tab=nextTabKey;
+  buildTabs();
+  newRound();
+ };
 }
-buildTabs();newRound();
+
+$("footText").textContent=UI[userLang].foot;
+buildTabs();
+newRound();
 </script>
 </body>
 </html>
