@@ -15,88 +15,92 @@ body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-appl
 button,select{font:inherit}
 button:focus-visible,select:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
 button{touch-action:manipulation}
-main{width:100%;max-width:760px;margin:0 auto;padding:20px 16px 36px;display:flex;flex-direction:column;gap:18px}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.brand h1{font-size:23px;line-height:1.2;margin:0;letter-spacing:-.04em}
-.brand p{margin:2px 0 0;color:var(--mut);font-size:13px}
-.top-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.select-group{display:flex;align-items:center;gap:5px;color:var(--mut);font-size:12px}
-.lang-select,.theme-btn{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:10px;min-height:40px;padding:7px 9px}
-.theme-btn{cursor:pointer;min-width:42px}
-.score-pill{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 10px;font-size:13px;font-weight:700;white-space:nowrap}
-.hero{border-radius:20px;padding:18px 20px;background:linear-gradient(135deg,var(--soft),var(--card));border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
-.hero h2{margin:0 0 4px;font-size:21px;letter-spacing:-.03em}
-.hero p{margin:0;color:var(--mut);font-size:14px}
-.hero-stat{font-size:13px;color:var(--mut);text-align:right}
-.hero-stat strong{display:block;font-size:22px;color:var(--fg)}
-nav{display:flex;gap:5px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:thin}
-nav button{background:transparent;border:0;border-bottom:3px solid transparent;padding:11px 12px;color:var(--mut);cursor:pointer;white-space:nowrap;flex-shrink:0;font-size:14px}
+main{width:100%;max-width:760px;margin:0 auto;padding:16px 14px 28px;display:flex;flex-direction:column;gap:12px}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.brand h1{font-size:21px;line-height:1.2;margin:0;letter-spacing:-.04em}
+.brand p{margin:1px 0 0;color:var(--mut);font-size:12px}
+.top-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.select-group{display:flex;align-items:center;gap:4px;color:var(--mut);font-size:12px}
+.lang-select,.theme-btn{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:10px;min-height:36px;padding:5px 8px;font-size:13px}
+.theme-btn{cursor:pointer;min-width:38px}
+.score-pill{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:6px 9px;font-size:13px;font-weight:700;white-space:nowrap}
+.hero{border-radius:16px;padding:10px 14px;background:linear-gradient(135deg,var(--soft),var(--card));border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.hero h2{margin:0 0 2px;font-size:18px;letter-spacing:-.03em}
+.hero p{margin:0;color:var(--mut);font-size:13px}
+.hero-stat{font-size:12px;color:var(--mut);text-align:right}
+.hero-stat strong{display:block;font-size:18px;color:var(--fg)}
+nav{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:thin}
+nav button{background:transparent;border:0;border-bottom:3px solid transparent;padding:8px 10px;color:var(--mut);cursor:pointer;white-space:nowrap;flex-shrink:0;font-size:13px}
 nav button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--acc);font-weight:700}
-.meta{display:flex;justify-content:space-between;gap:10px;color:var(--mut);font-size:13px}
-.bar{height:5px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:-12px}
+.meta{display:flex;justify-content:space-between;gap:8px;color:var(--mut);font-size:12px}
+.bar{height:4px;background:var(--line);border-radius:8px;overflow:hidden;margin-top:-8px}
 .bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .25s}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:18px;min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;min-width:0}
 .q{text-align:center}
 .q small{color:var(--mut);font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
-.icon-box{font-size:56px;margin:10px 0 4px;line-height:1}
-.q h2{font-size:clamp(26px,6vw,38px);font-weight:750;margin:6px 0 3px;letter-spacing:-.04em;overflow-wrap:anywhere}
-.q p{margin:0;color:var(--mut);font-size:15px}
-.listen{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:24px;padding:9px 15px;font-size:14px;cursor:pointer;margin-top:12px;min-height:42px}
+.icon-box{font-size:44px;margin:6px 0 2px;line-height:1}
+.q h2{font-size:clamp(22px,5vw,32px);font-weight:750;margin:4px 0 2px;letter-spacing:-.04em;overflow-wrap:anywhere}
+.q p{margin:0;color:var(--mut);font-size:14px}
+.listen{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:20px;padding:6px 12px;font-size:13px;cursor:pointer;margin-top:6px;min-height:36px}
 .listen:hover,.btn:hover,.opt:hover:not(:disabled){border-color:var(--acc)}
-.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:13px;padding:13px 10px;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;min-height:56px;overflow-wrap:anywhere}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:10px 8px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:48px;overflow-wrap:anywhere}
 .opt:active{transform:scale(.985)}
 .opt.correct{border-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
 .opt.incorrect{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
 .opt:disabled{cursor:default}
-.swatch{width:15px;height:15px;border-radius:50%;border:1px solid var(--line);flex-shrink:0}
-.feedback{border-radius:13px;min-height:58px;padding:12px;text-align:center;background:var(--bg)}
-.feedback:empty{background:transparent}
-.feedback strong{display:block;font-size:16px}
-.feedback p{margin:3px 0 0;color:var(--mut);font-size:14px}
-.feedback .example{margin-top:8px;color:var(--fg)}
-.row{display:flex;gap:10px;flex-wrap:wrap}
-.btn{flex:1;min-width:135px;padding:13px 15px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font-weight:650;cursor:pointer;text-align:center;min-height:48px}
-.modes{flex-wrap:nowrap;overflow-x:auto;gap:6px;scrollbar-width:none}
-.modes .btn{flex:1 0 auto;min-width:0;min-height:40px;padding:8px 12px;font-size:13px}
+.swatch{width:14px;height:14px;border-radius:50%;border:1px solid var(--line);flex-shrink:0}
+.feedback{border-radius:12px;padding:8px 10px;text-align:center;background:var(--bg)}
+.feedback:empty{display:none}
+.feedback strong{display:block;font-size:15px}
+.feedback p{margin:2px 0 0;color:var(--mut);font-size:13px}
+.feedback .example{margin-top:4px;color:var(--fg)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{flex:1;min-width:120px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font-weight:650;cursor:pointer;text-align:center;min-height:42px;font-size:14px}
+.modes{flex-wrap:nowrap;overflow-x:auto;gap:5px;scrollbar-width:none}
+.modes .btn{flex:1 0 auto;min-width:0;min-height:36px;padding:6px 10px;font-size:12.5px}
 .btn.primary{background:var(--acc);border-color:var(--acc);color:#fff}
 .btn.primary:hover{background:var(--acc-hover)}
-.end{text-align:center;display:flex;flex-direction:column;gap:14px}
-.end h2{font-size:42px;margin:0;letter-spacing:-.04em}
+.end{text-align:center;display:flex;flex-direction:column;gap:12px}
+.end h2{font-size:36px;margin:0;letter-spacing:-.04em}
 .end p{color:var(--mut);margin:0}
-.summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.summary-grid div{padding:12px 6px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.summary-grid strong{display:block;font-size:20px}
-.summary-grid span{font-size:12px;color:var(--mut)}
-.empty{color:var(--mut);text-align:center;padding:12px;font-size:14px}
-footer{text-align:center;color:var(--mut);font-size:12px}
-.q h2.sm{font-size:22px;letter-spacing:-.02em}
-.slots,.bank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;direction:ltr}
-.bank{min-height:52px}
-.sw2{display:flex;flex-direction:column;align-items:center;gap:3px}
+.summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.summary-grid div{padding:8px 4px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.summary-grid strong{display:block;font-size:18px}
+.summary-grid span{font-size:11px;color:var(--mut)}
+.empty{color:var(--mut);text-align:center;padding:10px;font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:11px}
+.q h2.sm{font-size:20px;letter-spacing:-.02em}
+.slots,.bank{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;direction:ltr}
+.bank{min-height:44px}
+.sw2{display:flex;flex-direction:column;align-items:center;gap:2px}
 .sw2.rQ{--rc:var(--acc)}.sw2.rV{--rc:var(--ok)}.sw2.rS{--rc:var(--amb)}.sw2.rR{--rc:var(--mut)}
-.role{font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--rc)}
-.slot{min-width:70px;min-height:48px;padding:8px 10px;border-radius:12px;border:1px dashed var(--line);border-bottom:3px solid var(--rc);background:var(--bg);color:var(--fg);font:inherit;font-weight:600;cursor:pointer}
+.role{font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;color:var(--rc)}
+.slot{min-width:62px;min-height:42px;padding:6px 8px;border-radius:10px;border:1px dashed var(--line);border-bottom:3px solid var(--rc);background:var(--bg);color:var(--fg);font:inherit;font-weight:600;font-size:14px;cursor:pointer}
 .slot.filled{border-style:solid}
 .slot.bad{border-color:var(--bad);border-bottom-color:var(--bad);color:var(--bad);background:var(--bad-bg);animation:shake .3s}
 .slot.good{border-color:var(--ok);border-bottom-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
-.tile{min-height:46px;padding:9px 14px;font-size:16px}
+.tile{min-height:40px;padding:7px 11px;font-size:14.5px}
 @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 html[dir="rtl"] .hero-stat{text-align:left}
 html[dir="rtl"] nav{direction:rtl}
+
 @media(max-width:480px){
- main{padding:15px 12px 28px;gap:14px}
- .brand h1{font-size:20px}
+ main{padding:10px 10px 20px;gap:10px}
+ .brand h1{font-size:18px}
  .top-right{width:100%;justify-content:space-between}
- .hero{padding:10px 14px;border-radius:14px}.hero>div:first-child{display:none}
- .hero-stat{display:flex;gap:8px;align-items:baseline;justify-content:space-between;width:100%;text-align:left}
- .hero-stat strong{display:inline;font-size:18px}
- .modes{flex-wrap:wrap;overflow:visible}.modes .btn{flex:1 1 30%;padding:8px 6px}
- .card{padding:21px 13px}
- .opts{gap:8px}
- .opt{font-size:14px;padding:12px 7px}
- nav button{padding:10px 9px}
+ .hero{padding:8px 12px;border-radius:12px}.hero>div:first-child{display:none}
+ .hero-stat{display:flex;gap:6px;align-items:baseline;justify-content:space-between;width:100%;text-align:left;font-size:11px}
+ .hero-stat strong{display:inline;font-size:15px}
+ .modes{flex-wrap:wrap;overflow:visible}.modes .btn{flex:1 1 30%;padding:6px 4px;min-height:34px;font-size:12px}
+ .card{padding:14px 10px;gap:10px}
+ .opts{gap:6px}
+ .opt{font-size:13.5px;padding:8px 4px;min-height:44px}
+ nav button{padding:6px 8px;font-size:12px}
+ .slot{min-width:56px;min-height:38px;padding:4px 6px;font-size:13px}
+ .tile{min-height:36px;padding:6px 9px;font-size:13.5px}
 }
+@media(max-width:360px){.modes .btn{font-size:11px;padding:6px 2px}.top-right{gap:4px}}
 </style>
 </head>
 <body>
@@ -156,19 +160,21 @@ const UI={
   modes:{study:"دراسة",quiz:"اختبار",audio:"استماع",review:"مراجعة"},audioSub:"استمع واختر الترجمة"}
 };
 
-const ERASER='<svg viewBox="4 4 56 56" width="62" height="62" role="img" aria-label="eraser"><g transform="rotate(-35 32 32)"><rect x="6" y="20" width="52" height="24" rx="5" fill="#F4A6B5"/><path d="M34 20h19a5 5 0 0 1 5 5v14a5 5 0 0 1-5 5H34z" fill="#5B7BD9"/><rect x="6" y="20" width="52" height="24" rx="5" fill="none" stroke="#20243A" stroke-opacity=".35" stroke-width="2"/><path d="M34 20v24" stroke="#20243A" stroke-opacity=".35" stroke-width="2"/></g></svg>';
-const KIT='<svg viewBox="0 0 64 64" width="62" height="62" role="img" aria-label="first aid kit"><path d="M23 18v-4a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v4" fill="none" stroke="#20243A" stroke-opacity=".55" stroke-width="3"/><rect x="6" y="18" width="52" height="36" rx="6" fill="#E5484D"/><rect x="6" y="18" width="52" height="36" rx="6" fill="none" stroke="#20243A" stroke-opacity=".3" stroke-width="2"/><rect x="28" y="26" width="8" height="20" rx="1.5" fill="#fff"/><rect x="22" y="32" width="20" height="8" rx="1.5" fill="#fff"/></svg>';
+const ERASER='<svg viewBox="4 4 56 56" width="50" height="50" role="img" aria-label="eraser"><g transform="rotate(-35 32 32)"><rect x="6" y="20" width="52" height="24" rx="5" fill="#F4A6B5"/><path d="M34 20h19a5 5 0 0 1 5 5v14a5 5 0 0 1-5 5H34z" fill="#5B7BD9"/><rect x="6" y="20" width="52" height="24" rx="5" fill="none" stroke="#20243A" stroke-opacity=".35" stroke-width="2"/><path d="M34 20v24" stroke="#20243A" stroke-opacity=".35" stroke-width="2"/></g></svg>';
+const KIT='<svg viewBox="0 0 64 64" width="50" height="50" role="img" aria-label="first aid kit"><path d="M23 18v-4a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v4" fill="none" stroke="#20243A" stroke-opacity=".55" stroke-width="3"/><rect x="6" y="18" width="52" height="36" rx="6" fill="#E5484D"/><rect x="6" y="18" width="52" height="36" rx="6" fill="none" stroke="#20243A" stroke-opacity=".3" stroke-width="2"/><rect x="28" y="26" width="8" height="20" rx="1.5" fill="#fff"/><rect x="22" y="32" width="20" height="8" rx="1.5" fill="#fff"/></svg>';
+const REG='<svg viewBox="0 0 64 64" width="50" height="50" role="img" aria-label="cash register"><rect x="29" y="19" width="6" height="8" fill="#3A4660"/><rect x="16" y="6" width="32" height="15" rx="3" fill="#2B3447"/><rect x="20" y="10" width="18" height="4" rx="1" fill="#7BE0A4"/><path d="M13 27h38l5 13H8z" fill="#5B6B8C"/><g fill="#E8ECF5"><rect x="16" y="30" width="6" height="3" rx="1"/><rect x="25" y="30" width="6" height="3" rx="1"/><rect x="34" y="30" width="6" height="3" rx="1"/><rect x="43" y="30" width="5" height="3" rx="1"/><rect x="14" y="35" width="6" height="3" rx="1"/><rect x="23" y="35" width="6" height="3" rx="1"/><rect x="32" y="35" width="6" height="3" rx="1"/><rect x="41" y="35" width="7" height="3" rx="1"/></g><rect x="8" y="40" width="48" height="16" rx="3" fill="#3A4660"/><rect x="14" y="45" width="36" height="6" rx="2" fill="#9AA7C2"/><rect x="28" y="46.5" width="8" height="3" rx="1.5" fill="#3A4660"/></svg>';
+
 const KEYS=["id","nl","en","fr","uk","ar","icon","ex_nl","ex_uk","art_nl","art_fr"];
 const R=rows=>({items:rows.map(r=>{const o={};KEYS.forEach((k,i)=>{if(r[i]!==undefined)o[k]=r[i]});return o})});
 const DATA={
  pronouns:R([
   ["pro_ik","ik","I","je","я","أنا","👤","Ik ben thuis.","Я вдома."],
   ["pro_jij","jij / je","you (singular)","tu","ти","أنتَ / أنتِ","👉","Jij bent aardig.","Ти добрий."],
-  ["pro_u","u","you (formal)","vous","Ви (ввічливо)","حضرتك (رسمي)","🤝","Hoe heet u?","Як Вас звати?"],
+  ["pro_u","u","you (formal)","vous (politesse)","Ви (ввічливо)","حضرتك (رسمي)","🤝","Hoe heet u?","Як Вас звати?"],
   ["pro_hij","hij","he","il","він","هو","👨","Hij werkt hard.","Він багато працює."],
   ["pro_zij","zij / ze","she","elle","вона","هي","👩","Zij leest een boek.","Вона читає книжку."],
   ["pro_wij","wij / we","we","nous","ми","نحن","👥","Wij zijn samen.","Ми разом."],
-  ["pro_jullie","jullie","you (plural)","vous","ви (до кількох людей)","أنتم","🧑‍🤝‍🧑","Hebben jullie kinderen?","Чи є у вас діти?"]
+  ["pro_jullie","jullie","you (plural)","vous (pluriel)","ви (до кількох людей)","أنتم","🧑‍🤝‍🧑","Hebben jullie kinderen?","Чи є у вас діти?"]
  ]),
  verbs:R([
   ["v_zijn","zijn","to be","être","бути","يكون","✨","Ik ben cursist.","Я слухач курсів."],
@@ -179,10 +185,15 @@ const DATA={
  ]),
  dehet:R([
   ["art_les","les","lesson","cours","урок","درس","📚","De les begint om 9 uur.","Урок починається о 9:00.","de","le"],
-  ["art_boek","boek","book","livre","книга","книга","📖","Het boek is open.","Книга відкрита.","het","le"],
+  ["art_boek","boek","book","livre","книга","كتاب","📖","Het boek is open.","Книга відкрита.","het","le"],
   ["art_paspoort","paspoort","passport","passeport","паспорт","جواز سفر","🛂","Het paspoort is geldig.","Паспорт дійсний.","het","le"],
   ["art_afspraak","afspraak","appointment","rendez-vous","зустріч / запис","موعد","📅","Ik heb een afspraak.","У мене є запис.","de","le"],
-  ["art_dokter","dokter","doctor","médecin","лікар","طبيب","🩺","De dokter helpt mij.","Лікар допомагає мені.","de","le"]
+  ["art_dokter","dokter","doctor","médecin","лікар","طبيب","🩺","De dokter helpt mij.","Лікар допомагає мені.","de","le"],
+  ["art_huis","huis","house","maison","будинок","بيت","🏠","Het huis is groot.","Будинок великий.","het","la"],
+  ["art_school","school","school","école","школа","مدرسة","🏫","De school begint om negen uur.","Школа починається о дев'ятій.","de","la"],
+  ["art_auto","auto","car","voiture","автомобіль","سيارة","🚗","De auto is rood.","Автомобіль червоний.","de","la"],
+  ["art_raam","raam","window","fenêtre","вікно","نافذة","🪟","Het raam is open.","Вікно відчинене.","het","la"],
+  ["art_stoel","stoel","chair","chaise","стілець","كرسي","🪑","De stoel is vrij.","Стілець вільний.","de","la"]
  ]),
  questions:R([
   ["q_wat","wat","what","quoi","що","ماذا / ما","❓","Wat is dit?","Що це?"],
@@ -193,7 +204,7 @@ const DATA={
   ["q_hoe","hoe","how","comment","як","كيف","💬","Hoe heet je?","Як тебе звати?"],
   ["q_hoeveel","hoeveel","how much / how many","combien","скільки","كم","🔢","Hoeveel kost dit?","Скільки це коштує?"],
   ["q_hoelaat","hoe laat","what time","quelle heure","котра година","كم الساعة","🕒","Hoe laat is het?","Котра година?"],
-  ["q_welke","welke / welk","which","quel","який / яка","أي","👆","Welke kleur is this?","Який це колір?"]
+  ["q_welke","welke / welk","which","quel","який / яка","أي","👆","Welke kleur is dit?","Який це колір?"]
  ]),
  cvo:R([
   ["cvo_1","de cursist","student","l'étudiant","слухач курсів / учень","طالب في الدورة","🎓","Ik ben een cursist.","Я слухач курсів."],
@@ -211,27 +222,27 @@ const DATA={
   ["gem_5","de handtekening","signature","la signature","підпис","التوقيع","✍️","Zet hier uw handtekening.","Поставте тут свій підпис."]
  ]),
  doctor:R([
-  ["doc_1","de ziekte","illness","la maladie","хвороба","المرض","🤒","Ik ben ziek.","Я хворий / хвора."],
-  ["doc_2","de pijn","pain","la douleur","біль","الألم","🤕","Ik heb keelpijn.","У мене болить горло."],
+  ["doc_1","de ziekte","illness","la maladie","хвороба","المرض","🤒","Griep is een ziekte.","Грип — це хвороба."],
+  ["doc_2","de pijn","pain","la douleur","біль","الألم","🤕","Ik heb veel pijn.","Мені дуже боляче."],
   ["doc_3","de koorts","fever","la fièvre","температура / лихоманка","الحمى / الحرارة","🌡️","Ik heb hoge koorts.","У мене висока температура."],
   ["doc_4","de apotheek","pharmacy","la pharmacie","аптека","الصيدلية",KIT,"De apotheek is dicht.","Аптека зачинена."],
   ["doc_5","het medicijn","medicine","le médicament","ліки / медикаменти","الدواء","💊","Neem dit medicijn elke dag.","Приймайте ці ліки щодня."]
  ]),
  shop:R([
   ["sh_1","de winkelkar","shopping cart","le Caddie","візок для покупок","عربة التسوق","🛒","Neem een winkelkar.","Візьміть візок."],
-  ["sh_2","de kassa","checkout","la caisse","каса","الصندوق / الكاسا","💶","Betaal aan de kassa.","Розрахуйтеся на касі."],
+  ["sh_2","de kassa","checkout","la caisse","каса","الصندوق / الكاسا",REG,"Betaal aan de kassa.","Розрахуйтеся на касі."],
   ["sh_3","het bonnetje","receipt","le ticket de caisse","чек","الإيصال / الفاتورة","🧾","Wilt u het bonnetje?","Бажаєте чек?"],
-  ["sh_4","de korting","discount","la réduction","знижка","الخصم / التخفيض","🏷️","Er is 20% korting.","Діє знижка 20%."]
+  ["sh_4","de korting","discount","la réduction","знижка","الخصم / Тіховиження","🏷️","Er is 20% korting.","Діє знижка 20%."]
  ]),
  transport:R([
   ["tr_1","het ticket","ticket","le billet","квиток","التذكرة","🎟️","Een ticket naar Brussel, alstublieft.","Квиток до Брюсселя, будь ласка."],
   ["tr_2","de halte","bus stop","l'arrêt de bus","зупинка","موقف الحافلة","🚏","Waar is de bushalte?","Де автобусна зупинка?"],
   ["tr_3","links","left","à gauche","ліворуч","يساراً","⬅️","Ga naar links.","Поверніть ліворуч."],
-  ["tr_4","rechts","right","à droite","праворуч","يميناً","➡️","Sla rechtsaf.","Поверніть праворуч."],
+  ["tr_4","rechts","right","à droite","праворуч","يميнаً","➡️","Sla rechtsaf.","Поверніть праворуч."],
   ["tr_5","rechtdoor","straight ahead","tout droit","прямо","إلى الأمام مباشرة","⬆️","Ga rechtdoor.","Ідіть прямо."]
  ]),
  weather:R([
-  ["w_1","de regen","rain","la pluie","дощ","المطر","🌧️","Er is veel regen vandaag.","Сьогодні сильний дощ."],
+  ["w_1","de regen","rain","la pluie","дощ","المطر","🌧️","Er komt veel regen vandaag.","Сьогодні буде сильний дощ."],
   ["w_2","de zon","sun","le soleil","сонце","الشمس","☀️","De zon schijnt.","Сонце світить."],
   ["w_3","koud","cold","froid","холодно","بارد","❄️","Het is heel koud buiten.","Надворі дуже холодно."],
   ["w_4","warm","warm / hot","chaud","тепло / гаряче","دافئ / حار","🔥","Het is warm in de zomer.","Влітку тепло."],
@@ -418,7 +429,10 @@ function answer(ok,btn){
  const exK="ex_"+targetLang,trK="ex_"+uiLang;
  if(item[exK])fb.appendChild(tgt(el("p","example",item[exK])));
  if(item[trK])fb.appendChild(el("p","",item[trK]));
- $("nx").disabled=false;say(item[exK]||shown(item));
+ const nx=$("nx");
+ nx.disabled=false;
+ say(item[exK]||shown(item));
+ setTimeout(()=>nx.scrollIntoView({behavior:"smooth",block:"nearest"}),100);
 }
 
 function renderEmpty(){
@@ -496,7 +510,12 @@ function finishBuild(){
   if(cur.stars===3)right++;else{s.again=true;deck.unshift(s);roundTotal++}
   saveStore();updateStats();
  }
- renderBuild();say(sentence(s));
+ renderBuild();
+ say(sentence(s));
+ setTimeout(()=>{
+  const nx=$("nx");
+  if(nx)nx.scrollIntoView({behavior:"smooth",block:"nearest"});
+ },100);
 }
 function renderBuild(){
  const u=getUI(),s=bs.s;
