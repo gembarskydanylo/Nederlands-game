@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F8FC">
+<title>Polyglot Leren — Nederlands A1.1</title>
+<style>
+:root{color-scheme:light;--bg:#F7F8FC;--fg:#20243A;--mut:#686F82;--card:#FFFFFF;--line:#E5E8F0;--acc:#4657D9;--acc-hover:#3545c4;--ok:#218653;--ok-bg:#EAF7EF;--bad:#C43D4B;--bad-bg:#FFF0F1;--soft:#EEF1FF;--shadow:0 8px 30px rgba(32,36,58,.06);--amb:#B7791F}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#11131A;--fg:#F2F3FA;--mut:#A4A9BA;--card:#1C1F2A;--line:#303443;--acc:#8794FF;--acc-hover:#9EA8FF;--ok:#62D493;--ok-bg:#183728;--bad:#FF858D;--bad-bg:#3B2027;--soft:#282D4B;--shadow:0 8px 30px rgba(0,0,0,.18);--amb:#E5B567}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{min-height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+button,select{font:inherit}
+button:focus-visible,select:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+button{touch-action:manipulation}
+main{width:100%;max-width:760px;margin:0 auto;padding:20px 16px 36px;display:flex;flex-direction:column;gap:18px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:23px;line-height:1.2;margin:0;letter-spacing:-.04em}
+.brand p{margin:2px 0 0;color:var(--mut);font-size:13px}
+.top-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.select-group{display:flex;align-items:center;gap:5px;color:var(--mut);font-size:12px}
+.lang-select,.theme-btn{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:10px;min-height:40px;padding:7px 9px}
+.theme-btn{cursor:pointer;min-width:42px}
+.score-pill{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 10px;font-size:13px;font-weight:700;white-space:nowrap}
+.hero{border-radius:20px;padding:18px 20px;background:linear-gradient(135deg,var(--soft),var(--card));border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.hero h2{margin:0 0 4px;font-size:21px;letter-spacing:-.03em}
+.hero p{margin:0;color:var(--mut);font-size:14px}
+.hero-stat{font-size:13px;color:var(--mut);text-align:right}
+.hero-stat strong{display:block;font-size:22px;color:var(--fg)}
+nav{display:flex;gap:5px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:thin}
+nav button{background:transparent;border:0;border-bottom:3px solid transparent;padding:11px 12px;color:var(--mut);cursor:pointer;white-space:nowrap;flex-shrink:0;font-size:14px}
+nav button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--acc);font-weight:700}
+.meta{display:flex;justify-content:space-between;gap:10px;color:var(--mut);font-size:13px}
+.bar{height:5px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:-12px}
+.bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .25s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:18px;min-width:0}
+.q{text-align:center}
+.q small{color:var(--mut);font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+.icon-box{font-size:56px;margin:10px 0 4px;line-height:1}
+.q h2{font-size:clamp(26px,6vw,38px);font-weight:750;margin:6px 0 3px;letter-spacing:-.04em;overflow-wrap:anywhere}
+.q p{margin:0;color:var(--mut);font-size:15px}
+.listen{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:24px;padding:9px 15px;font-size:14px;cursor:pointer;margin-top:12px;min-height:42px}
+.listen:hover,.btn:hover,.opt:hover:not(:disabled){border-color:var(--acc)}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:13px;padding:13px 10px;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;min-height:56px;overflow-wrap:anywhere}
+.opt:active{transform:scale(.985)}
+.opt.correct{border-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
+.opt.incorrect{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
+.opt:disabled{cursor:default}
+.swatch{width:15px;height:15px;border-radius:50%;border:1px solid var(--line);flex-shrink:0}
+.feedback{border-radius:13px;min-height:58px;padding:12px;text-align:center;background:var(--bg)}
+.feedback:empty{background:transparent}
+.feedback strong{display:block;font-size:16px}
+.feedback p{margin:3px 0 0;color:var(--mut);font-size:14px}
+.feedback .example{margin-top:8px;color:var(--fg)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{flex:1;min-width:135px;padding:13px 15px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font-weight:650;cursor:pointer;text-align:center;min-height:48px}
+.modes{flex-wrap:nowrap;overflow-x:auto;gap:6px;scrollbar-width:none}
+.modes .btn{flex:1 0 auto;min-width:0;min-height:40px;padding:8px 12px;font-size:13px}
+.btn.primary{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn.primary:hover{background:var(--acc-hover)}
+.end{text-align:center;display:flex;flex-direction:column;gap:14px}
+.end h2{font-size:42px;margin:0;letter-spacing:-.04em}
+.end p{color:var(--mut);margin:0}
+.summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.summary-grid div{padding:12px 6px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.summary-grid strong{display:block;font-size:20px}
+.summary-grid span{font-size:12px;color:var(--mut)}
+.empty{color:var(--mut);text-align:center;padding:12px;font-size:14px}
+footer{text-align:center;color:var(--mut);font-size:12px}
+.q h2.sm{font-size:22px;letter-spacing:-.02em}
+.slots,.bank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;direction:ltr}
+.bank{min-height:52px}
+.sw2{display:flex;flex-direction:column;align-items:center;gap:3px}
+.sw2.rQ{--rc:var(--acc)}.sw2.rV{--rc:var(--ok)}.sw2.rS{--rc:var(--amb)}.sw2.rR{--rc:var(--mut)}
+.role{font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--rc)}
+.slot{min-width:70px;min-height:48px;padding:8px 10px;border-radius:12px;border:1px dashed var(--line);border-bottom:3px solid var(--rc);background:var(--bg);color:var(--fg);font:inherit;font-weight:600;cursor:pointer}
+.slot.filled{border-style:solid}
+.slot.bad{border-color:var(--bad);border-bottom-color:var(--bad);color:var(--bad);background:var(--bad-bg);animation:shake .3s}
+.slot.good{border-color:var(--ok);border-bottom-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
+.tile{min-height:46px;padding:9px 14px;font-size:16px}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+html[dir="rtl"] .hero-stat{text-align:left}
+html[dir="rtl"] nav{direction:rtl}
+@media(max-width:480px){
+ main{padding:15px 12px 28px;gap:14px}
+ .brand h1{font-size:20px}
+ .top-right{width:100%;justify-content:space-between}
+ .hero{padding:10px 14px;border-radius:14px}.hero>div:first-child{display:none}
+ .hero-stat{display:flex;gap:8px;align-items:baseline;justify-content:space-between;width:100%;text-align:left}
+ .hero-stat strong{display:inline;font-size:18px}
+ .modes{flex-wrap:wrap;overflow:visible}.modes .btn{flex:1 1 30%;padding:8px 6px}
+ .card{padding:21px 13px}
+ .opts{gap:8px}
+ .opt{font-size:14px;padding:12px 7px}
+ nav button{padding:10px 9px}
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand"><h1 id="appTitle">Polyglot Leren</h1><p id="tagline"></p></div>
+    <div class="top-right">
+      <label class="select-group"><span id="targetLabel"></span>
+        <select id="targetLangPicker" class="lang-select" aria-label="Target language">
+          <option value="nl">🇧🇪 Nederlands</option><option value="en">🇬🇧 English</option><option value="fr">🇫🇷 Français</option>
+        </select>
+      </label>
+      <label class="select-group"><span id="uiLabel"></span>
+        <select id="uiLangPicker" class="lang-select" aria-label="Explanation language">
+          <option value="uk">🇺🇦 Українська</option><option value="en">🇬🇧 English</option><option value="fr">🇫🇷 Français</option><option value="ar">🇸🇦 العربية</option>
+        </select>
+      </label>
+      <span id="score" class="score-pill" aria-live="polite">⭐ 0</span>
+      <button class="theme-btn" id="themeToggle" type="button">🌙</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div><h2 id="welcomeTitle"></h2><p id="welcomeText"></p></div>
+    <div class="hero-stat"><span id="progressLabel"></span><strong id="learnedCount">0</strong><span id="reviewCount"></span></div>
+  </section>
+
+  <nav id="tabs" aria-label="Topics" role="tablist"></nav>
+  <div class="row modes" id="modeButtons"></div>
+  <div class="meta"><span id="prog"></span><span id="rnd"></span></div>
+  <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="barfill"></i></div>
+  <section class="card" id="card" aria-live="polite"></section>
+  <footer id="footText"></footer>
+</main>
+
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const LANGS=["nl","en","fr"],UI_LANGS=["uk","en","fr","ar"],PER_ROUND=10;
+
+const UI={
+ uk:{build:"Складання",studySub:"Запам'ятай слово",buildSub:"Склади питання з карток",byEar:"🎧 На слух",hint:"💡 Підказка",roles:{Q:"питання",V:"дієслово",S:"підмет",R:"решта"},tagline:"Нідерландська мова • Рівень A1.1",target:"Вчу",ui:"Пояснення",welcome:"Курс повторення A1.1",welcomeText:"Базовий словник для життя та навчання в Бельгії.",learned:"Вивчені слова",review:"До повторення",round:"Раунд",listen:"🔊 Прослухати",next:"Далі",study:"Вивчати",quiz:"Тест",audio:"Аудіювання",reviewMode:"Повторення",correct:"Правильно! Чудова робота.",incorrect:"Не зовсім. Правильна відповідь:",meaning:"Переклад",noSpeech:"Озвучування недоступне або немає голосу для цієї мови.",nextTopic:"Наступна тема",again:"Ще раз",accuracy:"точність",finished:"Раунд завершено!",points:"Балів за раунд",right:"Правильні",emptyReview:"Поки немає слів для повторення. Пройди тест, щоб додати слова.",noItems:"У цій темі поки немає слів.",footer:"Тренажер для вивчення та повторення мови A1.1.",light:"Світла тема",dark:"Темна тема",markKnown:"Знаю це",markAgain:"Повторити пізніше",correctWord:"Правильна відповідь",lessonProgress:"Питання",
+  tabs:{pronouns:"1. Займенники",verbs:"2. Дієслова A1.1",dehet:"3. Артиклі (de/het)",questions:"4. Питання",cvo:"5. Школа (CVO)",gemeente:"6. Муніципалітет",doctor:"7. Лікар та аптека",shop:"8. Покупки",transport:"9. Транспорт",weather:"10. Погода й дні"},
+  subs:{pronouns:"Обери переклад займенника",verbs:"Обери переклад дієслова",dehet:"Обери правильний артикль",questions:"Що означає це запитальне слово?",cvo:"Подивись на іконку та обери слово",gemeente:"Подивись на іконку та обери слово",doctor:"Обери правильну назву",shop:"Обери відповідне слово",transport:"Орієнтування та транспорт",weather:"Погода, дні та час"},
+  modes:{study:"Вивчення",quiz:"Тест",audio:"Аудіювання",review:"Повторення"},audioSub:"Послухай і обери переклад"},
+ en:{build:"Build",studySub:"Learn this word",buildSub:"Build the question from the tiles",byEar:"🎧 By ear",hint:"💡 Hint",roles:{Q:"question",V:"verb",S:"subject",R:"rest"},tagline:"Dutch Language • Level A1.1",target:"Learn",ui:"Explain in",welcome:"Review Course A1.1",welcomeText:"Basic vocabulary for living and studying in Belgium.",learned:"Learned words",review:"Due to review",round:"Round",listen:"🔊 Listen",next:"Next",study:"Study",quiz:"Quiz",audio:"Listening",reviewMode:"Review",correct:"Correct! Great job.",incorrect:"Not quite. The correct answer is:",meaning:"Translation",noSpeech:"Speech is unavailable or there is no voice for this language.",nextTopic:"Next topic",again:"Try again",accuracy:"accuracy",finished:"Round complete!",points:"Points this round",right:"Correct",emptyReview:"No words to review yet. Take a quiz to add words.",noItems:"There are no words in this topic yet.",footer:"Language trainer for A1.1 level.",light:"Light mode",dark:"Dark mode",markKnown:"I know this",markAgain:"Review later",correctWord:"Correct answer",lessonProgress:"Question",
+  tabs:{pronouns:"1. Pronouns",verbs:"2. Verbs A1.1",dehet:"3. Articles (de/het)",questions:"4. Questions",cvo:"5. School (CVO)",gemeente:"6. Municipality",doctor:"7. Doctor & Pharmacy",shop:"8. Shopping",transport:"9. Transport",weather:"10. Weather & Days"},
+  subs:{pronouns:"Choose the pronoun translation",verbs:"Choose the verb translation",dehet:"Choose the correct article",questions:"What does this question word mean?",cvo:"Look at the icon and choose the word",gemeente:"Look at the icon and choose the word",doctor:"Doctor's appointment & health",shop:"Supermarket and shopping terms",transport:"Transport and directions",weather:"Weather, days and time"},
+  modes:{study:"Study",quiz:"Quiz",audio:"Listening",review:"Review"},audioSub:"Listen and choose the translation"},
+ fr:{build:"Construire",studySub:"Apprends ce mot",buildSub:"Construis la question avec les cartes",byEar:"🎧 À l'oreille",hint:"💡 Indice",roles:{Q:"question",V:"verbe",S:"sujet",R:"reste"},tagline:"Néerlandais • Niveau A1.1",target:"J'apprends",ui:"Explications",welcome:"Cours de révision A1.1",welcomeText:"Vocabulaire de base pour vivre et étudier en Belgique.",learned:"Mots appris",review:"À réviser",round:"Tour",listen:"🔊 Écouter",next:"Suivant",study:"Apprendre",quiz:"Quiz",audio:"Écoute",reviewMode:"Révision",correct:"Correct ! Bravo.",incorrect:"Pas tout à fait. La bonne réponse est :",meaning:"Traduction",noSpeech:"La synthèse vocale est indisponible ou il n'y a pas de voix pour cette langue.",nextTopic:"Sujet suivant",again:"Recommencer",accuracy:"précision",finished:"Tour terminé !",points:"Points de ce tour",right:"Correctes",emptyReview:"Aucun mot à réviser. Fais un quiz pour ajouter des mots.",noItems:"Il n'y a pas encore de mots dans ce thème.",footer:"Application de révision niveau A1.1.",light:"Mode clair",dark:"Mode sombre",markKnown:"Je connais",markAgain:"À réviser",correctWord:"Bonne réponse",lessonProgress:"Question",
+  tabs:{pronouns:"1. Pronoms",verbs:"2. Verbes A1.1",dehet:"3. Articles (de/het)",questions:"4. Questions",cvo:"5. École (CVO)",gemeente:"6. Commune",doctor:"7. Médecin",shop:"8. Achats",transport:"9. Transports",weather:"10. Météo & Jours"},
+  subs:{pronouns:"Choisis la traduction du pronom",verbs:"Choisis la traduction du verbe",dehet:"Choisis le bon article",questions:"Que signifie ce mot interrogatif ?",cvo:"Regarde l'icône et choisis le mot",gemeente:"Regarde l'icône et choisis le mot",doctor:"Rendez-vous médical et santé",shop:"Supermarché et achats",transport:"Transports et directions",weather:"Météo, jours et temps"},
+  modes:{study:"Apprendre",quiz:"Quiz",audio:"Écoute",review:"Révision"},audioSub:"Écoute et choisis la traduction"},
+ ar:{build:"تركيب",studySub:"تعلّم هذه الكلمة",buildSub:"ركّب السؤال من البطاقات",byEar:"🎧 بالسمع",hint:"💡 تلميح",roles:{Q:"سؤال",V:"فعل",S:"فاعل",R:"البقية"},tagline:"اللغة الهولندية • المستوى A1.1",target:"أتعلّم",ui:"الشرح بـ",welcome:"دورة مراجعة A1.1",welcomeText:"مفردات أساسية للحياة والدراسة في بلجيكا.",learned:"الكلمات المتعلمة",review:"للمراجعة",round:"جولة",listen:"🔊 استمع",next:"التالي",study:"دراسة",quiz:"اختبار",audio:"استماع",reviewMode:"مراجعة",correct:"صحيح! عمل ممتاز.",incorrect:"ليس تماماً. الإجابة الصحيحة:",meaning:"الترجمة",noSpeech:"الصوت غير متاح أو لا يوجد صوت لهذه اللغة.",nextTopic:"الموضوع التالي",again:"مرة أخرى",accuracy:"الدقة",finished:"اكتملت الجولة!",points:"النقاط هذه الجولة",right:"صحيح",emptyReview:"لا توجد كلمات للمراجعة بعد. قم بإجراء اختبار لإضافة كلمات.",noItems:"لا توجد كلمات في هذا الموضوع بعد.",footer:"تطبيق لتعلم ومراجعة اللغة المستوى A1.1.",light:"الوضع الفاتح",dark:"الوضع الداكن",markKnown:"أعرف هذا",markAgain:"مراجعة لاحقاً",correctWord:"الإجابة الصحيحة",lessonProgress:"سؤال",
+  tabs:{pronouns:"1. الضمائر",verbs:"2. الأفعال A1.1",dehet:"3. أدوات التعريف",questions:"4. الأسئلة",cvo:"5. المدرسة (CVO)",gemeente:"6. البلدية",doctor:"7. الطبيب والصيدلية",shop:"8. التسوق",transport:"9. المواصلات",weather:"10. الطقس والأيام"},
+  subs:{pronouns:"اختر ترجمة الضمير",verbs:"اختر ترجمة الفعل",dehet:"اختر أداة التعريف الصحيحة",questions:"ماذا تعني كلمة الاستفهام هذه؟",cvo:"انظر إلى الأيقونة واختر الكلمة",gemeente:"انظر إلى الأيقونة واختر الكلمة",doctor:"موعد الطبيب والصحة",shop:"السوبرماركت والتسوق",transport:"المواصلات والاتجاهات",weather:"الطقس والأيام والوقت"},
+  modes:{study:"دراسة",quiz:"اختبار",audio:"استماع",review:"مراجعة"},audioSub:"استمع واختر الترجمة"}
+};
+
+const ERASER='<svg viewBox="4 4 56 56" width="62" height="62" role="img" aria-label="eraser"><g transform="rotate(-35 32 32)"><rect x="6" y="20" width="52" height="24" rx="5" fill="#F4A6B5"/><path d="M34 20h19a5 5 0 0 1 5 5v14a5 5 0 0 1-5 5H34z" fill="#5B7BD9"/><rect x="6" y="20" width="52" height="24" rx="5" fill="none" stroke="#20243A" stroke-opacity=".35" stroke-width="2"/><path d="M34 20v24" stroke="#20243A" stroke-opacity=".35" stroke-width="2"/></g></svg>';
+const KIT='<svg viewBox="0 0 64 64" width="62" height="62" role="img" aria-label="first aid kit"><path d="M23 18v-4a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v4" fill="none" stroke="#20243A" stroke-opacity=".55" stroke-width="3"/><rect x="6" y="18" width="52" height="36" rx="6" fill="#E5484D"/><rect x="6" y="18" width="52" height="36" rx="6" fill="none" stroke="#20243A" stroke-opacity=".3" stroke-width="2"/><rect x="28" y="26" width="8" height="20" rx="1.5" fill="#fff"/><rect x="22" y="32" width="20" height="8" rx="1.5" fill="#fff"/></svg>';
+const KEYS=["id","nl","en","fr","uk","ar","icon","ex_nl","ex_uk","art_nl","art_fr"];
+const R=rows=>({items:rows.map(r=>{const o={};KEYS.forEach((k,i)=>{if(r[i]!==undefined)o[k]=r[i]});return o})});
+const DATA={
+ pronouns:R([
+  ["pro_ik","ik","I","je","я","أنا","👤","Ik ben thuis.","Я вдома."],
+  ["pro_jij","jij / je","you (singular)","tu","ти","أنتَ / أنتِ","👉","Jij bent aardig.","Ти добрий."],
+  ["pro_u","u","you (formal)","vous","Ви (ввічливо)","حضرتك (رسمي)","🤝","Hoe heet u?","Як Вас звати?"],
+  ["pro_hij","hij","he","il","він","هو","👨","Hij werkt hard.","Він багато працює."],
+  ["pro_zij","zij / ze","she","elle","вона","هي","👩","Zij leest een boek.","Вона читає книжку."],
+  ["pro_wij","wij / we","we","nous","ми","نحن","👥","Wij zijn samen.","Ми разом."],
+  ["pro_jullie","jullie","you (plural)","vous","ви (до кількох людей)","أنتم","🧑‍🤝‍🧑","Hebben jullie kinderen?","Чи є у вас діти?"]
+ ]),
+ verbs:R([
+  ["v_zijn","zijn","to be","être","бути","يكون","✨","Ik ben cursist.","Я слухач курсів."],
+  ["v_hebben","hebben","to have","avoir","мати","يملك / لديه","🤲","Ik heb een vraag.","У мене є запитання."],
+  ["v_wonen","wonen","to live / reside","habiter","жити / мешкати","يسكن / يعيش","🏡","Ik woon in België.","Я живу в Бельгії."],
+  ["v_spreken","spreken","to speak","parler","говорити / розмовляти","يتحدث / يتكلم","🗣️","Ik spreek Nederlands.","Я розмовляю нідерландською."],
+  ["v_werken","werken","to work","travailler","працювати","يعمل","💼","Hij werkt vandaag.","Він сьогодні працює."]
+ ]),
+ dehet:R([
+  ["art_les","les","lesson","cours","урок","درس","📚","De les begint om 9 uur.","Урок починається о 9:00.","de","le"],
+  ["art_boek","boek","book","livre","книга","книга","📖","Het boek is open.","Книга відкрита.","het","le"],
+  ["art_paspoort","paspoort","passport","passeport","паспорт","جواز سفر","🛂","Het paspoort is geldig.","Паспорт дійсний.","het","le"],
+  ["art_afspraak","afspraak","appointment","rendez-vous","зустріч / запис","موعد","📅","Ik heb een afspraak.","У мене є запис.","de","le"],
+  ["art_dokter","dokter","doctor","médecin","лікар","طبيب","🩺","De dokter helpt mij.","Лікар допомагає мені.","de","le"]
+ ]),
+ questions:R([
+  ["q_wat","wat","what","quoi","що","ماذا / ما","❓","Wat is dit?","Що це?"],
+  ["q_wie","wie","who","qui","хто","مَن","🙋‍♂️","Wie is de leraar?","Хто вчитель?"],
+  ["q_waar","waar","where","où","де","أين","📍","Waar is het toilet?","Де туалет?"],
+  ["q_wanneer","wanneer","when","quand","коли","متى","⏰","Wanneer is de pauze?","Коли перерва?"],
+  ["q_waarom","waarom","why","pourquoi","чому","لماذا","🤔","Waarom leer je Nederlands?","Чому ти вчиш нідерландську?"],
+  ["q_hoe","hoe","how","comment","як","كيف","💬","Hoe heet je?","Як тебе звати?"],
+  ["q_hoeveel","hoeveel","how much / how many","combien","скільки","كم","🔢","Hoeveel kost dit?","Скільки це коштує?"],
+  ["q_hoelaat","hoe laat","what time","quelle heure","котра година","كم الساعة","🕒","Hoe laat is het?","Котра година?"],
+  ["q_welke","welke / welk","which","quel","який / яка","أي","👆","Welke kleur is this?","Який це колір?"]
+ ]),
+ cvo:R([
+  ["cvo_1","de cursist","student","l'étudiant","слухач курсів / учень","طالب في الدورة","🎓","Ik ben een cursist.","Я слухач курсів."],
+  ["cvo_2","de leraar / docent","teacher","le professeur","учитель / викладач","المعلم","👨‍🏫","De leraar spreekt duidelijk.","Учитель говорить чітко."],
+  ["cvo_3","het huiswerk","homework","les devoirs","домашнє завдання","الواجب المنزلي","📝","Ik maak mijn huiswerk.","Я роблю домашнє завдання."],
+  ["cvo_4","de pauze","break","la pause","перерва","الاستراحة","☕","Het is tijd voor pauze.","Час для перерви."],
+  ["cvo_5","het potlood","pencil","le crayon","олівець","قلم رصاص","✏️","Heb je een potlood?","У тебе є олівець?"],
+  ["cvo_6","de gom","eraser","la gomme","гумка для стирання","ممحاة",ERASER,"Mag ik de gom gebruiken?","Можна скористатися гумкою?"]
+ ]),
+ gemeente:R([
+  ["gem_1","het stadhuis / gemeentehuis","city hall","la maison communale","ратуша / муніципалітет","مبنى البلدية","🏛️","Ik ga naar het gemeentehuis.","Я йду до муніципалітету."],
+  ["gem_2","de identiteitskaart","ID card","la carte d'identité","посвідчення особи / ID-картка","بطاقة الهوية","🪪","Hier is mijn identiteitskaart.","Ось моє посвідчення особи."],
+  ["gem_3","het adres","address","l'adresse","адреса","العنوان","🏠","Wat is uw adres?","Яка Ваша адреса?"],
+  ["gem_4","het formulier","form","le formulaire","бланк / формуляр","استمارة / نموذج","📄","Vul dit formulier in.","Заповніть цей бланк."],
+  ["gem_5","de handtekening","signature","la signature","підпис","التوقيع","✍️","Zet hier uw handtekening.","Поставте тут свій підпис."]
+ ]),
+ doctor:R([
+  ["doc_1","de ziekte","illness","la maladie","хвороба","المرض","🤒","Ik ben ziek.","Я хворий / хвора."],
+  ["doc_2","de pijn","pain","la douleur","біль","الألم","🤕","Ik heb keelpijn.","У мене болить горло."],
+  ["doc_3","de koorts","fever","la fièvre","температура / лихоманка","الحمى / الحرارة","🌡️","Ik heb hoge koorts.","У мене висока температура."],
+  ["doc_4","de apotheek","pharmacy","la pharmacie","аптека","الصيدلية",KIT,"De apotheek is dicht.","Аптека зачинена."],
+  ["doc_5","het medicijn","medicine","le médicament","ліки / медикаменти","الدواء","💊","Neem dit medicijn elke dag.","Приймайте ці ліки щодня."]
+ ]),
+ shop:R([
+  ["sh_1","de winkelkar","shopping cart","le Caddie","візок для покупок","عربة التسوق","🛒","Neem een winkelkar.","Візьміть візок."],
+  ["sh_2","de kassa","checkout","la caisse","каса","الصندوق / الكاسا","💶","Betaal aan de kassa.","Розрахуйтеся на касі."],
+  ["sh_3","het bonnetje","receipt","le ticket de caisse","чек","الإيصال / الفاتورة","🧾","Wilt u het bonnetje?","Бажаєте чек?"],
+  ["sh_4","de korting","discount","la réduction","знижка","الخصم / التخفيض","🏷️","Er is 20% korting.","Діє знижка 20%."]
+ ]),
+ transport:R([
+  ["tr_1","het ticket","ticket","le billet","квиток","التذكرة","🎟️","Een ticket naar Brussel, alstublieft.","Квиток до Брюсселя, будь ласка."],
+  ["tr_2","de halte","bus stop","l'arrêt de bus","зупинка","موقف الحافلة","🚏","Waar is de bushalte?","Де автобусна зупинка?"],
+  ["tr_3","links","left","à gauche","ліворуч","يساراً","⬅️","Ga naar links.","Поверніть ліворуч."],
+  ["tr_4","rechts","right","à droite","праворуч","يميناً","➡️","Sla rechtsaf.","Поверніть праворуч."],
+  ["tr_5","rechtdoor","straight ahead","tout droit","прямо","إلى الأمام مباشرة","⬆️","Ga rechtdoor.","Ідіть прямо."]
+ ]),
+ weather:R([
+  ["w_1","de regen","rain","la pluie","дощ","المطر","🌧️","Er is veel regen vandaag.","Сьогодні сильний дощ."],
+  ["w_2","de zon","sun","le soleil","сонце","الشمس","☀️","De zon schijnt.","Сонце світить."],
+  ["w_3","koud","cold","froid","холодно","بارد","❄️","Het is heel koud buiten.","Надворі дуже холодно."],
+  ["w_4","warm","warm / hot","chaud","тепло / гаряче","دافئ / حار","🔥","Het is warm in de zomer.","Влітку тепло."],
+  ["d_1","maandag","Monday","lundi","понеділок","الاثنين","📅"],
+  ["d_2","dinsdag","Tuesday","mardi","вівторок","الثلاثاء","📅"],
+  ["d_3","woensdag","Wednesday","mercredi","середа","الأربعاء","📅"],
+  ["d_4","donderdag","Thursday","jeudi","четвер","الخميس","📅"],
+  ["d_5","vrijdag","Friday","vendredi","п'ятниця","الجمعة","📅"],
+  ["d_6","zaterdag","Saturday","samedi","субота","السبت","📅"],
+  ["d_7","zondag","Sunday","dimanche","неділя","الأحد","📅"]
+ ])
+};
+
+function validStored(key,allowed,fallback){try{const v=localStorage.getItem(key);return allowed.includes(v)?v:fallback}catch(e){return fallback}}
+function loadNumber(key,fallback){try{const n=Number(localStorage.getItem(key));return Number.isFinite(n)&&n>=0?n:fallback}catch(e){return fallback}}
+function loadStore(){try{const v=JSON.parse(localStorage.getItem("poly_progress")||"{}");return v&&typeof v==="object"?v:{}}catch(e){return {}}}
+
+let targetLang=validStored("poly_target",LANGS,"nl"),uiLang=validStored("poly_ui",UI_LANGS,"uk");
+if(targetLang===uiLang)uiLang="uk";
+let tab="questions",mode="quiz",deck=[],q=0,right=0,round=1,roundTotal=0,roundBase=0,locked=false,item=null;
+let score=loadNumber("poly_score",0),roundPoints=0,sessionIds=[],store=loadStore();
+
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e};
+const tgt=e=>{e.lang=targetLang;e.dir="ltr";return e};
+const iconBox=ic=>{const d=el("div","icon-box");d.setAttribute("aria-hidden","true");if(ic.startsWith("<svg"))d.innerHTML=ic;else d.textContent=ic;return d};
+function saveStore(){try{localStorage.setItem("poly_progress",JSON.stringify(store));localStorage.setItem("poly_score",String(score));localStorage.setItem("poly_target",targetLang);localStorage.setItem("poly_ui",uiLang)}catch(e){}}
+const getUI=()=>UI[uiLang]||UI.uk;
+const itemsFor=(k=tab)=>(DATA[k]&&DATA[k].items)||[];
+const labelFor=(it,lang=targetLang)=>String(it[lang]??it.nl??"");
+const meaningFor=it=>String(it[uiLang]??it.uk??it.nl??"");
+const artOf=it=>targetLang==="nl"?(it.art_nl||""):targetLang==="fr"?(it.art_fr||""):"";
+const shown=it=>(artOf(it)?artOf(it)+" ":"")+labelFor(it);
+function stateFor(id){if(!store[id])store[id]={seen:0,correct:0,wrong:0,streak:0,due:0,known:false};if(typeof store[id].streak!=="number")store[id].streak=0;return store[id]}
+const allItems=()=>Object.values(DATA).flatMap(d=>d.items);
+function dueItems(){const now=Date.now();return allItems().filter(x=>{const s=stateFor(x.id);return s.seen>0&&s.due<=now})}
+const learnedCount=()=>allItems().filter(x=>stateFor(x.id).known).length;
+function updateStats(){$("score").textContent="⭐ "+score;$("learnedCount").textContent=learnedCount();$("reviewCount").textContent=getUI().review+": "+dueItems().length}
+const visibleTabs=()=>Object.keys(DATA).filter(k=>!(k==="dehet"&&targetLang==="en"));
+function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+
+function updateHeader(){
+ const u=getUI();
+ $("tagline").textContent=u.tagline;$("targetLabel").textContent=u.target;$("uiLabel").textContent=u.ui;
+ $("welcomeTitle").textContent=u.welcome;$("welcomeText").textContent=u.welcomeText;$("progressLabel").textContent=u.learned;$("footText").textContent=u.footer;
+ $("targetLangPicker").value=targetLang;$("uiLangPicker").value=uiLang;
+ document.documentElement.lang=uiLang;
+ if(uiLang==="ar")document.documentElement.setAttribute("dir","rtl");else document.documentElement.removeAttribute("dir");
+ const dark=document.documentElement.dataset.theme==="dark";
+ $("themeToggle").textContent=dark?"☀️":"🌙";$("themeToggle").title=dark?u.light:u.dark;$("themeToggle").setAttribute("aria-label",dark?u.light:u.dark);
+ updateStats();updateModeButtons();
+}
+
+function buildTabs(){
+ const nav=$("tabs");nav.replaceChildren();const u=getUI();
+ visibleTabs().forEach(k=>{
+  const b=el("button","",(u.tabs[k]||k).replace(/^\d+\.\s*/,""));
+  b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",String(k===tab));
+  b.onclick=()=>{tab=k;buildTabs();newRound()};nav.appendChild(b);
+ });
+}
+function afterLangChange(){if(mode==="build"&&targetLang!=="nl")mode="quiz";if(!visibleTabs().includes(tab))tab="pronouns";saveStore();updateHeader();buildTabs();newRound()}
+function changeTargetLang(l){if(!LANGS.includes(l))return;targetLang=l;if(targetLang===uiLang)uiLang=targetLang==="en"?"uk":"en";afterLangChange()}
+function changeUiLang(l){if(!UI_LANGS.includes(l))return;uiLang=l;if(targetLang===uiLang)targetLang=uiLang==="en"?"nl":"en";afterLangChange()}
+
+function showSpeechNote(){const c=$("card");if(!c||$("speechNote"))return;const p=el("p","empty",getUI().noSpeech);p.id="speechNote";c.appendChild(p)}
+function say(text){
+ try{
+  if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){showSpeechNote();return}
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang={nl:"nl-BE",en:"en-GB",fr:"fr-BE"}[targetLang]||"nl-BE";u.rate=.86;
+  const voices=window.speechSynthesis.getVoices(),pre=u.lang.toLowerCase().split("-")[0];
+  const v=voices.find(x=>x.lang.toLowerCase()===u.lang.toLowerCase())||voices.find(x=>x.lang.toLowerCase().startsWith(pre));
+  if(v)u.voice=v;
+  u.onerror=e=>{if(!["interrupted","canceled","not-allowed"].includes(e.error))showSpeechNote()};
+  window.speechSynthesis.speak(u);
+ }catch(e){showSpeechNote()}
+}
+const spoken=()=>(tab==="dehet"&&mode!=="study"&&!locked)?labelFor(item):shown(item);
+
+function updateProgress(){
+ const pct=roundTotal?Math.round(Math.max(0,q-1)/roundTotal*100):0;
+ $("barfill").style.width=pct+"%";$("barfill").parentElement.setAttribute("aria-valuenow",String(pct));
+}
+
+function newRound(){
+ q=0;right=0;roundPoints=0;locked=false;sessionIds=[];
+ if(mode==="build"){SENT.forEach(x=>{x.again=false});deck=shuffle(SENT).slice(0,8).sort((a,b)=>b.q.length-a.q.length);roundBase=roundTotal=deck.length;nextQuestion();return}
+ let list=itemsFor();
+ if(mode==="review"){const ids=new Set(list.map(x=>x.id));list=dueItems().filter(x=>ids.has(x.id))}
+ if(!list.length){renderEmpty();return}
+ deck=shuffle(list).slice(0,PER_ROUND);roundTotal=deck.length;
+ nextQuestion();
+}
+
+function makeOptions(cur){
+ if(tab==="dehet"&&artOf(cur)){
+  const arts=targetLang==="nl"?["de","het"]:["le","la"];
+  return shuffle(arts.map(l=>({label:l,ok:l===artOf(cur),t:true})));
+ }
+ const f=mode==="audio"?meaningFor:labelFor,t=mode!=="audio",correct=f(cur),seen=new Set([correct]),out=[];
+ for(const x of shuffle(itemsFor().filter(x=>x.id!==cur.id))){
+  const v=f(x);
+  if(!seen.has(v)){seen.add(v);out.push({label:v,ok:false,c:x.c,t});if(out.length>=3)break}
+ }
+ out.push({label:correct,ok:true,c:cur.c,t});
+ return shuffle(out);
+}
+
+function nextQuestion(){
+ if(!deck.length){endRound();return}
+ if(mode==="build"){nextBuild();return}
+ locked=false;item=deck.pop();q++;sessionIds.push(item.id);
+ const u=getUI();
+ $("prog").textContent=u.lessonProgress+" "+q+" / "+roundTotal;
+ $("rnd").textContent=u.round+" "+round+" · "+u.modes[mode];
+ updateProgress();
+
+ const card=$("card");card.replaceChildren();
+ const top=el("div","q");
+ top.appendChild(el("small","",mode==="audio"?u.audioSub:mode==="study"?u.studySub:(u.subs[tab]||"")));
+ if(mode==="audio"){
+  top.appendChild(el("div","icon-box","🔊"));
+ }else{
+  if(item.icon)top.appendChild(iconBox(item.icon));
+  if(mode==="quiz"&&tab!=="dehet"){
+   top.appendChild(el("p","",meaningFor(item)));
+  }else{
+   top.appendChild(tgt(el("h2","",mode==="study"?shown(item):labelFor(item))));
+   if(mode==="quiz")top.appendChild(el("p","",meaningFor(item)));
+  }
+ }
+ const hear=el("button","listen",u.listen);hear.type="button";hear.onclick=()=>say(spoken());top.appendChild(hear);
+ card.appendChild(top);
+
+ if(mode==="study"){renderStudyControls(card);return}
+
+ const opts=el("div","opts");card.appendChild(opts);
+ const fb=el("div","feedback");fb.id="feedback";card.appendChild(fb);
+ const row=el("div","row");
+ const nx=el("button","btn primary",u.next);nx.type="button";nx.disabled=true;nx.id="nx";nx.onclick=nextQuestion;
+ row.appendChild(nx);card.appendChild(row);
+
+ makeOptions(item).forEach(o=>{
+  const b=el("button","opt");b.type="button";b.dataset.ok=o.ok?"1":"";
+  if(o.c){const sw=el("span","swatch");sw.style.background=o.c;b.appendChild(sw)}
+  const t=el("span","",o.label);if(o.t)tgt(t);b.appendChild(t);
+  b.onclick=()=>answer(o.ok,b);opts.appendChild(b);
+ });
+ if(mode==="audio")say(spoken());
+}
+
+function renderStudyControls(card){
+ const u=getUI(),fb=el("div","feedback");fb.id="feedback";
+ fb.appendChild(el("strong","",u.meaning+": "+meaningFor(item)));
+ if(item["ex_"+targetLang])fb.appendChild(tgt(el("p","example",item["ex_"+targetLang])));
+ if(item["ex_"+uiLang])fb.appendChild(el("p","",item["ex_"+uiLang]));
+ card.appendChild(fb);
+ const row=el("div","row");
+ const hear=el("button","btn",u.listen);hear.type="button";hear.onclick=()=>say(spoken());row.appendChild(hear);
+ const known=el("button","btn primary",u.markKnown);known.type="button";known.onclick=()=>{
+  const s=stateFor(item.id);s.seen++;s.correct++;s.streak++;s.known=s.streak>=2;s.due=Date.now()+864e5;
+  saveStore();updateStats();nextQuestion();
+ };row.appendChild(known);
+ const again=el("button","btn",u.markAgain);again.type="button";again.onclick=()=>{
+  const s=stateFor(item.id);s.seen++;s.wrong++;s.streak=0;s.known=false;s.due=Date.now();
+  saveStore();updateStats();nextQuestion();
+ };row.appendChild(again);card.appendChild(row);
+}
+
+function answer(ok,btn){
+ if(locked)return;locked=true;
+ const u=getUI(),s=stateFor(item.id);s.seen++;
+ if(ok){right++;roundPoints+=10;score+=10;s.correct++;s.streak++;s.due=Date.now()+(s.streak>=3?3:1)*864e5}
+ else{s.wrong++;s.streak=0;s.due=Date.now()}
+ s.known=s.streak>=2;
+ saveStore();updateStats();
+ document.querySelectorAll(".opt").forEach(b=>{b.disabled=true;if(b.dataset.ok==="1")b.classList.add("correct")});
+ if(!ok)btn.classList.add("incorrect");
+ const fb=$("feedback");fb.replaceChildren();
+ fb.appendChild(el("strong","",ok?u.correct:u.incorrect));
+ fb.appendChild(tgt(el("p","",shown(item))));
+ fb.appendChild(el("p","",meaningFor(item)));
+ const exK="ex_"+targetLang,trK="ex_"+uiLang;
+ if(item[exK])fb.appendChild(tgt(el("p","example",item[exK])));
+ if(item[trK])fb.appendChild(el("p","",item[trK]));
+ $("nx").disabled=false;say(item[exK]||shown(item));
+}
+
+function renderEmpty(){
+ const u=getUI();$("prog").textContent="";$("rnd").textContent="";roundTotal=0;q=0;updateProgress();
+ const card=$("card");card.replaceChildren();
+ card.appendChild(el("div","empty",mode==="review"?u.emptyReview:u.noItems));
+ const row=el("div","row"),btn=el("button","btn primary",u.quiz);btn.type="button";
+ btn.onclick=()=>{mode="quiz";updateModeButtons();newRound()};row.appendChild(btn);card.appendChild(row);
+}
+
+function endRound(){
+ const u=getUI();$("barfill").style.width="100%";$("barfill").parentElement.setAttribute("aria-valuenow","100");
+ const total=mode==="build"?roundBase:sessionIds.length,pct=total?Math.round(right/total*100):0,study=mode==="study";
+ const card=$("card");card.replaceChildren();const end=el("div","end");
+ end.appendChild(el("h2","",study?u.finished:right+" / "+total));
+ end.appendChild(el("p","",study?"":pct+"% "+u.accuracy));
+ const grid=el("div","summary-grid");
+ [[u.right,study?"—":right],[u.points,roundPoints],[u.learned,learnedCount()]].forEach(([l,v])=>{const d=el("div");d.append(el("strong","",v),el("span","",l));grid.appendChild(d)});
+ end.appendChild(grid);
+ const row=el("div","row");
+ const again=el("button","btn",u.again);again.type="button";again.onclick=newRound;row.appendChild(again);
+ const rev=el("button","btn",u.reviewMode);rev.type="button";rev.onclick=()=>{mode="review";updateModeButtons();newRound()};row.appendChild(rev);
+ const nt=el("button","btn primary",u.nextTopic);nt.type="button";nt.onclick=()=>{const k=visibleTabs();tab=k[(k.indexOf(tab)+1)%k.length];buildTabs();newRound()};if(mode!=="build")row.appendChild(nt);
+ end.appendChild(row);card.appendChild(end);round++;
+}
+
+const SENT=[
+ ["hoe|heet|je","QVS","Як тебе звати?","What is your name?","Comment tu t'appelles ?","ما اسمك؟"],
+ ["waar|woon|je","QVS","Де ти живеш?","Where do you live?","Où habites-tu ?","أين تسكن؟"],
+ ["wat|doe|je","QVS","Що ти робиш?","What are you doing?","Que fais-tu ?","ماذا تفعل؟"],
+ ["waar|ben|je","QVS","Де ти?","Where are you?","Où es-tu ?","أين أنت؟"],
+ ["hoe laat|is|het","QVS","Котра година?","What time is it?","Quelle heure est-il ?","كم الساعة؟"],
+ ["hoe|gaat|het","QVS","Як справи?","How is it going?","Comment ça va ?","كيف الحال؟"],
+ ["hoe|werkt|het","QVS","Як це працює?","How does it work?","Comment ça marche ?","كيف يعمل؟"],
+ ["waar|kom|je|vandaan","QVSR","Звідки ти?","Where are you from?","D'où viens-tu ?","من أين أنت؟","komt"],
+ ["wanneer|kom|je|thuis","QVSR","Коли ти приходиш додому?","When do you come home?","Quand rentres-tu ?","متى تعود إلى البيت؟","komt"],
+ ["wat|wil|je|drinken","QVSR","Що ти хочеш пити?","What do you want to drink?","Que veux-tu boire ?","ماذا تريد أن تشرب؟","willen"],
+ ["waarom|ben|je|boos","QVSR","Чому ти злий?","Why are you angry?","Pourquoi es-tu fâché ?","لماذا أنت غاضب؟","bent"],
+ ["waar|ga|je|heen","QVSR","Куди ти йдеш?","Where are you going?","Où vas-tu ?","إلى أين تذهب؟","gaat"],
+ ["wanneer|ben|je|jarig","QVSR","Коли в тебе день народження?","When is your birthday?","Quand est ton anniversaire ?","متى عيد ميلادك؟","bent"],
+ ["waarom|doe|je|dat","QVSR","Чому ти це робиш?","Why are you doing that?","Pourquoi fais-tu ça ?","لماذا تفعل ذلك؟","doet"]
+].map(r=>({q:r[0].split("|"),roles:r[1],uk:r[2],en:r[3],fr:r[4],ar:r[5],x:r[6],again:false}));
+let bAudio=false,bs=null;
+const sentence=s=>{const t=s.q.join(" ");return t[0].toUpperCase()+t.slice(1)+"?"};
+
+function nextBuild(){
+ locked=false;const s=deck.pop();q++;sessionIds.push("b"+q);
+ const tiles=shuffle(s.q.map(w=>({w})).concat(s.x?[{w:s.x}]:[]));
+ bs={s,tiles,slots:s.q.map(()=>null),stars:3,lock:false,done:false,bad:[]};
+ renderBuild();if(bAudio)say(sentence(s));
+}
+function placeTile(t){
+ if(bs.done||bs.lock)return;
+ const k=bs.slots.indexOf(null);if(k<0)return;
+ bs.slots[k]=t;afterPlace();
+}
+function clearSlot(k){if(bs.done||bs.lock||!bs.slots[k])return;bs.slots[k]=null;bs.bad=[];renderBuild()}
+function afterPlace(){if(bs.slots.every(Boolean))checkBuild();else renderBuild()}
+function checkBuild(){
+ const cur=bs,bad=cur.s.q.map((w,k)=>cur.slots[k].w===w?-1:k).filter(k=>k>=0);
+ if(!bad.length){finishBuild();return}
+ cur.stars=Math.max(1,cur.stars-1);cur.bad=bad;cur.lock=true;renderBuild();
+ setTimeout(()=>{if(bs!==cur||cur.done)return;bad.forEach(k=>{cur.slots[k]=null});cur.bad=[];cur.lock=false;renderBuild()},850);
+}
+function hintBuild(){
+ if(bs.done||bs.lock)return;
+ const {s,slots,tiles}=bs,k=s.q.findIndex((w,i)=>!slots[i]||slots[i].w!==w);if(k<0)return;
+ const t=tiles.find(x=>x.w===s.q[k]),j=slots.indexOf(t);if(j>=0)slots[j]=null;
+ slots[k]=t;bs.stars=Math.max(1,bs.stars-1);bs.bad=[];afterPlace();
+}
+function finishBuild(){
+ const cur=bs,s=cur.s;cur.done=true;locked=true;
+ if(!s.again){
+  const pts=cur.stars===3?10:cur.stars===2?7:4;score+=pts;roundPoints+=pts;
+  if(cur.stars===3)right++;else{s.again=true;deck.unshift(s);roundTotal++}
+  saveStore();updateStats();
+ }
+ renderBuild();say(sentence(s));
+}
+function renderBuild(){
+ const u=getUI(),s=bs.s;
+ $("prog").textContent=u.lessonProgress+" "+q+" / "+roundTotal;$("rnd").textContent=u.round+" "+round+" · "+u.build;updateProgress();
+ const card=$("card");card.replaceChildren();
+ const top=el("div","q");top.appendChild(el("small","",u.buildSub));
+ if(bAudio&&!bs.done)top.appendChild(el("div","icon-box","🔊"));else top.appendChild(el("h2","sm",s[uiLang]||s.en));
+ const tools=el("div","row");tools.style.justifyContent="center";
+ const hear=el("button","listen",u.listen);hear.type="button";hear.onclick=()=>say(sentence(s));
+ const ear=el("button","listen",(bAudio?"✓ ":"")+u.byEar);ear.type="button";
+ ear.onclick=()=>{bAudio=!bAudio;renderBuild();if(bAudio&&!bs.done)say(sentence(s))};
+ tools.append(hear,ear);top.appendChild(tools);card.appendChild(top);
+ const slots=el("div","slots");
+ s.roles.split("").forEach((r,k)=>{
+  const w=el("div","sw2 r"+r);w.appendChild(el("span","role",u.roles[r]));
+  const t=bs.slots[k],b=el("button","slot"+(t?" filled":"")+(bs.bad.includes(k)?" bad":"")+(bs.done?" good":""),t?t.w:"");
+  b.type="button";if(t)tgt(b);b.onclick=()=>clearSlot(k);w.appendChild(b);slots.appendChild(w);
+ });
+ card.appendChild(slots);
+ const bank=el("div","bank");
+ if(!bs.done)bs.tiles.filter(t=>!bs.slots.includes(t)).forEach(t=>{const b=el("button","opt tile",t.w);tgt(b);b.type="button";b.onclick=()=>placeTile(t);bank.appendChild(b)});
+ card.appendChild(bank);
+ const fb=el("div","feedback");fb.id="feedback";
+ if(bs.done){fb.appendChild(el("strong","","⭐".repeat(bs.stars)+" "+u.correct));fb.appendChild(tgt(el("p","example",sentence(s))));fb.appendChild(el("p","",s[uiLang]||s.en))}
+ card.appendChild(fb);
+ const row=el("div","row");
+ if(bs.done){const nx=el("button","btn primary",u.next);nx.type="button";nx.id="nx";nx.onclick=nextQuestion;row.appendChild(nx)}
+ else{const h=el("button","btn",u.hint);h.type="button";h.disabled=bs.lock;h.onclick=hintBuild;row.appendChild(h)}
+ card.appendChild(row);
+}
+
+function updateModeButtons(){
+ const u=getUI(),wrap=$("modeButtons");wrap.replaceChildren();$("tabs").hidden=mode==="build";
+ [["study",u.study],["quiz",u.quiz],["audio",u.audio]].concat(targetLang==="nl"?[["build",u.build]]:[],[["review",u.reviewMode]]).forEach(([m,label])=>{
+  const b=el("button","btn"+(m===mode?" primary":""),label);b.type="button";
+  b.onclick=()=>{mode=m;updateModeButtons();newRound()};wrap.appendChild(b);
+ });
+}
+
+$("targetLangPicker").addEventListener("change",e=>changeTargetLang(e.target.value));
+$("uiLangPicker").addEventListener("change",e=>changeUiLang(e.target.value));
+$("themeToggle").addEventListener("click",()=>{
+ const n=document.documentElement.dataset.theme==="dark"?"light":"dark";
+ document.documentElement.dataset.theme=n;
+ try{localStorage.setItem("poly_theme",n)}catch(e){}
+ updateHeader();
+});
+
+function start(){
+ try{
+  const t=localStorage.getItem("poly_theme");
+  if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;
+  else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";
+ }catch(e){}
+ updateHeader();buildTabs();newRound();
+}
+start();
+</script>
+</body>
+</html>
