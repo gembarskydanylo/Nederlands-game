@@ -6,101 +6,120 @@
 <meta name="theme-color" content="#F7F8FC">
 <title>Polyglot Leren — Nederlands A1.1</title>
 <style>
-:root{color-scheme:light;--bg:#F7F8FC;--fg:#20243A;--mut:#686F82;--card:#FFFFFF;--line:#E5E8F0;--acc:#4657D9;--acc-hover:#3545c4;--ok:#218653;--ok-bg:#EAF7EF;--bad:#C43D4B;--bad-bg:#FFF0F1;--soft:#EEF1FF;--shadow:0 8px 30px rgba(32,36,58,.06);--amb:#B7791F}
-:root[data-theme="dark"]{color-scheme:dark;--bg:#11131A;--fg:#F2F3FA;--mut:#A4A9BA;--card:#1C1F2A;--line:#303443;--acc:#8794FF;--acc-hover:#9EA8FF;--ok:#62D493;--ok-bg:#183728;--bad:#FF858D;--bad-bg:#3B2027;--soft:#282D4B;--shadow:0 8px 30px rgba(0,0,0,.18);--amb:#E5B567}
+:root{color-scheme:light;--bg:#F2F4F8;--fg:#1E2238;--mut:#656C85;--card:#FFFFFF;--line:#E2E6F0;--acc:#4657D9;--acc-hover:#3545c4;--ok:#1F8A53;--ok-bg:#EBF7F0;--bad:#D93D4A;--bad-bg:#FDF0F1;--soft:#EBF0FF;--shadow:0 4px 20px rgba(30,34,56,.05);--amb:#B7791F}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0F111A;--fg:#F0F2FA;--mut:#98A0B8;--card:#1A1D2A;--line:#2A2E40;--acc:#7B8BFF;--acc-hover:#93A0FF;--ok:#50D086;--ok-bg:#163324;--bad:#FF737C;--bad-bg:#381C23;--soft:#232845;--shadow:0 4px 20px rgba(0,0,0,.25);--amb:#E5B567}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{min-height:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.4system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
 button,select{font:inherit}
-button:focus-visible,select:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+button:focus-visible,select:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
 button{touch-action:manipulation}
-main{width:100%;max-width:760px;margin:0 auto;padding:16px 14px 28px;display:flex;flex-direction:column;gap:12px}
-header{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.brand h1{font-size:21px;line-height:1.2;margin:0;letter-spacing:-.04em}
-.brand p{margin:1px 0 0;color:var(--mut);font-size:12px}
+main{width:100%;max-width:720px;margin:0 auto;padding:12px 12px 24px;display:flex;flex-direction:column;gap:10px}
+
+/* Header */
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;background:var(--card);padding:10px 14px;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.brand h1{font-size:18px;line-height:1.1;margin:0;letter-spacing:-.03em;font-weight:800}
+.brand p{margin:2px 0 0;color:var(--mut);font-size:11px}
 .top-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.select-group{display:flex;align-items:center;gap:4px;color:var(--mut);font-size:12px}
-.lang-select,.theme-btn{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:10px;min-height:36px;padding:5px 8px;font-size:13px}
-.theme-btn{cursor:pointer;min-width:38px}
-.score-pill{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:6px 9px;font-size:13px;font-weight:700;white-space:nowrap}
-.hero{border-radius:16px;padding:10px 14px;background:linear-gradient(135deg,var(--soft),var(--card));border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.hero h2{margin:0 0 2px;font-size:18px;letter-spacing:-.03em}
-.hero p{margin:0;color:var(--mut);font-size:13px}
-.hero-stat{font-size:12px;color:var(--mut);text-align:right}
-.hero-stat strong{display:block;font-size:18px;color:var(--fg)}
+.select-group{display:flex;align-items:center;gap:3px;color:var(--mut);font-size:11px}
+.lang-select,.theme-btn{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:8px;min-height:32px;padding:3px 6px;font-size:12px;font-weight:600}
+.theme-btn{cursor:pointer;min-width:34px;text-align:center}
+.score-pill{border:1px solid var(--line);background:var(--soft);color:var(--acc);border-radius:8px;padding:4px 8px;font-size:12px;font-weight:800;white-space:nowrap}
 
-/* Навігація рівнів */
-.nav-cats,.nav-subs{display:flex;gap:5px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
-.nav-cats button,.nav-subs button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;color:var(--mut);cursor:pointer;white-space:nowrap;flex-shrink:0;font-size:13px;font-weight:600}
-.nav-cats button[aria-selected="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
-.nav-subs button[aria-selected="true"]{color:var(--fg);border-color:var(--acc);background:var(--soft);font-weight:700}
+/* Компактна статистика */
+.stats-bar{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:12px;color:var(--mut)}
+.stats-bar strong{color:var(--fg);font-weight:700}
 
-.meta{display:flex;justify-content:space-between;gap:8px;color:var(--mut);font-size:12px}
-.bar{height:4px;background:var(--line);border-radius:8px;overflow:hidden;margin-top:-8px}
+/* Секція блоку навігації */
+.nav-section{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+
+/* 1 Рівень: Розділи */
+.nav-cats{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.nav-cats::-webkit-scrollbar{display:none}
+.nav-cats button{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:7px 12px;color:var(--mut);cursor:pointer;white-space:nowrap;flex-shrink:0;font-size:13px;font-weight:700;transition:all .15s}
+.nav-cats button[aria-selected="true"]{background:var(--acc);color:#fff;border-color:var(--acc);box-shadow:0 3px 10px rgba(70,87,217,.3)}
+
+/* 2 Рівень: Підрозділи */
+.sub-wrapper{background:var(--bg);border-radius:10px;padding:4px;border:1px solid var(--line)}
+.nav-subs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-subs::-webkit-scrollbar{display:none}
+.nav-subs button{background:transparent;border:0;border-radius:7px;padding:6px 10px;color:var(--mut);cursor:pointer;white-space:nowrap;flex-shrink:0;font-size:12px;font-weight:600;transition:all .15s}
+.nav-subs button[aria-selected="true"]{background:var(--card);color:var(--fg);box-shadow:0 2px 6px rgba(0,0,0,.08);font-weight:750}
+
+/* 3 Рівень: Режими гри (Сегментована перемикачка) */
+.modes-wrapper{background:var(--line);border-radius:10px;padding:3px;display:flex;gap:3px;margin-top:2px}
+.modes-wrapper button{flex:1;background:transparent;border:0;border-radius:7px;padding:6px 4px;color:var(--mut);font-size:12px;font-weight:700;cursor:pointer;text-align:center;white-space:nowrap;transition:all .15s}
+.modes-wrapper button.primary{background:var(--card);color:var(--acc);box-shadow:0 2px 5px rgba(0,0,0,.08)}
+
+/* Мета-інформація та Прогрес-бар */
+.meta{display:flex;justify-content:space-between;gap:8px;color:var(--mut);font-size:11px;font-weight:600;padding:0 2px}
+.bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .25s}
+
+/* Картка завдань */
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;min-width:0}
 .q{text-align:center}
-.q small{color:var(--mut);font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
-.icon-box{font-size:44px;margin:6px 0 2px;line-height:1}
-.q h2{font-size:clamp(22px,5vw,32px);font-weight:750;margin:4px 0 2px;letter-spacing:-.04em;overflow-wrap:anywhere}
-.q p{margin:0;color:var(--mut);font-size:14px}
-.listen{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:20px;padding:6px 12px;font-size:13px;cursor:pointer;margin-top:6px;min-height:36px}
+.q small{color:var(--mut);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:800}
+.icon-box{font-size:42px;margin:4px 0 0;line-height:1}
+.q h2{font-size:clamp(20px,4.5vw,28px);font-weight:800;margin:4px 0 2px;letter-spacing:-.03em;overflow-wrap:anywhere}
+.q p{margin:0;color:var(--mut);font-size:13px}
+.listen{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:18px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;margin-top:6px;min-height:34px}
 .listen:hover,.btn:hover,.opt:hover:not(:disabled){border-color:var(--acc)}
+
 .opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:10px 8px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:48px;overflow-wrap:anywhere}
+.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:12px;padding:8px 6px;font-size:13.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:46px;overflow-wrap:anywhere}
 .opt:active{transform:scale(.985)}
 .opt.correct{border-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
 .opt.incorrect{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
 .opt:disabled{cursor:default}
-.swatch{width:14px;height:14px;border-radius:50%;border:1px solid var(--line);flex-shrink:0}
-.feedback{border-radius:12px;padding:8px 10px;text-align:center;background:var(--bg)}
+.swatch{width:12px;height:12px;border-radius:50%;border:1px solid var(--line);flex-shrink:0}
+
+.feedback{border-radius:10px;padding:8px 10px;text-align:center;background:var(--bg)}
 .feedback:empty{display:none}
-.feedback strong{display:block;font-size:15px}
-.feedback p{margin:2px 0 0;color:var(--mut);font-size:13px}
-.feedback .example{margin-top:4px;color:var(--fg)}
+.feedback strong{display:block;font-size:14px}
+.feedback p{margin:2px 0 0;color:var(--mut);font-size:12px}
+.feedback .example{margin-top:4px;color:var(--fg);font-weight:600}
+
 .row{display:flex;gap:8px;flex-wrap:wrap}
-.btn{flex:1;min-width:120px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);font-weight:650;cursor:pointer;text-align:center;min-height:42px;font-size:14px}
-.modes{flex-wrap:nowrap;overflow-x:auto;gap:5px;scrollbar-width:none}
-.modes .btn{flex:1 0 auto;min-width:0;min-height:36px;padding:6px 10px;font-size:12.5px}
+.btn{flex:1;min-width:100px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);font-weight:700;cursor:pointer;text-align:center;min-height:40px;font-size:13px}
 .btn.primary{background:var(--acc);border-color:var(--acc);color:#fff}
 .btn.primary:hover{background:var(--acc-hover)}
-.end{text-align:center;display:flex;flex-direction:column;gap:12px}
-.end h2{font-size:36px;margin:0;letter-spacing:-.04em}
+
+.end{text-align:center;display:flex;flex-direction:column;gap:10px}
+.end h2{font-size:32px;margin:0;letter-spacing:-.04em}
 .end p{color:var(--mut);margin:0}
 .summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-.summary-grid div{padding:8px 4px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
-.summary-grid strong{display:block;font-size:18px}
-.summary-grid span{font-size:11px;color:var(--mut)}
+.summary-grid div{padding:8px 4px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.summary-grid strong{display:block;font-size:16px}
+.summary-grid span{font-size:10px;color:var(--mut)}
 .empty{color:var(--mut);text-align:center;padding:10px;font-size:13px}
-footer{text-align:center;color:var(--mut);font-size:11px}
-.q h2.sm{font-size:20px;letter-spacing:-.02em}
-.slots,.bank{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;direction:ltr}
-.bank{min-height:44px}
+footer{text-align:center;color:var(--mut);font-size:10px;margin-top:4px}
+
+.q h2.sm{font-size:18px;letter-spacing:-.02em}
+.slots,.bank{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;direction:ltr}
+.bank{min-height:40px}
 .sw2{display:flex;flex-direction:column;align-items:center;gap:2px}
 .sw2.rQ{--rc:var(--acc)}.sw2.rV{--rc:var(--ok)}.sw2.rS{--rc:var(--amb)}.sw2.rR{--rc:var(--mut)}
-.role{font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;color:var(--rc)}
-.slot{min-width:62px;min-height:42px;padding:6px 8px;border-radius:10px;border:1px dashed var(--line);border-bottom:3px solid var(--rc);background:var(--bg);color:var(--fg);font:inherit;font-weight:600;font-size:14px;cursor:pointer}
+.role{font-size:9px;letter-spacing:.05em;text-transform:uppercase;font-weight:800;color:var(--rc)}
+.slot{min-width:54px;min-height:38px;padding:4px 6px;border-radius:8px;border:1px dashed var(--line);border-bottom:3px solid var(--rc);background:var(--bg);color:var(--fg);font:inherit;font-weight:600;font-size:13px;cursor:pointer}
 .slot.filled{border-style:solid}
 .slot.bad{border-color:var(--bad);border-bottom-color:var(--bad);color:var(--bad);background:var(--bad-bg);animation:shake .3s}
 .slot.good{border-color:var(--ok);border-bottom-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
-.tile{min-height:40px;padding:7px 11px;font-size:14.5px}
+.tile{min-height:36px;padding:6px 9px;font-size:13.5px}
 @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
-html[dir="rtl"] .hero-stat{text-align:left}
 
 @media(max-width:480px){
- main{padding:10px 10px 20px;gap:10px}
- .brand h1{font-size:18px}
- .top-right{width:100%;justify-content:space-between}
- .hero{padding:8px 12px;border-radius:12px}.hero>div:first-child{display:none}
- .hero-stat{display:flex;gap:6px;align-items:baseline;justify-content:space-between;width:100%;text-align:left;font-size:11px}
- .hero-stat strong{display:inline;font-size:15px}
- .modes{flex-wrap:wrap;overflow:visible}.modes .btn{flex:1 1 30%;padding:6px 4px;min-height:34px;font-size:12px}
- .card{padding:14px 10px;gap:10px}
- .opts{gap:6px}
- .opt{font-size:13.5px;padding:8px 4px;min-height:44px}
- .slot{min-width:56px;min-height:38px;padding:4px 6px;font-size:13px}
- .tile{min-height:36px;padding:6px 9px;font-size:13.5px}
+ main{padding:8px 8px 18px;gap:8px}
+ header{padding:8px 10px}
+ .brand h1{font-size:16px}
+ .top-right{width:100%;justify-content:space-between;margin-top:2px}
+ .nav-section{padding:6px;gap:6px;border-radius:14px}
+ .nav-cats button{padding:6px 10px;font-size:12px}
+ .nav-subs button{padding:5px 8px;font-size:11.5px}
+ .modes-wrapper button{padding:5px 2px;font-size:11px}
+ .card{padding:12px 10px;gap:10px;border-radius:14px}
+ .opt{font-size:13px;padding:6px 4px;min-height:42px}
 }
 </style>
 </head>
@@ -124,16 +143,26 @@ html[dir="rtl"] .hero-stat{text-align:left}
     </div>
   </header>
 
-  <section class="hero">
-    <div><h2 id="welcomeTitle"></h2><p id="welcomeText"></p></div>
-    <div class="hero-stat"><span id="progressLabel"></span><strong id="learnedCount">0</strong><span id="reviewCount"></span></div>
-  </section>
+  <!-- Компактний рядок статистики замість великої плашки -->
+  <div class="stats-bar">
+    <span><span id="progressLabel"></span>: <strong id="learnedCount">0</strong></span>
+    <span id="reviewCount"></span>
+  </div>
 
-  <!-- Двоступенева навігація -->
-  <nav class="nav-cats" id="catNav" aria-label="Categories"></nav>
-  <nav class="nav-subs" id="subNav" aria-label="Subtopics"></nav>
+  <!-- Єдиний структурований блок для навігації -->
+  <div class="nav-section">
+    <!-- 1 Рівень: Головні Розділи -->
+    <nav class="nav-cats" id="catNav" aria-label="Categories"></nav>
+    
+    <!-- 2 Рівень: Підрозділи -->
+    <div class="sub-wrapper">
+      <nav class="nav-subs" id="subNav" aria-label="Subtopics"></nav>
+    </div>
 
-  <div class="row modes" id="modeButtons"></div>
+    <!-- 3 Рівень: Перемикач режимів -->
+    <div class="modes-wrapper" id="modeButtons"></div>
+  </div>
+
   <div class="meta"><span id="prog"></span><span id="rnd"></span></div>
   <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="barfill"></i></div>
   <section class="card" id="card" aria-live="polite"></section>
@@ -146,29 +175,28 @@ const $=id=>document.getElementById(id);
 const LANGS=["nl","en","fr"],UI_LANGS=["uk","en","fr","ar"],PER_ROUND=10;
 
 const UI={
- uk:{build:"Складання",studySub:"Запам'ятай слово",buildSub:"Склади питання з карток",byEar:"🎧 На слух",hint:"💡 Підказка",roles:{Q:"питання",V:"дієслово",S:"підмет",R:"решта"},tagline:"Нідерландська мова • Рівень A1.1",target:"Вчу",ui:"Пояснення",welcome:"Курс повторення A1.1",welcomeText:"Базовий словник для життя та навчання в Бельгії.",learned:"Вивчені слова",review:"До повторення",round:"Раунд",listen:"🔊 Прослухати",next:"Далі",study:"Вивчати",quiz:"Тест",audio:"Аудіювання",reviewMode:"Повторення",correct:"Правильно! Чудова робота.",incorrect:"Не зовсім. Правильна відповідь:",meaning:"Переклад",noSpeech:"Озвучування недоступне або немає голосу для цієї мови.",nextTopic:"Наступна тема",again:"Ще раз",accuracy:"точність",finished:"Раунд завершено!",points:"Балів за раунд",right:"Правильні",emptyReview:"Поки немає слів для повторення. Пройди тест, щоб додати слова.",noItems:"У цій темі поки немає слів.",footer:"Тренажер для вивчення та повторення мови A1.1.",light:"Світла тема",dark:"Темна тема",markKnown:"Знаю це",markAgain:"Повторити пізніше",correctWord:"Правильна відповідь",lessonProgress:"Питання",all:"Усе",
+ uk:{build:"Складання",studySub:"Запам'ятай слово",buildSub:"Склади питання з карток",byEar:"🎧 На слух",hint:"💡 Підказка",roles:{Q:"питання",V:"дієслово",S:"підмет",R:"решта"},tagline:"Нідерландська мова • Рівень A1.1",target:"Вчу",ui:"Пояснення",learned:"Вивчено",review:"До повторення",round:"Раунд",listen:"🔊 Прослухати",next:"Далі",study:"Вивчати",quiz:"Тест",audio:"Аудіювання",reviewMode:"Повторити",correct:"Правильно! Чудова робота.",incorrect:"Не зовсім. Правильна відповідь:",meaning:"Переклад",noSpeech:"Озвучування недоступне або немає голосу для цієї мови.",nextTopic:"Наступна тема",again:"Ще раз",accuracy:"точність",finished:"Раунд завершено!",points:"Балів за раунд",right:"Правильні",emptyReview:"Поки немає слів для повторення. Пройди тест, щоб додати слова.",noItems:"У цій темі поки немає слів.",footer:"Тренажер для вивчення та повторення мови A1.1.",light:"Світла тема",dark:"Темна тема",markKnown:"Знаю це",markAgain:"Повторити пізніше",correctWord:"Правильна відповідь",lessonProgress:"Питання",all:"Усе",
   cats:{comm:"🗣 Спілкування",grammar:"📘 Граматика",nums:"🔢 Числа й час",people:"👨‍👩‍👧 Люди та здоров'я",home:"🏠 Дім і речі",city:"🏙 Місто та послуги"},
   tabs:{phrases:"Фрази та привітання",questions:"Питання",pronouns:"Займенники",verbs:"Дієслова",dehet:"Артиклі (de/het)",adjectives:"Прикметники",numbers:"Числа",time:"Час",months:"Місяці",weather:"Погода й дні",family:"Сім'я",jobs:"Професії",body:"Тіло",doctor:"Лікар та аптека",home:"Дім і кімнати",shop:"Покупки та продукти",clothes:"Одяг",colors:"Кольори",animals:"Тварини",city:"Місто та місця",transport:"Транспорт",gemeente:"Муніципалітет",cvo:"Школа (CVO)"},
   subs:{phrases:"Обери правильну фразу",questions:"Що означає це запитальне слово?",pronouns:"Обери переклад займенника",verbs:"Обери переклад дієслова",dehet:"Обери правильний артикль",adjectives:"Обери переклад слова",numbers:"Обери слово для числа",time:"Обери правильне слово",months:"Обери назву місяця",weather:"Погода, дні та час",family:"Хто це в родині?",jobs:"Обери професію",body:"Подивись на іконку та обери слово",doctor:"Обери правильну назву",home:"Подивись на іконку та обери слово",shop:"Супермаркет, продукти та фрази",clothes:"Подивись на іконку та обери слово",colors:"Подивись на колір і обери слово",animals:"Подивись на іконку та обери слово",city:"Подивись на іконку та обери слово",transport:"Орієнтування та транспорт",gemeente:"Подивись на іконку та обери слово",cvo:"Подивись на іконку та обери слово"},
   modes:{study:"Вивчення",quiz:"Тест",audio:"Аудіювання",review:"Повторення"},audioSub:"Послухай і обери переклад"},
- en:{build:"Build",studySub:"Learn this word",buildSub:"Build the question from the tiles",byEar:"🎧 By ear",hint:"💡 Hint",roles:{Q:"question",V:"verb",S:"subject",R:"rest"},tagline:"Dutch Language • Level A1.1",target:"Learn",ui:"Explain in",welcome:"Review Course A1.1",welcomeText:"Basic vocabulary for living and studying in Belgium.",learned:"Learned words",review:"Due to review",round:"Round",listen:"🔊 Listen",next:"Next",study:"Study",quiz:"Quiz",audio:"Listening",reviewMode:"Review",correct:"Correct! Great job.",incorrect:"Not quite. The correct answer is:",meaning:"Translation",noSpeech:"Speech is unavailable or there is no voice for this language.",nextTopic:"Next topic",again:"Try again",accuracy:"accuracy",finished:"Round complete!",points:"Points this round",right:"Correct",emptyReview:"No words to review yet. Take a quiz to add words.",noItems:"There are no words in this topic yet.",footer:"Language trainer for A1.1 level.",light:"Light mode",dark:"Dark mode",markKnown:"I know this",markAgain:"Review later",correctWord:"Correct answer",lessonProgress:"Question",all:"All",
+ en:{build:"Build",studySub:"Learn this word",buildSub:"Build the question from the tiles",byEar:"🎧 By ear",hint:"💡 Hint",roles:{Q:"question",V:"verb",S:"subject",R:"rest"},tagline:"Dutch Language • Level A1.1",target:"Learn",ui:"Explain in",learned:"Learned",review:"To review",round:"Round",listen:"🔊 Listen",next:"Next",study:"Study",quiz:"Quiz",audio:"Listening",reviewMode:"Review",correct:"Correct! Great job.",incorrect:"Not quite. The correct answer is:",meaning:"Translation",noSpeech:"Speech is unavailable or there is no voice for this language.",nextTopic:"Next topic",again:"Try again",accuracy:"accuracy",finished:"Round complete!",points:"Points this round",right:"Correct",emptyReview:"No words to review yet. Take a quiz to add words.",noItems:"There are no words in this topic yet.",footer:"Language trainer for A1.1 level.",light:"Light mode",dark:"Dark mode",markKnown:"I know this",markAgain:"Review later",correctWord:"Correct answer",lessonProgress:"Question",all:"All",
   cats:{comm:"🗣 Communication",grammar:"📘 Grammar",nums:"🔢 Numbers & Time",people:"👨‍👩‍👧 People & Health",home:"🏠 Home & Things",city:"🏙 City & Services"},
   tabs:{phrases:"Phrases & greetings",questions:"Questions",pronouns:"Pronouns",verbs:"Verbs",dehet:"Articles (de/het)",adjectives:"Adjectives",numbers:"Numbers",time:"Time",months:"Months",weather:"Weather & Days",family:"Family",jobs:"Jobs",body:"Body",doctor:"Doctor & Pharmacy",home:"Home & rooms",shop:"Shopping & Groceries",clothes:"Clothes",colors:"Colours",animals:"Animals",city:"City & places",transport:"Transport",gemeente:"Municipality",cvo:"School (CVO)"},
-  subs:{phrases:"Choose the right phrase",questions:"What does this question word mean?",pronouns:"Choose the pronoun translation",verbs:"Choose the verb translation",dehet:"Choose the correct article",adjectives:"Choose the translation",numbers:"Choose the word for the number",time:"Choose the right word",months:"Choose the month",weather:"Weather, days and time",family:"Who is this inة family?",jobs:"Choose the job",body:"Look at the icon and choose the word",doctor:"Doctor's appointment & health",home:"Look at the icon and choose the word",shop:"Supermarket, groceries and phrases",clothes:"Look at the icon and choose the word",colors:"Look at the colour and choose the word",animals:"Look at the icon and choose the word",city:"Look at the icon and choose the word",transport:"Transport and directions",gemeente:"Look at the icon and choose the word",cvo:"Look at the icon and choose the word"},
+  subs:{phrases:"Choose the right phrase",questions:"What does this question word mean?",pronouns:"Choose the pronoun translation",verbs:"Choose the verb translation",dehet:"Choose the correct article",adjectives:"Choose the translation",numbers:"Choose the word for the number",time:"Choose the right word",months:"Choose the month",weather:"Weather, days and time",family:"Who is this in family?",jobs:"Choose the job",body:"Look at the icon and choose the word",doctor:"Doctor's appointment & health",home:"Look at the icon and choose the word",shop:"Supermarket, groceries and phrases",clothes:"Look at the icon and choose the word",colors:"Look at the colour and choose the word",animals:"Look at the icon and choose the word",city:"Look at the icon and choose the word",transport:"Transport and directions",gemeente:"Look at the icon and choose the word",cvo:"Look at the icon and choose the word"},
   modes:{study:"Study",quiz:"Quiz",audio:"Listening",review:"Review"},audioSub:"Listen and choose the translation"},
- fr:{build:"Construire",studySub:"Apprends ce mot",buildSub:"Construis la question avec les cartes",byEar:"🎧 À l'oreille",hint:"💡 Indice",roles:{Q:"question",V:"verbe",S:"sujet",R:"reste"},tagline:"Néerlandais • Niveau A1.1",target:"J'apprends",ui:"Explications",welcome:"Cours de révision A1.1",welcomeText:"Vocabulaire de base pour vivre et étudier en Belgique.",learned:"Mots appris",review:"À réviser",round:"Tour",listen:"🔊 Écouter",next:"Suivant",study:"Apprendre",quiz:"Quiz",audio:"Écoute",reviewMode:"Révision",correct:"Correct ! Bravo.",incorrect:"Pas tout à fait. La bonne réponse est :",meaning:"Traduction",noSpeech:"La synthèse vocale est indisponible ou il n'y a pas de voix pour cette langue.",nextTopic:"Sujet suivant",again:"Recommencer",accuracy:"précision",finished:"Tour terminé !",points:"Points de ce tour",right:"Correctes",emptyReview:"Aucun mot à réviser. Fais un quiz pour ajouter des mots.",noItems:"Il n'y a pas encore de mots dans ce thème.",footer:"Application de révision niveau A1.1.",light:"Mode clair",dark:"Mode sombre",markKnown:"Je connais",markAgain:"À réviser",correctWord:"Bonne réponse",lessonProgress:"Question",all:"Tout",
+ fr:{build:"Construire",studySub:"Apprends ce mot",buildSub:"Construis la question avec les cartes",byEar:"🎧 À l'oreille",hint:"💡 Indice",roles:{Q:"question",V:"verbe",S:"sujet",R:"reste"},tagline:"Néerlandais • Niveau A1.1",target:"J'apprends",ui:"Explications",learned:"Appris",review:"À réviser",round:"Tour",listen:"🔊 Écouter",next:"Suivant",study:"Apprendre",quiz:"Quiz",audio:"Écoute",reviewMode:"Révision",correct:"Correct ! Bravo.",incorrect:"Pas tout à fait. La bonne réponse est :",meaning:"Traduction",noSpeech:"La synthèse vocale est indisponible ou il n'y a pas de voix pour cette langue.",nextTopic:"Sujet suivant",again:"Recommencer",accuracy:"précision",finished:"Tour terminé !",points:"Points de ce tour",right:"Correctes",emptyReview:"Aucun mot à réviser. Fais un quiz pour ajouter des mots.",noItems:"Il n'y a pas encore de mots dans ce thème.",footer:"Application de révision niveau A1.1.",light:"Mode clair",dark:"Mode sombre",markKnown:"Je connais",markAgain:"À réviser",correctWord:"Bonne réponse",lessonProgress:"Question",all:"Tout",
   cats:{comm:"🗣 Communication",grammar:"📘 Grammaire",nums:"🔢 Nombres & Temps",people:"👨‍👩‍👧 Personnes & Santé",home:"🏠 Maison & Objets",city:"🏙 Ville & Services"},
   tabs:{phrases:"Phrases & salutations",questions:"Questions",pronouns:"Pronoms",verbs:"Verbes",dehet:"Articles (de/het)",adjectives:"Adjectifs",numbers:"Nombres",time:"Temps",months:"Mois",weather:"Météo & Jours",family:"Famille",jobs:"Métiers",body:"Corps",doctor:"Médecin",home:"Maison & pièces",shop:"Achats & Courses",clothes:"Vêtements",colors:"Couleurs",animals:"Animaux",city:"Ville & lieux",transport:"Transports",gemeente:"Commune",cvo:"École (CVO)"},
   subs:{phrases:"Choisis la bonne expression",questions:"Que signifie ce mot interrogatif ?",pronouns:"Choisis la traduction du pronom",verbs:"Choisis la traduction du verbe",dehet:"Choisis le bon article",adjectives:"Choisis la traduction",numbers:"Choisis le mot du nombre",time:"Choisis le bon mot",months:"Choisis le mois",weather:"Météo, jours et temps",family:"Qui est-ce dans la famille ?",jobs:"Choisis le métier",body:"Regarde l'icône et choisis le mot",doctor:"Rendez-vous médical et santé",home:"Regarde l'icône et choisis le mot",shop:"Supermarché, courses et phrases",clothes:"Regarde l'icône et choisis le mot",colors:"Regarde la couleur et choisis le mot",animals:"Regarde l'icône et choisis le mot",city:"Regarde l'icône et choisis le mot",transport:"Transports et directions",gemeente:"Regarde l'icône et choisis le mot",cvo:"Regarde l'icône et choisis le mot"},
   modes:{study:"Apprendre",quiz:"Quiz",audio:"Écoute",review:"Révision"},audioSub:"Écoute et choisis la traduction"},
- ar:{build:"تركيب",studySub:"تعلّم هذه الكلمة",buildSub:"ركّب السؤال من البطاقات",byEar:"🎧 بالسمع",hint:"💡 تلميح",roles:{Q:"سؤال",V:"فعل",S:"فاعل",R:"البقية"},tagline:"اللغة الهولندية • المستوى A1.1",target:"أتعلّم",ui:"الشرح بـ",welcome:"دورة مراجعة A1.1",welcomeText:"مفردات أساسية للحياة والدراسة في بلجيكا.",learned:"الكلمات المتعلمة",review:"للمراجعة",round:"جولة",listen:"🔊 استمع",next:"التالي",study:"دراسة",quiz:"اختبار",audio:"استماع",reviewMode:"مراجعة",correct:"صحيح! عمل ممتاز.",incorrect:"ليس تماماً. الإجابة الصحيحة:",meaning:"الترجمة",noSpeech:"الصوت غير متاح أو لا يوجد صوت لهذه اللغة.",nextTopic:"الموضوع التالي",again:"مرة أخرى",accuracy:"الدقة",finished:"اكتملت الجولة!",points:"النقاط هذه الجولة",right:"صحيح",emptyReview:"لا توجد كلمات للمراجعة بعد. قم بإجراء اختبار لإضافة كلمات.",noItems:"لا توجد كلمات في هذا الموضوع بعد.",footer:"تطبيق لتعلم ومراجعة اللغة المستوى A1.1.",light:"الوضع الفاتح",dark:"الوضع الداكن",markKnown:"أعرف هذا",markAgain:"مراجعة لاحقاً",correctWord:"الإجابة الصحيحة",lessonProgress:"سؤال",all:"الكل",
+ ar:{build:"تركيب",studySub:"تعلّم هذه الكلمة",buildSub:"ركّب السؤال من البطاقات",byEar:"🎧 بالسمع",hint:"💡 تلميح",roles:{Q:"سؤال",V:"فعل",S:"فاعل",R:"البقية"},tagline:"اللغة الهولندية • المستوى A1.1",target:"أتعلّم",ui:"الشرح بـ",learned:"المتعلمة",review:"للمراجعة",round:"جولة",listen:"🔊 استمع",next:"التالي",study:"دراسة",quiz:"اختبار",audio:"استماع",reviewMode:"مراجعة",correct:"صحيح! عمل ممتاز.",incorrect:"ليس تماماً. الإجابة الصحيحة:",meaning:"الترجمة",noSpeech:"الصوت غير متاح أو لا يوجد صوت لهذه اللغة.",nextTopic:"الموضوع التالي",again:"مرة أخرى",accuracy:"الدقة",finished:"اكتملت الجولة!",points:"النقاط هذه الجولة",right:"صحيح",emptyReview:"لا توجد كلمات للمراجعة بعد. قم بإجراء اختبار لإضافة كلمات.",noItems:"لا توجد كلمات في هذا الموضوع بعد.",footer:"تطبيق لتعلم ومراجعة اللغة المستوى A1.1.",light:"الوضع الفاتح",dark:"الوضع الداكن",markKnown:"أعرف هذا",markAgain:"مراجعة لاحقاً",correctWord:"الإجابة الصحيحة",lessonProgress:"سؤال",all:"الكل",
   cats:{comm:"🗣 التواصل",grammar:"📘 القواعد",nums:"🔢 الأرقام والوقت",people:"👨‍👩‍👧 الناس والصحة",home:"🏠 البيت والأشياء",city:"🏙 المدينة والخدمات"},
   tabs:{phrases:"عبارات وتحيات",questions:"الأسئلة",pronouns:"الضمائر",verbs:"الأفعال",dehet:"أدوات التعريف",adjectives:"الصفات",numbers:"الأعداد",time:"الوقت",months:"الشهور",weather:"الطقس والأيام",family:"العائلة",jobs:"المهن",body:"الجسم",doctor:"الطبيب والصيدلية",home:"البيت والغرف",shop:"التسوق والمواد الغذائية",clothes:"الملابس",colors:"الألوان",animals:"الحيوانات",city:"المدينة والأماكن",transport:"المواصلات",gemeente:"البلدية",cvo:"المدرسة (CVO)"},
-  subs:{phrases:"اختر العبارة الصحيحة",questions:"ماذا تعني كلمة الاستفهام هذه؟",pronouns:"اختر ترجمة الضمير",verbs:"اختر ترجمة الفعل",dehet:"اختر أداة التعريف الصحيحة",questions:"ماذا تعني كلمة الاستفهام هذه؟",adjectives:"اختر الترجمة",numbers:"اختر كلمة العدد",time:"اختر الكلمة الصحيحة",months:"اختر الشهر",weather:"الطقس والأيام والوقت",family:"من هذا في العائلة؟",jobs:"اختر المهنة",body:"انظر إلى الأيقونة واختر الكلمة",doctor:"موعد الطبيب والصحة",home:"انظر إلى الأيقونة واختر الكلمة",shop:"السوبرماركت والمنتجات والعبارات",clothes:"انظر إلى الأيقونة واختر الكلمة",colors:"انظر إلى اللون واختر الكلمة",animals:"انظر إلى الأيقونة واختر الكلمة",city:"انظر إلى الأيقونة واختر الكلمة",transport:"المواصلات والاتجاهات",gemeente:"انظر إلى الأيقونة واختر الكلمة",cvo:"انظر إلى الأيقونة واختر الكلمة"},
+  subs:{phrases:"اختر العبارة الصحيحة",questions:"ماذا تعني كلمة الاستفهام هذه؟",pronouns:"اختر ترجمة الضمير",verbs:"اختر ترجمة الفعل",dehet:"اختر أداة التعريف الصحيحة",adjectives:"اختر الترجمة",numbers:"اختر كلمة العدد",time:"اختر الكلمة الصحيحة",months:"اختر الشهر",weather:"الطقس والأيام والوقت",family:"من هذا في العائلة؟",jobs:"اختر المهنة",body:"انظر إلى الأيقونة واختر الكلمة",doctor:"موعد الطبيب والصحة",home:"انظر إلى الأيقونة واختر الكلمة",shop:"السوبرماركت والمنتجات والعبارات",clothes:"انظر إلى الأيقونة واختر الكلمة",colors:"انظر إلى اللون واختر الكلمة",animals:"انظر إلى الأيقونة واختر الكلمة",city:"انظر إلى الأيقونة واختر الكلمة",transport:"المواصلات والاتجاهات",gemeente:"انظر إلى الأيقونة واختر الكلمة",cvo:"انظر إلى الأيقونة واختر الكلمة"},
   modes:{study:"دراسة",quiz:"اختبار",audio:"استماع",review:"مراجعة"},audioSub:"استمع واختر الترجمة"}
 };
 
-// Структура категорій (6 розділів)
 const CATEGORIES=[
  {id:"comm", tabs:["phrases", "questions", "pronouns"]},
  {id:"grammar", tabs:["verbs", "dehet", "adjectives"]},
@@ -208,7 +236,7 @@ const DATA={
   ["art_afspraak","afspraak","appointment","rendez-vous","зустріч / запис","موعد","📅","Ik heb een afspraak.","У мене є запис.","de","le"],
   ["art_dokter","dokter","doctor","médecin","лікар","طبيب","🩺","De dokter helpt mij.","Лікар допомагає мені.","de","le"],
   ["art_huis","huis","house","maison","будинок","بيت","🏠","Het huis is groot.","Будинок великий.","het","la"],
-  ["art_school","school","school","école","школа","مدرسة","🏫","De school begint om negen uur.","Школа починається о дев'ятій.","de","la"],
+  ["art_school","school","school","école","школа","мدرسة","🏫","De school begint om negen uur.","Школа починається о дев'ятій.","de","la"],
   ["art_auto","auto","car","voiture","автомобіль","سيارة","🚗","De auto is rood.","Автомобіль червоний.","de","la"],
   ["art_raam","raam","window","fenêtre","вікно","نافذة","🪟","Het raam is open.","Вікно відчинене.","het","la"],
   ["art_stoel","stoel","chair","chaise","стілець","كرسي","🪑","De stoel is vrij.","Стілець вільний.","de","la"]
@@ -250,7 +278,7 @@ const DATA={
   ["sh_1","de winkelkar","shopping cart","le Caddie","візок для покупок","عربة التسوق","🛒","Neem een winkelkar.","Візьміть візок."],
   ["sh_2","de kassa","checkout","la caisse","каса","الصندوق / الكاسا",REG,"Betaal aan de kassa.","Розрахуйтеся на касі."],
   ["sh_3","het bonnetje","receipt","le ticket de caisse","чек","الإيصال / الفاتورة","🧾","Wilt u het bonnetje?","Бажаєте чек?"],
-  ["sh_4","de korting","discount","la réduction","знижка","الخصم / التخفيض","🏷️","Er is 20% korting.","Діє знижка 20%."],
+  ["sh_4","de korting","discount","la réduction","знижка","الخصم / Тхфиض","🏷️","Er is 20% korting.","Діє знижка 20%."],
   ["sh_zak","de zak","bag","le sac","пакет / мішок","الكيس","🛍️","Deze zak is van Action.","Цей пакет з Action."],
   ["sh_melk","de melk","milk","le lait","молоко","الحليب","🥛","Ik koop een liter melk.","Я купую літр молока."],
   ["sh_brood","het brood","bread","le pain","хліб","الخبز","🍞","Vers brood is lekker.","Свіжий хліб смачний."],
@@ -261,7 +289,7 @@ const DATA={
   ["sh_appels","de appels","apples","les pommes","яблука","التفاح","🍎","Rode appels zijn zoet.","Червоні яблука солодкі."],
   ["sh_komkommer","de komkommer","cucumber","le concombre","огірок","الخيار","🥒","Ik snijd de komkommer.","Я ріжу огірок."],
   ["sh_tomaten","de tomaten","tomatoes","les tomates","помідори","الطماطم","🍅","Verse tomaten voor de salade.","Свіжі помідори для салату."],
-  ["sh_aardappelen","de aardappelen","potatoes","les pommes de terre","картопля","البطاطس","🥔","Aardappelen koken.","Варити картоплю."],
+  ["sh_aardappelen","de aardappelen","potatoes","les pommes de terre","картопля","البطاطس","🥔","Aardappelen koken.","Варити картопля."],
   ["sh_ui","de ui","onion","l'oignon","цибуля","البصل","🧅","Snijd een ui fijn.","Дрібно наріжте цибулю."],
   ["sh_ketchup","de ketchup","ketchup","le ketchup","кетчуп","الكاتشب","🥫","Ketchup bij de frietjes.","Кетчуп до картоплі фрі."],
   ["sh_mayonaise","de mayonaise","mayonnaise","la mayonnaise","майонез","المايونيز","🥫","Belgen eten friet met mayonaise.","Бельгійці їдять фрі з майонезом."],
@@ -292,7 +320,6 @@ const DATA={
  ])
 };
 
-// Додаткові теми A1
 const dot=c=>'<svg viewBox="0 0 64 64" width="50" height="50" role="img" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="'+c+'" stroke="#20243A" stroke-opacity=".35" stroke-width="3"/></svg>';
 Object.assign(DATA,{
  phrases:R([
@@ -397,7 +424,7 @@ Object.assign(DATA,{
  ]),
  adjectives:R([
   ["adj_1", "groot", "big", "grand", "великий", "كبير", "🐘", "Het huis is groot.", "Будинок великий."],
-  ["adj_2", "klein", "small", "petit", "малий", "صغير", "🐜", "De kamer is klein.", "Кімнатка маленька."],
+  ["adj_2", "klein", "small", "petit", "малий", "صغير", "🐜", "De kamer is klein.", "Кімната маленька."],
   ["adj_3", "goed", "good", "bon", "добрий / хороший", "جيد", "👍", "Dit is een goed boek.", "Це хороша книга."],
   ["adj_4", "slecht", "bad", "mauvais", "поганий", "سيئ", "👎", "Het weer is slecht.", "Погода погана."],
   ["adj_5", "nieuw", "new", "nouveau", "новий", "جديد", "🆕", "Ik heb een nieuwe fiets.", "У мене новий велосипед."],
@@ -524,7 +551,7 @@ DATA.verbs.items.push(...R([
   ["vx_27", "heten", "to be called", "s'appeler", "називатися", "اسمه / يُدعى", "🏷️", "Ik heet Anna.", "Мене звати Анна."]
 ]).items);
 
-const XUI={"uk": {"tabs": {"phrases": "Фрази та привітання", "numbers": "Числа", "family": "Сім'я", "time": "Час", "months": "Місяці", "colors": "Кольори", "adjectives": "Прикметники", "home": "Дім і кімнати", "body": "Тіло", "clothes": "Одяг", "animals": "Тварини", "city": "Місто та місця", "jobs": "Професії"}, "subs": {"phrases": "Обери правильну фразу", "numbers": "Обери слово для числа", "family": "Хто це в родині?", "time": "Обери правильне слово", "months": "Обери назву місяця", "colors": "Подивись на колір і обери слово", "adjectives": "Обери переклад слова", "home": "Подивись на іконку та обери слово", "body": "Подивись на іконку та обери слово", "clothes": "Подивись на іконку та обери слово", "animals": "Подивись на іконку та обери слово", "city": "Подивись на іконку та обери слово", "jobs": "Подивись на іконку та обери слово"}}, "en": {"tabs": {"phrases": "Phrases & greetings", "numbers": "Numbers", "family": "Family", "time": "Time", "months": "Months", "colors": "Colours", "adjectives": "Adjectives", "home": "Home & rooms", "body": "Body", "clothes": "Clothes", "animals": "Animals", "city": "City & places", "jobs": "Jobs"}, "subs": {"phrases": "Choose the right phrase", "numbers": "Choose the word for the number", "family": "Who is this in the family?", "time": "Choose the right word", "months": "Choose the month", "colors": "Look at the colour and choose the word", "adjectives": "Choose the translation", "home": "Look at the icon and choose the word", "body": "Look at the icon and choose the word", "clothes": "Look at the icon and choose the word", "animals": "Look at the icon and choose the word", "city": "Look at the icon and choose the word", "jobs": "Look at the icon and choose the word"}}, "fr": {"tabs": {"phrases": "Phrases & salutations", "numbers": "Nombres", "family": "Famille", "time": "Temps", "months": "Mois", "colors": "Couleurs", "adjectives": "Adjectifs", "home": "Maison & pièces", "body": "Corps", "clothes": "Vêtements", "animals": "Animaux", "city": "Ville & lieux", "jobs": "Métiers"}, "subs": {"phrases": "Choisis la bonne expression", "numbers": "Choisis le mot du nombre", "family": "Qui est-ce dans la famille ?", "time": "Choisis le bon mot", "months": "Choisis le mois", "colors": "Regarde la couleur et choisis le mot", "adjectives": "Choisis la traduction", "home": "Regarde l'icône et choisis le mot", "body": "Regarde l'icône et choisis le mot", "clothes": "Regarde l'icône et choisis le mot", "animals": "Regarde l'icône et choisis le mot", "city": "Regarde l'icône et choisis le mot", "jobs": "Choisis le métier"}}, "ar": {"tabs": {"phrases": "عبارات وتحيات", "numbers": "الأعداد", "family": "العائلة", "time": "الوقت", "months": "الشهور", "colors": "الألوان", "adjectives": "الصفات", "home": "البيت والغرف", "body": "الجسم", "clothes": "الملابس", "animals": "الحيوانات", "city": "المدينة والأماكن", "jobs": "المهن"}, "subs": {"phrases": "اختر العبارة الصحيحة", "numbers": "اختر كلمة العدد", "family": "من هذا في العائلة؟", "time": "اختر الكلمة الصحيحة", "months": "اختر الشهر", "colors": "انظر إلى اللون واختر الكلمة", "adjectives": "اختر الترجمة", "home": "انظر إلى الأيقونة واختر الكلمة", "body": "انظر إلى الأيقونة واختر الكلمة", "clothes": "انظر إلى الأيقونة واختر الكلمة", "animals": "انظر إلى الأيقونة واختر الكلمة", "city": "انظر إلى الأيقونة واختر الكلمة", "jobs": "اختر المهنة"}}};
+const XUI={"uk": {"tabs": {"phrases": "Фрази та привітання", "numbers": "Числа", "family": "Сім'я", "time": "Час", "months": "Місяці", "colors": "Кольори", "adjectives": "Прикметники", "home": "Дім і кімнати", "body": "Тіло", "clothes": "Одяг", "animals": "Тварини", "city": "Місто та місця", "jobs": "Професії"}, "subs": {"phrases": "Обери правильну фразу", "numbers": "Обери слово для числа", "family": "Хто це в родині?", "time": "Обери правильне слово", "months": "Обери назву місяця", "colors": "Подивись на колір і обери слово", "adjectives": "Обери переклад слова", "home": "Подивись на іконку та обери слово", "body": "Подивись на іконку та обери слово", "clothes": "Подивись на іконку та обери слово", "animals": "Подивись на іконку та обери слово", "city": "Подивись на іконку та обери слово", "jobs": "Подивись на іконку та обери слово"}}, "en": {"tabs": {"phrases": "Phrases & greetings", "numbers": "Numbers", "family": "Family", "time": "Time", "months": "Months", "colors": "Colours", "adjectives": "Adjectives", "home": "Home & rooms", "body": "Body", "clothes": "Clothes", "animals": "Animals", "city": "City & places", "jobs": "Jobs"}, "subs": {"phrases": "Choose the right phrase", "numbers": "Choose the word for the number", "family": "Who is this in the family?", "time": "Choose the right word", "months": "Choose the month", "colors": "Look at the colour and choose the word", "adjectives": "Choose the translation", "home": "Look at the icon and choose the word", "body": "Look at the icon and choose the word", "clothes": "Look at the icon and choose the word", "animals": "Look at the icon and choose the word", "city": "Look at the icon and choose the word", "jobs": "Choose the job"}}, "fr": {"tabs": {"phrases": "Phrases & salutations", "numbers": "Nombres", "family": "Famille", "time": "Temps", "months": "Mois", "colors": "Couleurs", "adjectives": "Adjectifs", "home": "Maison & pièces", "body": "Corps", "clothes": "Vêtements", "animals": "Animaux", "city": "Ville & lieux", "jobs": "Métiers"}, "subs": {"phrases": "Choisis la bonne expression", "numbers": "Choisis le mot du nombre", "family": "Qui est-ce dans la famille ?", "time": "Choisis le bon mot", "months": "Choisis le mois", "colors": "Regarde la couleur et choisis le mot", "adjectives": "Choisis la traduction", "home": "Regarde l'icône et choisis le mot", "body": "Regarde l'icône et choisis le mot", "clothes": "Regarde l'icône et choisis le mot", "animals": "Regarde l'icône et choisis le mot", "city": "Regarde l'icône et choisis le mot", "jobs": "Choisis le métier"}}, "ar": {"tabs": {"phrases": "عبارات وتحيات", "numbers": "الأعداد", "family": "العائلة", "time": "الوقت", "months": "الشهور", "colors": "الألوان", "adjectives": "الصفات", "home": "البيت والغرف", "body": "الجسم", "clothes": "الملابس", "animals": "الحيوانات", "city": "المدينة والأماكن", "jobs": "المهن"}, "subs": {"phrases": "اختر العبارة الصحيحة", "numbers": "اختر كلمة العدد", "family": "من هذا في العائلة؟", "time": "اختر الكلمة الصحيحة", "months": "اختر الشهر", "colors": "انظر إلى اللون واختر الكلمة", "adjectives": "اختر الترجمة", "home": "انظر إلى الأيقونة واختر الكلمة", "body": "انظر إلى الأيقونة واختر الكلمة", "clothes": "انظر إلى الأيقونة واختر الكلمة", "animals": "انظر إلى الأيقونة واختر الكلمة", "city": "انظر إلى الأيقونة واختر الكلمة", "jobs": "اختر المهنة"}}};
 for(const l in XUI){Object.assign(UI[l].tabs,XUI[l].tabs);Object.assign(UI[l].subs,XUI[l].subs)}
 
 function validStored(key,allowed,fallback){try{const v=localStorage.getItem(key);return allowed.includes(v)?v:fallback}catch(e){return fallback}}
@@ -534,10 +561,8 @@ function loadStore(){try{const v=JSON.parse(localStorage.getItem("poly_progress"
 let targetLang=validStored("poly_target",LANGS,"nl"),uiLang=validStored("poly_ui",UI_LANGS,"uk");
 if(targetLang===uiLang)uiLang="uk";
 
-// Зберігаємо поточний категорійний розділ та підрозділ (tab)
 let currentCat=validStored("poly_cat",CATEGORIES.map(c=>c.id),"comm");
 let tab=validStored("poly_tab",CATEGORIES.flatMap(c=>c.tabs),"questions");
-// Перевіримо чи поточний tab належить до поточного cat, якщо ні — встановимо перший з категорії
 const activeCatObj=CATEGORIES.find(c=>c.id===currentCat)||CATEGORIES[0];
 if(!activeCatObj.tabs.includes(tab)){currentCat=CATEGORIES[0].id;tab=CATEGORIES[0].tabs[0];}
 
@@ -559,7 +584,6 @@ function saveStore(){
 }
 const getUI=()=>UI[uiLang]||UI.uk;
 
-// Підтримка вибору «Усе» (all) для категорії або конкретного підрозділу
 function itemsFor(k=tab){
  if(k==="all"){
   const catObj=CATEGORIES.find(c=>c.id===currentCat);
@@ -577,26 +601,35 @@ function stateFor(id){if(!store[id])store[id]={seen:0,correct:0,wrong:0,streak:0
 const allItems=()=>Object.values(DATA).flatMap(d=>d.items);
 function dueItems(){const now=Date.now();return allItems().filter(x=>{const s=stateFor(x.id);return s.seen>0&&s.due<=now})}
 const learnedCount=()=>allItems().filter(x=>stateFor(x.id).known).length;
-function updateStats(){$("score").textContent="⭐ "+score;$("learnedCount").textContent=learnedCount();$("reviewCount").textContent=getUI().review+": "+dueItems().length}
+function updateStats(){
+ $("score").textContent="⭐ "+score;
+ $("learnedCount").textContent=learnedCount();
+ $("reviewCount").textContent=getUI().review+": "+dueItems().length;
+}
 
 function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
 
 function updateHeader(){
  const u=getUI();
- $("tagline").textContent=u.tagline;$("targetLabel").textContent=u.target;$("uiLabel").textContent=u.ui;
- $("welcomeTitle").textContent=u.welcome;$("welcomeText").textContent=u.welcomeText;$("progressLabel").textContent=u.learned;$("footText").textContent=u.footer;
- $("targetLangPicker").value=targetLang;$("uiLangPicker").value=uiLang;
+ $("tagline").textContent=u.tagline;
+ $("targetLabel").textContent=u.target;
+ $("uiLabel").textContent=u.ui;
+ $("progressLabel").textContent=u.learned;
+ $("footText").textContent=u.footer;
+ $("targetLangPicker").value=targetLang;
+ $("uiLangPicker").value=uiLang;
  document.documentElement.lang=uiLang;
  if(uiLang==="ar")document.documentElement.setAttribute("dir","rtl");else document.documentElement.removeAttribute("dir");
  const dark=document.documentElement.dataset.theme==="dark";
- $("themeToggle").textContent=dark?"☀️":"🌙";$("themeToggle").title=dark?u.light:u.dark;$("themeToggle").setAttribute("aria-label",dark?u.light:u.dark);
- updateStats();updateModeButtons();
+ $("themeToggle").textContent=dark?"☀️":"🌙";
+ $("themeToggle").title=dark?u.light:u.dark;
+ $("themeToggle").setAttribute("aria-label",dark?u.light:u.dark);
+ updateStats();
+ updateModeButtons();
 }
 
-// Побудова двоступеневої навігації
 function buildNav(){
  const u=getUI();
- // 1. Рядок основних розділів (категорій)
  const catNav=$("catNav");catNav.replaceChildren();
  CATEGORIES.forEach(c=>{
   const b=el("button","",u.cats[c.id]||c.id);
@@ -605,7 +638,6 @@ function buildNav(){
   b.setAttribute("aria-selected",String(isSelected));
   b.onclick=()=>{
    currentCat=c.id;
-   // Обираємо перший підрозділ нової категорії за замовчуванням
    tab=c.tabs[0];
    saveStore();
    buildNav();
@@ -614,11 +646,9 @@ function buildNav(){
   catNav.appendChild(b);
  });
 
- // 2. Рядок підрозділів поточної категорії + кнопка "Усе"
  const subNav=$("subNav");subNav.replaceChildren();
  const catObj=CATEGORIES.find(c=>c.id===currentCat)||CATEGORIES[0];
  
- // Кнопка "Усе" для міксу категорії
  const allBtn=el("button","",u.all);
  allBtn.type="button";
  allBtn.setAttribute("aria-selected",String(tab==="all"));
@@ -631,7 +661,6 @@ function buildNav(){
  subNav.appendChild(allBtn);
 
  catObj.tabs.forEach(k=>{
-  // Пропускаємо dehet якщо англійська цільова мова
   if(k==="dehet"&&targetLang==="en")return;
   const b=el("button","",(u.tabs[k]||k).replace(/^\d+\.\s*/,""));
   b.type="button";
@@ -812,7 +841,6 @@ function endRound(){
  const again=el("button","btn",u.again);again.type="button";again.onclick=newRound;row.appendChild(again);
  const rev=el("button","btn",u.reviewMode);rev.type="button";rev.onclick=()=>{mode="review";updateModeButtons();newRound()};row.appendChild(rev);
  const nt=el("button","btn primary",u.nextTopic);nt.type="button";nt.onclick=()=>{
-  // Перехід до наступного підрозділу
   const catObj=CATEGORIES.find(c=>c.id===currentCat)||CATEGORIES[0];
   const allSubs=["all", ...catObj.tabs];
   const nextIdx=(allSubs.indexOf(tab)+1)%allSubs.length;
@@ -913,7 +941,7 @@ function renderBuild(){
 function updateModeButtons(){
  const u=getUI(),wrap=$("modeButtons");wrap.replaceChildren();
  [["study",u.study],["quiz",u.quiz],["audio",u.audio]].concat(targetLang==="nl"?[["build",u.build]]:[],[["review",u.reviewMode]]).forEach(([m,label])=>{
-  const b=el("button","btn"+(m===mode?" primary":""),label);b.type="button";
+  const b=el("button",m===mode?"primary":"",label);b.type="button";
   b.onclick=()=>{mode=m;updateModeButtons();newRound()};wrap.appendChild(b);
  });
 }
